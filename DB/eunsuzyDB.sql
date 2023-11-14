@@ -47,8 +47,8 @@ CREATE TABLE Messages (
 
 INSERT INTO `Users` (userId, userPwd, userName, email, nickname)
 VALUES
-('eunsoo', '97', '', '',''),
-('suzy', '98', '', '','');
+('eunsooo', '97', '박은수', 'suzy', 'soul'),
+('suuzy', '98', '이수지', 'eunsu', 'dubbidubbab');
 -- ('파리', '유럽 서부', '낭만의 도시', '바게트, 크루아상, 잠봉뵈르'),
 -- ('푸꾸옥', '동남아시아', '휴양의 도시', '쌀국수, 반미'),
 -- ('시드니', '오세아니아', '여행의 도시', '아웃백, 쌀국수, 스테이크'),
