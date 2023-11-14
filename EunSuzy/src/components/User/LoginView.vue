@@ -8,7 +8,7 @@
         <input
           type="text"
           id="username"
-          v-model="loginForm.username"
+          v-model="loginForm.userId"
           placeholder="ID를 입력하세요"
         />
       </div>
@@ -17,7 +17,7 @@
         <input
           type="password"
           id="password"
-          v-model="loginForm.password"
+          v-model="loginForm.userPwd"
           placeholder="Password를 입력하세요"
         />
       </div>
@@ -31,21 +31,23 @@ import { ref } from "vue";
 import axios from "axios";
 
 const loginForm = ref({
-  username: "",
-  password: "",
+  userId: "",
+  userPwd: "",
 });
 
 const login = async () => {
   try {
     const response = await axios.post(
-      "http://localhost:8080/login",
+      "http://localhost:8080/user/login",
       loginForm.value
     );
     // 로그인 성공 처리
     console.log("로그인 성공:", response.data);
+    router.push("/");
   } catch (error) {
     // 에러 처리
     console.error("로그인 실패:", error);
+    alert("로그인이 실패했네요~");
   }
 };
 </script>
