@@ -45,13 +45,15 @@ CREATE TABLE Messages (
     FOREIGN KEY (Writer) REFERENCES Users(UserNO)
 )ENGINE=InnoDB;
 
+SELECT *
+FROM users;
+
+SELECT userId, userPwd, userName, email, nickname
+FROM users
+WHERE userId = 'suuzy';
+
 INSERT INTO `Users` (userId, userPwd, userName, email, nickname)
 VALUES
 ('eunsooo', '97', '박은수', 'suzy', 'soul'),
 ('suuzy', '98', '이수지', 'eunsu', 'dubbidubbab');
--- ('파리', '유럽 서부', '낭만의 도시', '바게트, 크루아상, 잠봉뵈르'),
--- ('푸꾸옥', '동남아시아', '휴양의 도시', '쌀국수, 반미'),
--- ('시드니', '오세아니아', '여행의 도시', '아웃백, 쌀국수, 스테이크'),
--- ('교토',  '동아시아 ', '고요한 도시', '우동, 규카츠, 타코야끼'),
--- ('상하이',  '동아시아', '야경의 도시', '훠궈, 덤플링');
 

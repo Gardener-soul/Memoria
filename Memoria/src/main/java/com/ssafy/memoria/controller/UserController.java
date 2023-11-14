@@ -20,7 +20,6 @@ import com.ssafy.memoria.model.service.UserService;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
 	// UserService 라고 하는 친구를 주입
 	@Autowired
 	private UserService userService;
