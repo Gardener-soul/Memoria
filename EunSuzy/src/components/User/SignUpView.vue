@@ -9,7 +9,7 @@
         <input
           type="text"
           id="userid"
-          v-model="signupForm.userid"
+          v-model="signupForm.userId"
           placeholder="ID를 입력하세요"
           required
         />
@@ -19,7 +19,7 @@
         <input
           type="password"
           id="password"
-          v-model="signupForm.password"
+          v-model="signupForm.userPwd"
           placeholder="Password를 입력하세요"
           required
         />
@@ -29,7 +29,7 @@
         <input
           type="text"
           id="username"
-          v-model="signupForm.username"
+          v-model="signupForm.userName"
           placeholder="이름를 입력하세요"
           required
         />
@@ -62,26 +62,31 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
 
 const signupForm = ref({
-  userid: "",
-  password: "",
-  username: "",
+  userId: "",
+  userPwd: "",
+  userName: "",
   email: "",
   nickname: "",
 });
 
+const router = useRouter();
+
 const signUp = async () => {
   try {
     const response = await axios.post(
-      "http://localhost:8080/signup",
+      "http://localhost:8080/user/signup",
       signupForm.value
     );
     // 회원가입 성공 처리
     console.log("회원가입 성공:", response.data);
+    router.push("/");
   } catch (error) {
     // 에러 처리
     console.error("회원가입 실패:", error);
+    alert("회원가입 실패");
   }
 };
 </script>

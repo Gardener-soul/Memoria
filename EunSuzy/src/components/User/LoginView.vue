@@ -29,11 +29,14 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
 
 const loginForm = ref({
   userId: "",
   userPwd: "",
 });
+
+const router = useRouter();
 
 const login = async () => {
   try {
