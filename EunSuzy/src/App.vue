@@ -9,4 +9,6 @@
 import HeaderVue from "@/components/common/HeaderView.vue";
 </script>
 
-<style scoped></style>
+<style>
+
+</style>

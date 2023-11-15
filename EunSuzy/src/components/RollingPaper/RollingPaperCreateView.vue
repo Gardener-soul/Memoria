@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>제목 입력</p>
-    <input v-model="title" placeholder="제목을 입력하세요" />
+    <input v-model="title" placeholder="당신의 한 줄을 남겨주세요." />
     <br />
     <button @click="createAndNavigate">롤링 페이퍼 만들기</button>
   </div>
@@ -21,7 +21,7 @@ function createAndNavigate() {
     .then((response) => {
       // 여기서 백엔드로부터 받은 RollingPaperID를 사용
       const rollingPaperId = response.data.rollingPaperId;
-      router.push(`/rollingPaper/write/${rollingPaperId}`);
+      router.push(`/rollingPaper/${rollingPaperId}`);
     })
     .catch((error) => {
       console.error(error);

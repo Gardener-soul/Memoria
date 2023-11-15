@@ -1,0 +1,10 @@
+body {
+    background: linear-gradient(to top left, 
+    #ffd1dc 0%,    /* 시작 색상: 연한 핑크, 0% 지점에서 시작 */
+    #ffe4e8 40%,   /* 새로운 중간 색상: 더 부드러운 전환을 위한 색상 */
+    #ffe9ec 60%,   /* 중간 색상: 더 연한 핑크, 더 부드러운 전환 */
+    #ffffff 100%);
+    background-repeat: no-repeat; /* 그라데이션 반복 방지 */
+    background-size: 100% 100%;      /* 배경 크기를 화면에 맞게 조정 */
+  }
+  

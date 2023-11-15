@@ -9,6 +9,8 @@ import RollingPaperView from "@/views/RollingPaperView.vue";
 import RollingPaperCreateView from "@/components/RollingPaper/RollingPaperCreateView.vue";
 import RollingPaperDetailView from "@/components/RollingPaper/RollingPaperDetailView.vue";
 
+import MessageCreateView from "@/components/message/MessageCreateView.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -49,6 +51,10 @@ const router = createRouter({
       name: "rollingpaperdetail",
       component: RollingPaperDetailView, // 새로운 상세 뷰 컴포넌트 사용
       props: true,
+    },{
+      path: "/message",
+      name: "messagecreate",
+      component: MessageCreateView,
     },
   ],
 });
