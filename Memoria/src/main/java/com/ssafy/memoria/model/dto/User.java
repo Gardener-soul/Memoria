@@ -3,14 +3,14 @@ package com.ssafy.memoria.model.dto;
 import java.time.LocalDateTime;
 
 public class User {
-	private int userNo; // INT NOT NULL AUTO_INCREMENT,
-    private String userId; // VARCHAR(30) UNIQUE NOT NULL,
-    private String userPwd; // VARCHAR(100) NOT NULL,
-    private String userName; // VARCHAR(20) NOT NULL,
-    private String email; // VARCHAR(50) UNIQUE NOT NULL,
-    private String nickname; // VARCHAR(20) UNIQUE NOT NULL,
-    private LocalDateTime regDate; // DATETIME DEFAULT CURRENT_TIMESTAMP,
-    private int reportCount; // INT DEFAULT 0,
+	private int userNo;
+    private String userId;
+    private String userPwd;
+    private String userName;
+    private String email;
+    private String nickname;
+    private LocalDateTime regDate;
+    private int reportCount;
     
 	public User() {
 		super();
