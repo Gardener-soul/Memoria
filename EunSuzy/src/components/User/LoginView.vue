@@ -39,7 +39,6 @@ const loginForm = ref({
 const router = useRouter();
 
 const login = async () => {
-  console.log(loginForm)
   try {
     const response = await axios.post(
       "http://localhost:8080/user/login",

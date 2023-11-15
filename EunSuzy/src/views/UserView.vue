@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>User</h3>
+    <h2>User</h2>
     <hr />
     <RouterLink to="login">LogIn</RouterLink> |
     <RouterLink to="signup">SignUp</RouterLink> |

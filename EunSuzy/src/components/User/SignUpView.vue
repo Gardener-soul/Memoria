@@ -23,6 +23,10 @@
           placeholder="Password를 입력하세요"
           required
         />
+        <p v-if="passwordIsValid">비밀번호가 유효합니다.</p>
+        <p v-else>
+          영문자, 숫자와 특수문자를 조합해서 8자리 이상의 비밀번호를 완성하세요.
+        </p>
       </div>
       <div class="sketchbook-group">
         <label for="username">Name</label>
@@ -60,7 +64,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
@@ -73,6 +77,13 @@ const signupForm = ref({
 });
 
 const router = useRouter();
+
+// 비밀번호 유효성 검사를 위한 computed 속성
+const passwordIsValid = computed(() => {
+  return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(
+    signupForm.value.userPwd
+  );
+});
 
 const signUp = async () => {
   try {
@@ -104,7 +115,7 @@ body {
 }
 
 .sketchbook-container {
-  background-image: url(../../assets/rm249-aew-051-a.jpg);
+  background-image: url(../../assets/skecthTemplate1.jpg);
   background-size: cover; /* 배경 이미지 크기 조절 */
   background-repeat: no-repeat; /* 이미지 반복 방지 */
   background-color: #fffaf0;
