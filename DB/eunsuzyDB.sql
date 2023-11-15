@@ -18,18 +18,22 @@ CREATE TABLE `Users` (
     `reportCount` INT DEFAULT 0,
     PRIMARY KEY(`UserNO`)
 )ENGINE=InnoDB;
+SELECT *
+FROM Users;
 
 DROP TABLE RollingPapers;
 CREATE TABLE RollingPapers (
-    RollingPaperID INT NOT NULL AUTO_INCREMENT,
-    Title VARCHAR(100) NOT NULL,
-    Owner INT NOT NULL,
-    WriterCount INT DEFAULT 0,
-    REGDATE DATETIME DEFAULT CURRENT_TIMESTAMP,
-    EMOTICON VARCHAR(200),
-    PRIMARY KEY (RollingPaperID),
-    FOREIGN KEY (Owner) REFERENCES Users(UserNO)
+    rollingPaperNo INT NOT NULL AUTO_INCREMENT,
+    owner INT NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    writerCount INT DEFAULT 0,
+    regDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    -- emoticon VARCHAR(200),
+    PRIMARY KEY (rollingPaperNo),
+    FOREIGN KEY (owner) REFERENCES Users(userNo)
 )ENGINE=InnoDB;
+SELECT *
+FROM RollingPapers;
 
 DROP TABLE Messages;
 CREATE TABLE Messages (
@@ -44,16 +48,17 @@ CREATE TABLE Messages (
     FOREIGN KEY (RollingPaperID) REFERENCES RollingPapers(RollingPaperID),
     FOREIGN KEY (Writer) REFERENCES Users(UserNO)
 )ENGINE=InnoDB;
-
 SELECT *
-FROM users;
-
-SELECT userId, userPwd, userName, email, nickname
-FROM users
-WHERE userId = 'suuzy';
+FROM Messages;
 
 INSERT INTO `Users` (userId, userPwd, userName, email, nickname)
 VALUES
-('eunsooo', '97', '박은수', 'suzy', 'soul'),
-('suuzy', '98', '이수지', 'eunsu', 'dubbidubbab');
+('eunsooo', '97', '박은수', 'suzy@naver.com', 'soul'),
+('suuzy', '98', '이수지', 'eunsu@naver.com', 'dubbidubbab'),
+('HunTeac', '9898', '한재훈', 'jaehun@naver.com', 'hahahan');
 
+INSERT INTO `RollingPapers` (owner, title)
+VALUES
+(1, '박은수의 롤링페이퍼'),
+(2, '이수지의 롤링페이퍼'),
+(3, '한재훈의 롤링페이퍼');
