@@ -48,7 +48,6 @@ public class UserController {
 		if(tmp == null)
 			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
 		
-		session.setAttribute("loginUser", tmp.getUserName());
 		return new ResponseEntity<String>(tmp.getUserName(), HttpStatus.OK);
 	}
 
