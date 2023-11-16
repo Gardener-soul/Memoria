@@ -12,9 +12,8 @@ import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
 
 const route = useRoute();
-const ownerName = ref("");
-const messageCount = ref(0);
 const router = useRouter();
+const messageCount = ref(0);
 
 // DB에서 데이터를 가져오는 함수
 // DB에서 데이터를 가져올 때 컬럼명과 맞출 것
@@ -22,9 +21,8 @@ function fetchData() {
   const rollingPaperNo = route.params.id; // 라우트 파라미터에서 rollingPaperNo 추출
 
   axios
-    .get(`/rollingPaper/detail/${rollingPaperNo}`) // 백엔드 API의 경로
+    .get(`/rollingPaper/${rollingPaperNo}`) // 백엔드 API의 경로
     .then((response) => {
-      ownerName.value = response.data.owner;
       messageCount.value = response.data.writerCount;
     })
     .catch((error) => {

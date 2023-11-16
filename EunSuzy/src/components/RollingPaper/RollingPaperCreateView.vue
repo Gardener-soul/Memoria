@@ -1,11 +1,13 @@
 <template>
   <div class="container">
-    <p class="title">제목 입력</p>
+    <p class="title">{{ userStore.userData }}의 편지</p>
     <input
       class="input-field"
       v-model="title"
       placeholder="당신의 한 줄을 남겨주세요."
     />
+    <p>1학기 동안 당신과 함께해서 즐거웠어요.
+     당신의 앞길을 응원하고 축복해요 -은수지-</p>
     <br />
     <button class="create-button" @click="createAndNavigate">
       롤링 페이퍼 만들기
@@ -17,17 +19,19 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
+import { useUserStore } from "@/stores/user.js"
 
 const title = ref("");
 const router = useRouter();
+const userStore = useUserStore();
 
 function createAndNavigate() {
   axios
-    .post("/rollingPaper/write", { title: title.value })
+    .post("http://localhost:8080/rollingPaper/write", { title: title.value })
     .then((response) => {
       // 여기서 백엔드로부터 받은 RollingPaperID를 사용
-      const rollingPaperId = response.data.rollingPaperId;
-      router.push(`/rollingPaper/${rollingPaperId}`);
+      const rollingPaperId = response.data.rollingPaperNo;
+      router.push(`rollingPaper/${rollingPaperId}`);
     })
     .catch((error) => {
       console.error(error);
@@ -36,17 +40,32 @@ function createAndNavigate() {
 </script>
 
 <style scoped>
+/* CSS 파일 내에서 body 태그에 대한 스타일 */
+body {
+  margin: 0; /* 모든 여백 제거 */
+  padding: 0; /* 모든 패딩 제거 */
+  display: flex; /* Flexbox 사용 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  height: 40vh;
+  background-color: #f0e6d6; /* 배경색 설정 */
+  font-family: "Comic Sans MS", cursive, sans-serif; /* 글꼴 설정 */
+}
+
+/* .container 클래스에 대한 스타일 */
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex; /* Flexbox 사용 */
+  flex-direction: column; /* 세로 방향 정렬 */
+  align-items: center; /* 세로축을 중심으로 중앙 정렬 */
+  justify-content: center; /* 수평축을 중심으로 중앙 정렬 */
   padding: 20px;
-  background-color: #fffaf0; /* 배경색 변경 */
+  background-color: #fffaf0;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 600px; /* 컨테이너 최대 너비 */
+  max-width: 700px; /* 최대 너비 설정 */
 }
+
 
 .title {
   color: #bf94e4; /* 제목 색상 유지 */

@@ -42,7 +42,7 @@ public class RollingPaperController {
 	}
 	
 	//2. 상세보기
-	@GetMapping("detail/{rollingPaperNo}")
+	@GetMapping("/{rollingPaperNo}")
 	public ResponseEntity<RollingPaper> detail(@PathVariable int rollingPaperNo){
 		RollingPaper rollingPaper = rollingPaperService.getRollingPaper(rollingPaperNo);
 		//꼬옥 주소창을 통해 접근하려고 하는 악의무리가 있기 때문에 만약 없는 값을 보냈을때... 처리를 해주어라. (해볼것)
@@ -51,9 +51,10 @@ public class RollingPaperController {
 	
 	//3. 등록
 	@PostMapping("write")
-	public ResponseEntity<RollingPaper> write(RollingPaper rollingPaper){
-		rollingPaperService.writeRollingPaper(rollingPaper);
-		return new ResponseEntity<RollingPaper>(rollingPaper, HttpStatus.CREATED);
+	public ResponseEntity<RollingPaper> write(@RequestBody RollingPaper rollingPaper){
+		RollingPaper saveRP = rollingPaperService.writeRollingPaper(rollingPaper);
+//		int RpNo = saveRP.getRollingPaperNo();
+		return new ResponseEntity<RollingPaper>(saveRP, HttpStatus.CREATED);
 	}
 	
 	//4. 삭제

@@ -22,9 +22,10 @@
 	</select>
 
 	<!-- 게시글 등록 -->
-	<insert id="insertRollingPaper" parameterType="RollingPaper">
-		INSERT INTO rollingPapers (owner, title)
-		VALUES (#{owner}, #{title})
+	<insert id="insertRollingPaper" parameterType="RollingPaper"
+        useGeneratedKeys="true" keyProperty="rollingPaperNo">
+    	INSERT INTO rollingPapers (title)
+    	VALUES (#{title})
 	</insert>
 
 	<!-- 게시글 삭제 -->
