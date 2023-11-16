@@ -11,6 +11,8 @@ import RollingPaperDetailView from "@/components/RollingPaper/RollingPaperDetail
 
 import MessageCreateView from "@/components/message/MessageCreateView.vue";
 
+import EventView from "@/views/EventView.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -23,23 +25,26 @@ const router = createRouter({
       path: "/user",
       name: "user",
       component: UserView,
-      children: [
-        {
-          path: "/login",
-          name: "login",
-          component: LoginView,
-        },
-        {
-          path: "/signup",
-          name: "signup",
-          component: SignUpView,
-        },
-      ],
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: LoginView,
+    },
+    {
+      path: "/signup",
+      name: "signup",
+      component: SignUpView,
     },
     {
       path: "/rollingpaper",
       name: "rollingpaper",
       component: RollingPaperView,
+    },
+    {
+      path: "/event",
+      name: "event",
+      component: EventView,
     },
     {
       path: "/create",
@@ -51,8 +56,9 @@ const router = createRouter({
       name: "rollingpaperdetail",
       component: RollingPaperDetailView, // 새로운 상세 뷰 컴포넌트 사용
       props: true,
-    },{
-      path: "/message",
+    },
+    {
+      path: "/messagecreate",
       name: "messagecreate",
       component: MessageCreateView,
     },
