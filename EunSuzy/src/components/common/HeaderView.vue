@@ -4,14 +4,16 @@
       <nav class="navigation">
         <div class="nav-links">
           <RouterLink to="/"> Home </RouterLink> |
-          <RouterLink to="rollingpaper">Rolling Paper</RouterLink> |
-          <RouterLink to="event">Event</RouterLink>
+          <RouterLink to="/rollingpaper">Rolling Paper</RouterLink> |
+          <RouterLink to="/event">Event</RouterLink>
         </div>
         <div class="user-links">
           <span v-if="userStore.isLoggedIn"
-            >{{ userStore.userData }}님 환영합니다.</span
+            >{{ userStore.userName }}님 환영합니다.</span
           >
-          <RouterLink to="user" v-if="userStore.isLoggedIn">User</RouterLink>
+          <RouterLink to="/mypage" v-if="userStore.isLoggedIn"
+            >My Page</RouterLink
+          >
           <RouterLink to="/" v-if="userStore.isLoggedIn" @click="logout"
             >Log out</RouterLink
           >

@@ -11,8 +11,11 @@
       </tr>
       <tr v-for="(item, index) in paginatedData" :key="index">
         <td>{{ item.rollingPaperNo }}</td>
-        <td>{{ item.owner }}</td>
-        <td @click="navigateToRollingPaper(item.rollingPaperNo)" class="clickable">
+        <td>{{ item.userName }}</td>
+        <td
+          @click="navigateToRollingPaper(item.rollingPaperNo)"
+          class="clickable"
+        >
           {{ item.title }}
         </td>
         <td>{{ item.writerCount }}</td>
@@ -22,14 +25,15 @@
     <div class="pagination">
       <button @click="prevPage" :disabled="currentPage === 1">이전</button>
       <span>페이지 {{ currentPage }} / {{ totalPages }}</span>
-      <button @click="nextPage" :disabled="currentPage === totalPages">다음</button>
+      <button @click="nextPage" :disabled="currentPage === totalPages">
+        다음
+      </button>
     </div>
   </div>
 </template>
 
-
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
@@ -51,15 +55,17 @@ export default {
   },
   methods: {
     navigateToRollingPaper(rollingPaperId) {
-    this.$router.push(`/rollingPaper/${rollingPaperId}`);
-  },
+      this.$router.push(`/rollingPaper/${rollingPaperId}`);
+    },
     fetchRollingPapers() {
       axios
         .get("http://localhost:8080/rollingPaper/list")
-        .then(response => {
+        .then((response) => {
           this.items = response.data;
+
+          console.log(response.data);
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
     },
@@ -101,7 +107,8 @@ table {
   background-color: white; /* 테이블 배경색 추가 */
 }
 
-th, td {
+th,
+td {
   border: 1px solid #bf94e4;
   padding: 8px;
   text-align: center;
@@ -138,4 +145,3 @@ button:hover:not(:disabled) {
   background-color: #a476c1; /* 호버 시 버튼 색상 변경 */
 }
 </style>
-
