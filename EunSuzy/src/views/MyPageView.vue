@@ -10,6 +10,7 @@
     </div>
     <hr />
     <tr></tr>
+    <RouterView />
   </div>
 </template>
 
@@ -21,11 +22,11 @@ const userStore = useUserStore();
 const router = useRouter();
 
 function goRoll() {
-  router.push("myroll");
+  router.push("/mypage/myroll");
 }
 
 function goMessage() {
-  router.push("mymessage");
+  router.push("/mypage/mymessage");
 }
 </script>
 

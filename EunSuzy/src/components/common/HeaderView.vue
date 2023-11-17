@@ -17,7 +17,7 @@
           <RouterLink to="/" v-if="userStore.isLoggedIn" @click="logout"
             >Log out</RouterLink
           >
-          <RouterLink to="login" v-else>Log in</RouterLink>
+          <RouterLink to="/login" v-else>Log in</RouterLink>
         </div>
       </nav>
     </header>

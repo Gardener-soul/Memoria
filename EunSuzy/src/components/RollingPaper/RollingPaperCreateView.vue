@@ -28,6 +28,7 @@ const router = useRouter();
 const userStore = useUserStore();
 
 function createAndNavigate() {
+  console.log(axios);
   axios
     .post("http://localhost:8080/rollingPaper/write", {
       owner: userStore.userNo,

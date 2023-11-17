@@ -23,7 +23,7 @@ function fetchData() {
   const rollingPaperNo = route.params.id; // 라우트 파라미터에서 rollingPaperNo 추출
 
   axios
-    .get(`/rollingPaper/${rollingPaperNo}`) // 백엔드 API의 경로
+    .get(`http://localhost:8080/rollingPaper/${rollingPaperNo}`) // 백엔드 API의 경로
     .then((response) => {
       messageCount.value = response.data.writerCount;
     })

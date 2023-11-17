@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,17 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.memoria.model.dto.RollingPaper;
-import com.ssafy.memoria.model.dto.SearchCondition;
-import com.ssafy.memoria.model.dto.User;
 import com.ssafy.memoria.model.service.RollingPaperService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/rollingPaper")
 @Api(tags="롤링페이퍼 컨트롤러")
+@CrossOrigin("*")
 public class RollingPaperController {
 
 	@Autowired
@@ -67,18 +66,16 @@ public class RollingPaperController {
 	}
 	
 	//5. 수정
-	@ApiIgnore
 	@PutMapping("update") //JSON 형태의 데이터로 넘어왔을 떄 처리하고 싶은데?
 	public ResponseEntity<Void> update(@RequestBody RollingPaper rollingPaper){
 		rollingPaperService.modifyRollingPaper(rollingPaper);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-//	@PutMapping("/board/{id}") //JSON 형태의 데이터로 넘어왔을 떄 처리하고 싶은데?
-//	public ResponseEntity<Void> update(@RequestBody Board board, @PathVariable int id){
-//		board.setId(id);
-//		boardService.modifyBoard(board);
-//		//위와같은 상황 대비
+//	@PutMapping("/board/{rollingPaperNo}") //JSON 형태의 데이터로 넘어왔을 떄 처리하고 싶은데?
+//	public ResponseEntity<Void> update(@RequestBody RollingPaper rollingPaper, @PathVariable int rollingPaperNo){
+//		rollingPaper.setRollingPaperNo(rollingPaperNo);
+//		rollingPaperService.modifyRollingPaper(rollingPaper);
 //		
 //		return new ResponseEntity<Void>(HttpStatus.OK);
 //	}
