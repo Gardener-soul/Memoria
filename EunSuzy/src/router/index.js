@@ -12,7 +12,7 @@ import RollingPaperView from "@/views/RollingPaperView.vue";
 import RollingPaperCreateView from "@/components/RollingPaper/RollingPaperCreateView.vue";
 import RollingPaperDetailView from "@/components/RollingPaper/RollingPaperDetailView.vue";
 
-import MessageCreateView from "@/components/message/MessageCreateView.vue";
+import LetterCreateView from "@/components/Letter/LetterCreateView.vue";
 
 import EventView from "@/views/EventView.vue";
 
@@ -71,9 +71,9 @@ const router = createRouter({
       props: true,
     },
     {
-      path: "/messagecreate",
-      name: "messagecreate",
-      component: MessageCreateView,
+      path: "/lettercreate",
+      name: "lettercreate",
+      component: LetterCreateView,
     },
   ],
 });

@@ -31,7 +31,7 @@ function createAndNavigate() {
   console.log(axios);
   axios
     .post("http://localhost:8080/rollingPaper/write", {
-      owner: userStore.userNo,
+      ownerNo: userStore.userNo,
       title: title.value,
     })
     .then((response) => {
