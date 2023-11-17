@@ -66,8 +66,15 @@ const login = async () => {
       "http://localhost:8080/user/login",
       loginForm.value
     );
+
     // 로그인 성공 처리
     console.log("로그인 성공:", response.data);
+
+    // User 객체에서 UserNo와 UserName을 가져옴
+    const userNo = response.data.userNo;
+    const userName = response.data.userName;
+    console.log(userNo, userName);
+
     userStore.setUser(response.data);
     router.push("/");
   } catch (error) {

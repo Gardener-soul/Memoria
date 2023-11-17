@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.memoria.model.dto.RollingPaper;
 import com.ssafy.memoria.model.dto.SearchCondition;
+import com.ssafy.memoria.model.dto.User;
 import com.ssafy.memoria.model.service.RollingPaperService;
 
 import io.swagger.annotations.Api;
@@ -33,9 +34,10 @@ public class RollingPaperController {
 	//1. 목록
 	@GetMapping("list")
 	@ApiOperation(value="롤링페이퍼 조회", notes="검색조건도 넣으면 같이 가져온다.")
-	public ResponseEntity<?> list(SearchCondition condition){
-//		List<RollingPaper> list = rollingPaperService.getList(); //전체 조회
-		List<RollingPaper> list = rollingPaperService.search(condition); //검색 조건이 있다면 그것으로 조회
+	public ResponseEntity<?> list(RollingPaper rollingPaper){
+		List<RollingPaper> list = rollingPaperService.getList(); //전체 조회
+//		List<RollingPaper> list = rollingPaperService.search(condition); //검색 조건이 있다면 그것으로 조회
+		System.out.println(list);
 		if(list == null || list.size() == 0)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		return new ResponseEntity<List<RollingPaper>>(list, HttpStatus.OK);

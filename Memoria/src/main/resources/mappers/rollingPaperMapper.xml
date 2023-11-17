@@ -7,9 +7,9 @@
 	<!-- 전체글 조회 -->
 	<select id="selectAll" resultType="RollingPaper">
 		SELECT rollingPaperNo, u.userName, title, writerCount, r.regDate
-		FROM users u
-		LEFT JOIN rollingPapers r
-		ON u.userNo = r.owner
+		FROM rollingPapers r
+		LEFT JOIN users u
+		ON r.owner = u.userNo
 	</select>
 
 	<!-- 상세글 조회 -->
@@ -24,8 +24,8 @@
 	<!-- 게시글 등록 -->
 	<insert id="insertRollingPaper" parameterType="RollingPaper"
         useGeneratedKeys="true" keyProperty="rollingPaperNo">
-    	INSERT INTO rollingPapers (title)
-    	VALUES (#{title})
+    	INSERT INTO rollingPapers (owner, title)
+    	VALUES (#{owner}, #{title})
 	</insert>
 
 	<!-- 게시글 삭제 -->

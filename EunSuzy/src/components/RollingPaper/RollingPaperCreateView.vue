@@ -1,13 +1,15 @@
 <template>
   <div class="container">
-    <p class="title">{{ userStore.userData }}의 편지</p>
+    <p class="title">{{ userStore.userName }}의 편지</p>
     <input
       class="input-field"
       v-model="title"
       placeholder="당신의 한 줄을 남겨주세요."
     />
-    <p>1학기 동안 당신과 함께해서 즐거웠어요.
-     당신의 앞길을 응원하고 축복해요 -은수지-</p>
+    <p>
+      1학기 동안 당신과 함께해서 즐거웠어요. 당신의 앞길을 응원하고 축복해요
+      -은수지-
+    </p>
     <br />
     <button class="create-button" @click="createAndNavigate">
       롤링 페이퍼 만들기
@@ -19,7 +21,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
-import { useUserStore } from "@/stores/user.js"
+import { useUserStore } from "@/stores/user.js";
 
 const title = ref("");
 const router = useRouter();
@@ -27,7 +29,10 @@ const userStore = useUserStore();
 
 function createAndNavigate() {
   axios
-    .post("http://localhost:8080/rollingPaper/write", { title: title.value })
+    .post("http://localhost:8080/rollingPaper/write", {
+      owner: userStore.userNo,
+      title: title.value,
+    })
     .then((response) => {
       // 여기서 백엔드로부터 받은 RollingPaperID를 사용
       const rollingPaperId = response.data.rollingPaperNo;
@@ -65,7 +70,6 @@ body {
   width: 100%;
   max-width: 700px; /* 최대 너비 설정 */
 }
-
 
 .title {
   color: #bf94e4; /* 제목 색상 유지 */

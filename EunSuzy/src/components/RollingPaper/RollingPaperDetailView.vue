@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>To. {{ ownerName }}</h4>
+    <h4>To. {{ userStore.userName }}</h4>
     <span>{{ messageCount }}개 작성</span>
     <button @click="goToMessageCreate">글 작성</button>
   </div>
@@ -10,10 +10,12 @@
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
+import { useUserStore } from "@/stores/user.js";
 
 const route = useRoute();
 const router = useRouter();
 const messageCount = ref(0);
+const userStore = useUserStore();
 
 // DB에서 데이터를 가져오는 함수
 // DB에서 데이터를 가져올 때 컬럼명과 맞출 것

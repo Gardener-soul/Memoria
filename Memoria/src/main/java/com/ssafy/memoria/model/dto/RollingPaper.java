@@ -5,9 +5,10 @@ import java.time.LocalDateTime;
 public class RollingPaper {
     private int rollingPaperNo;
     private int owner;
+    private String userName;
     private String title;
     private int writerCount;
-    private LocalDateTime regDate;
+    private LocalDateTime regDate;	
     
 	public RollingPaper() {
 		super();
@@ -38,6 +39,14 @@ public class RollingPaper {
 		return owner;
 	}
 	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	public void setOwner(int owner) {
 		this.owner = owner;
 	}
@@ -65,11 +74,12 @@ public class RollingPaper {
 	public void setRegDate(LocalDateTime regDate) {
 		this.regDate = regDate;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "RollingPaper [rollingPaperNo=" + rollingPaperNo + ", owner=" + owner + ", title=" + title
-				+ ", writerCount=" + writerCount + ", regDate=" + regDate + "]";
+		return "RollingPaper [rollingPaperNo=" + rollingPaperNo + ", owner=" + owner + ", userName=" + userName
+				+ ", title=" + title + ", writerCount=" + writerCount + ", regDate=" + regDate + "]";
 	}
+
     
 }

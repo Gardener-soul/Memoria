@@ -1,7 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 
-import UserView from "@/views/UserView.vue";
+import MyPageView from "@/views/MyPageView.vue";
+import MyPageRollView from "@/components/MyPage/MyPageRollView.vue";
+import MyPageMessageView from "@/components/MyPage/MyPageMessageView.vue";
+
 import LoginView from "@/components/User/LoginView.vue";
 import SignUpView from "@/components/User/SignUpView.vue";
 
@@ -22,9 +25,19 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/user",
-      name: "user",
-      component: UserView,
+      path: "/mypage",
+      name: "mypage",
+      component: MyPageView,
+      children: [
+        {
+          path: "myroll",
+          component: MyPageRollView,
+        },
+        {
+          path: "mymessage",
+          component: MyPageMessageView,
+        },
+      ],
     },
     {
       path: "/login",
