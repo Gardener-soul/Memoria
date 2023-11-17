@@ -1,10 +1,10 @@
-    DROP DATABASE IF EXISTS eunsuzyDB;
+DROP DATABASE IF EXISTS eunsuzyDB;
 
-    CREATE DATABASE eunsuzyDB CHARACTER SET=utf8mb4;
+CREATE DATABASE eunsuzyDB CHARACTER SET=utf8mb4;
 
-    USE eunsuzyDB;
+USE eunsuzyDB;
 
-    DROP TABLE IF EXISTS eunsuzyDB;
+DROP TABLE IF EXISTS eunsuzyDB;
 
 DROP TABLE Users;
 CREATE TABLE `Users` (
@@ -24,33 +24,33 @@ FROM Users;
 DROP TABLE RollingPapers;
 CREATE TABLE `RollingPapers` (
     `rollingPaperNo` INT NOT NULL AUTO_INCREMENT,
-    `owner` INT NOT NULL,
+    `ownerNo` INT NOT NULL,
     `title` VARCHAR(100) NOT NULL,
     `writerCount` INT DEFAULT 0,
     `regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
     -- emoticon VARCHAR(200),
     PRIMARY KEY (`rollingPaperNo`),
-    FOREIGN KEY (`owner`) REFERENCES Users(`userNo`)
+    FOREIGN KEY (`ownerNo`) REFERENCES Users(`userNo`)
 )ENGINE=InnoDB;
 SELECT *
 FROM RollingPapers;
 
-DROP TABLE Messages;
-CREATE TABLE `Messages` (
-    `messageNo` INT NOT NULL AUTO_INCREMENT,
+DROP TABLE Letters;
+CREATE TABLE `Letters` (
+    `letterNo` INT NOT NULL AUTO_INCREMENT,
     `rollingPaperNo` INT NOT NULL,
-    `writer` INT NOT NULL,
+    `writerNo` INT NOT NULL,
     `content` TEXT NOT NULL,
     `font` VARCHAR(50) DEFAULT 'Arial, sans-serif',
     `fontColor` VARCHAR(50) DEFAULT '#000000',
     `backColor` VARCHAR(50) DEFAULT '#FFFFFF',
     `regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`messageNo`),
+    PRIMARY KEY (`letterNo`),
     FOREIGN KEY (`rollingPaperNo`) REFERENCES RollingPapers(`rollingPaperNo`),
-    FOREIGN KEY (`writer`) REFERENCES Users(`userNo`)
+    FOREIGN KEY (`writerNo`) REFERENCES Users(`userNo`)
 )ENGINE=InnoDB;
 SELECT *
-FROM Messages;
+FROM Letters;
 
 DROP TABLE Events;
 CREATE TABLE `Events` (
@@ -84,15 +84,23 @@ FROM Events;
 
 
 
-INSERT INTO `Users` (userId, userPwd, userName, email, nickname)
+INSERT INTO `Users` (userId, userPwd, userName, email)
 VALUES
-('eunsooo', '97', '박은수', 'suzy@naver.com', 'soul'),
-('suuzy', '98', '이수지', 'eunsu@naver.com', 'dubbidubbab'),
-('HunTeac', '9898', '한재훈', 'jaehun@naver.com', 'hahahan');
+('eunsooo', '97', '박은수', 'suzy@naver.com'),
+('suuzy', '98', '이수지', 'eunsu@naver.com'),
+('HunTeac', '9898', '한재훈', 'jaehun@naver.com');
 
-INSERT INTO `RollingPapers` (owner, title)
+INSERT INTO `RollingPapers` (ownerNo, title)
 VALUES
 (1, '박은수의 롤링페이퍼'),
 (2, '이수지의 롤링페이퍼'),
 (3, '한재훈의 롤링페이퍼');
+
+INSERT INTO `Letters` (letterNo, rollingPaperNo, writerNo, content)
+VALUES
+(1, 2, 1, '수지랑 짝이라서 재밌었어'),
+(2, 2, 3, '수지 덕분에 즐거웠어'),
+(3, 1, 3, '은수햄 덕분에 행복했어'),
+(4, 3, 2, '엘지뽀이 한재훈');
+
 

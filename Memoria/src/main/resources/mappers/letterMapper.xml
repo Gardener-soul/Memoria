@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.memoria.model.dao.LetterDao">
+
+	<!-- 전체 조회 -->
+	<select id="selectAll" parameterType="Letter" resultType="Letter">
+		SELECT letterNo, l.rollingPaperNo, writerNo, u.userName, content, font, fontColor, backColor, l.regDate
+		FROM letters l
+		LEFT JOIN users u
+		ON l.writerNo = u.userNo
+		LEFT JOIN rollingPapers r
+		ON l.rollingPaperNo = r.rollingPaperNo
+		WHERE l.rollingPaperNo = #{rollingPaperNo}
+	</select>
+
+	<!-- 상세 조회 -->
+	<select id="selectOne" parameterType="int">
+		SELECT letterNo, l.rollingPaperNo, writerNo, u.userName, content, font, fontColor, backColor, l.regDate
+		FROM users u
+		LEFT JOIN letters l
+		ON u.userNo = l.writerNo
+		WHERE letterNo = #{letterNo}
+	</select>
+
+	<!-- 편지 등록 -->
+	<insert id="insertLetter" parameterType="Letter"
+        useGeneratedKeys="true" keyProperty="letterNo">
+		INSERT INTO letters (rollingPaperNo, writerNo, content, font, fontColor, backColor)
+		VALUES (#{rollingPaperNo}, #{writerNo}, #{content}, #{font}, #{fontColor}, #{backColor})
+	</insert>
+
+	<!-- 편지 삭제 -->
+	<delete id="deleteLetter" parameterType="int">
+		DELETE FROM letters
+		WHERE letterNo = #{letterNo}
+	</delete>
+
+	<!-- 편지 수정 -->
+	<update id="updateLetter" parameterType="Letter">
+		UPDATE letters
+		SET content = #{content}, font = #{font}, fontColor = #{fontColor}, backColor = #{backColor}, regDate = now()
+		WHERE letterNo = #{letterNo}
+	</update>
+
+</mapper>
