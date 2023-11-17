@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public class RollingPaper {
     private int rollingPaperNo;
-    private int owner;
-    private String userName;
+    private int ownerNo;
+    private String userName; // 우리가 가져오고 싶은 건 ownerNo 가 아닌 userName 이므로 추가 해줘야 함 !
     private String title;
     private int writerCount;
     private LocalDateTime regDate;	
@@ -18,10 +18,10 @@ public class RollingPaper {
 		this.title = title;
 	}
 	
-	public RollingPaper(int rollingPaperNo, int owner, String title, int writerCount, LocalDateTime regDate) {
+	public RollingPaper(int rollingPaperNo, int ownerNo, String title, int writerCount, LocalDateTime regDate) {
 		super();
 		this.rollingPaperNo = rollingPaperNo;
-		this.owner = owner;
+		this.ownerNo = ownerNo;
 		this.title = title;
 		this.writerCount = writerCount;
 		this.regDate = regDate;
@@ -35,8 +35,8 @@ public class RollingPaper {
 		this.rollingPaperNo = rollingPaperNo;
 	}
 	
-	public int getOwner() {
-		return owner;
+	public int getOwnerNo() {
+		return ownerNo;
 	}
 	
 	public String getUserName() {
@@ -47,8 +47,8 @@ public class RollingPaper {
 		this.userName = userName;
 	}
 
-	public void setOwner(int owner) {
-		this.owner = owner;
+	public void setOwnerNo(int ownerNo) {
+		this.ownerNo = ownerNo;
 	}
 	
 	public String getTitle() {
@@ -77,9 +77,8 @@ public class RollingPaper {
 
 	@Override
 	public String toString() {
-		return "RollingPaper [rollingPaperNo=" + rollingPaperNo + ", owner=" + owner + ", userName=" + userName
+		return "RollingPaper [rollingPaperNo=" + rollingPaperNo + ", ownerNo=" + ownerNo + ", userName=" + userName
 				+ ", title=" + title + ", writerCount=" + writerCount + ", regDate=" + regDate + "]";
 	}
 
-    
 }

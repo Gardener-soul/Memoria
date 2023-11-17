@@ -3,7 +3,6 @@ package com.ssafy.memoria.model.dao;
 import java.util.List;
 
 import com.ssafy.memoria.model.dto.RollingPaper;
-import com.ssafy.memoria.model.dto.SearchCondition;
 
 public interface RollingPaperDao {
 
@@ -19,5 +18,5 @@ public interface RollingPaperDao {
 
 //	public void updateViewCnt(int rollingPaperNo);
 
-	public List<RollingPaper> search(SearchCondition condition);
+//	public List<RollingPaper> search(SearchCondition condition);
 }
