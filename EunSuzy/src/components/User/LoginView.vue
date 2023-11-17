@@ -1,28 +1,38 @@
 <template>
-  <br />
-  <div class="sketchbook-container">
-    <h2 class="sketchbook-title">Login</h2>
-    <form class="sketchbook-form" @submit.prevent="login">
-      <div class="sketchbook-group">
-        <label for="username">ID</label>
-        <input
-          type="text"
-          id="username"
-          v-model="loginForm.userId"
-          placeholder="ID를 입력하세요"
-        />
+  <div class="container">
+    <div class="sketchbook-container">
+      <h2 class="sketchbook-title">Login</h2>
+      <form class="sketchbook-form" @submit.prevent="login">
+        <div class="sketchbook-group">
+          <label for="username">ID</label>
+          <input
+            type="text"
+            id="username"
+            v-model="loginForm.userId"
+            placeholder="ID를 입력하세요"
+          />
+        </div>
+        <div class="sketchbook-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            v-model="loginForm.userPwd"
+            placeholder="Password를 입력하세요"
+          />
+        </div>
+        <button type="submit">Log In</button>
+      </form>
+      <br />
+      <button type="button" @click="goToSignUp">Sign up</button>
+    </div>
+    <div v-if="showModal" class="modal-overlay" @click="closeModal">
+      <div class="modal-content" @click.stop>
+        <span class="close-button" @click="closeModal">&times;</span>
+        <p>ID와 비밀번호를 다시 확인해주세요.</p>
+        <button class="confirm-button" @click="closeModal">확인</button>
       </div>
-      <div class="sketchbook-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          v-model="loginForm.userPwd"
-          placeholder="Password를 입력하세요"
-        />
-      </div>
-      <button type="submit">Log In</button>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -30,11 +40,23 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
+import { useUserStore } from "@/stores/user.js";
+
+const userStore = useUserStore();
 
 const loginForm = ref({
   userId: "",
   userPwd: "",
 });
+const showModal = ref(false);
+
+const closeModal = () => {
+  showModal.value = false;
+};
+
+const goToSignUp = () => {
+  router.push({ name: "signup" });
+};
 
 const router = useRouter();
 
@@ -44,18 +66,33 @@ const login = async () => {
       "http://localhost:8080/user/login",
       loginForm.value
     );
+
     // 로그인 성공 처리
     console.log("로그인 성공:", response.data);
+
+    // User 객체에서 UserNo와 UserName을 가져옴
+    const userNo = response.data.userNo;
+    const userName = response.data.userName;
+    console.log(userNo, userName);
+
+    userStore.setUser(response.data);
     router.push("/");
   } catch (error) {
     // 에러 처리
     console.error("로그인 실패:", error);
-    alert("로그인이 실패했네요~");
+    showModal.value = true; // 모달 알림을 표시
   }
 };
 </script>
 
 <style scoped>
+.container {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
   font-family: "Comic Sans MS", cursive, sans-serif;
   background-color: #f0e6d6;
@@ -70,7 +107,6 @@ body {
 .sketchbook-container {
   background-color: #fffaf0;
   padding: 40px;
-  border: 2px dashed #000;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   width: 40%;
@@ -113,7 +149,7 @@ button {
   padding: 10px;
   border: none;
   border-radius: 8px;
-  background-color: #ff6347;
+  background-color: #bf94e4;
   color: white;
   font-size: 18px;
   cursor: pointer;
@@ -121,6 +157,37 @@ button {
 }
 
 button:hover {
-  background-color: #ff4500;
+  background-color: #bf94e4;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  max-width: 80%;
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 25px;
+  line-height: 25px;
+  cursor: pointer;
 }
 </style>

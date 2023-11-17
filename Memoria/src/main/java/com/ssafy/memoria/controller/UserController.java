@@ -44,12 +44,14 @@ public class UserController {
 	@PostMapping("login")
 	public ResponseEntity<?> login(@RequestBody User user, HttpSession session) {
 		User tmp = userService.login(user);
+		System.out.println(tmp);
 		// 로그인 실패
 		if(tmp == null)
 			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
 		
-		session.setAttribute("loginUser", tmp.getUserName());
-		return new ResponseEntity<String>(tmp.getUserName(), HttpStatus.OK);
+		User userInfo = new User(tmp.getUserNo(), tmp.getUserName());
+		
+		return new ResponseEntity<User>(userInfo, HttpStatus.OK);
 	}
 
 	@GetMapping("logout")

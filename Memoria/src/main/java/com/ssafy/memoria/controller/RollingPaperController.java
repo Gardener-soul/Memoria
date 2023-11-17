@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.memoria.model.dto.RollingPaper;
 import com.ssafy.memoria.model.dto.SearchCondition;
+import com.ssafy.memoria.model.dto.User;
 import com.ssafy.memoria.model.service.RollingPaperService;
 
 import io.swagger.annotations.Api;
@@ -33,16 +34,17 @@ public class RollingPaperController {
 	//1. 목록
 	@GetMapping("list")
 	@ApiOperation(value="롤링페이퍼 조회", notes="검색조건도 넣으면 같이 가져온다.")
-	public ResponseEntity<?> list(SearchCondition condition){
-//		List<RollingPaper> list = rollingPaperService.getList(); //전체 조회
-		List<RollingPaper> list = rollingPaperService.search(condition); //검색 조건이 있다면 그것으로 조회
+	public ResponseEntity<?> list(RollingPaper rollingPaper){
+		List<RollingPaper> list = rollingPaperService.getList(); //전체 조회
+//		List<RollingPaper> list = rollingPaperService.search(condition); //검색 조건이 있다면 그것으로 조회
+		System.out.println(list);
 		if(list == null || list.size() == 0)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		return new ResponseEntity<List<RollingPaper>>(list, HttpStatus.OK);
 	}
 	
 	//2. 상세보기
-	@GetMapping("detail/{rollingPaperNo}")
+	@GetMapping("/{rollingPaperNo}")
 	public ResponseEntity<RollingPaper> detail(@PathVariable int rollingPaperNo){
 		RollingPaper rollingPaper = rollingPaperService.getRollingPaper(rollingPaperNo);
 		//꼬옥 주소창을 통해 접근하려고 하는 악의무리가 있기 때문에 만약 없는 값을 보냈을때... 처리를 해주어라. (해볼것)
@@ -51,9 +53,10 @@ public class RollingPaperController {
 	
 	//3. 등록
 	@PostMapping("write")
-	public ResponseEntity<RollingPaper> write(RollingPaper rollingPaper){
-		rollingPaperService.writeRollingPaper(rollingPaper);
-		return new ResponseEntity<RollingPaper>(rollingPaper, HttpStatus.CREATED);
+	public ResponseEntity<RollingPaper> write(@RequestBody RollingPaper rollingPaper){
+		RollingPaper saveRP = rollingPaperService.writeRollingPaper(rollingPaper);
+//		int RpNo = saveRP.getRollingPaperNo();
+		return new ResponseEntity<RollingPaper>(saveRP, HttpStatus.CREATED);
 	}
 	
 	//4. 삭제
