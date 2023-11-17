@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>To. {{ userStore.userName }}</h4>
+    <h4>To. {{ userName }}</h4>
     <span>{{ messageCount }}개 작성</span>
     <button @click="goToMessageCreate">글 작성</button>
   </div>
@@ -10,12 +10,11 @@
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
-import { useUserStore } from "@/stores/user.js";
 
 const route = useRoute();
 const router = useRouter();
 const messageCount = ref(0);
-const userStore = useUserStore();
+const userName = ref("");
 
 // DB에서 데이터를 가져오는 함수
 // DB에서 데이터를 가져올 때 컬럼명과 맞출 것
@@ -25,6 +24,7 @@ function fetchData() {
   axios
     .get(`http://localhost:8080/rollingPaper/${rollingPaperNo}`) // 백엔드 API의 경로
     .then((response) => {
+      userName.value = response.data.userName;
       messageCount.value = response.data.writerCount;
     })
     .catch((error) => {
@@ -33,7 +33,7 @@ function fetchData() {
 }
 
 function goToMessageCreate() {
-  router.push("/messagecreate");
+  router.push("/lettercreate");
 }
 
 // 컴포넌트가 생성될 때 데이터를 가져옵니다.

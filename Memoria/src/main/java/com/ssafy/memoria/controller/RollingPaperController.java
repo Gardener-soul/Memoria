@@ -47,6 +47,7 @@ public class RollingPaperController {
 	public ResponseEntity<RollingPaper> detail(@PathVariable int rollingPaperNo){
 		RollingPaper rollingPaper = rollingPaperService.getRollingPaper(rollingPaperNo);
 		//꼬옥 주소창을 통해 접근하려고 하는 악의무리가 있기 때문에 만약 없는 값을 보냈을때... 처리를 해주어라. (해볼것)
+		System.out.println(rollingPaper);
 		return new ResponseEntity<RollingPaper>(rollingPaper, HttpStatus.OK);
 	}
 	

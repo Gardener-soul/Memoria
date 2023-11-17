@@ -52,9 +52,11 @@
 import { ref, computed, onMounted } from "vue";
 import axios from "axios";
 import { useUserStore } from "@/stores/user.js";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    const router = useRouter();
     const useStore = useUserStore();
     const items = ref([]);
     const currentPage = ref(1);
@@ -86,7 +88,7 @@ export default {
 
     // 롤링페이퍼 상세보기로 이동
     const navigateToRollingPaper = (rollingPaperId) => {
-      // 라우터 이동 로직
+      router.push(`/rollingPaper/${rollingPaperId}`);
     };
 
     // 이전 페이지로 이동
