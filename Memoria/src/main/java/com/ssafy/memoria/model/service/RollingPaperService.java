@@ -3,7 +3,6 @@ package com.ssafy.memoria.model.service;
 import java.util.List;
 
 import com.ssafy.memoria.model.dto.RollingPaper;
-import com.ssafy.memoria.model.dto.SearchCondition;
 
 public interface RollingPaperService {
 	// 롤링페이퍼 전체 조회
@@ -22,5 +21,5 @@ public interface RollingPaperService {
 	void modifyRollingPaper(RollingPaper rollingPaper);
 
 	// 검색 버튼을 눌렀을 때 처리할 메서드
-	List<RollingPaper> search(SearchCondition condition);
+//	List<RollingPaper> search(SearchCondition condition);
 }

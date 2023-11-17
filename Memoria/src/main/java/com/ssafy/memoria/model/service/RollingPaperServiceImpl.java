@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.memoria.model.dao.RollingPaperDao;
 import com.ssafy.memoria.model.dto.RollingPaper;
-import com.ssafy.memoria.model.dto.SearchCondition;
 
 @Service
 public class RollingPaperServiceImpl implements RollingPaperService {
@@ -28,7 +27,7 @@ public class RollingPaperServiceImpl implements RollingPaperService {
 
 	@Override
 	public RollingPaper getRollingPaper(int rollingPaperNo) {
-		System.out.println(rollingPaperNo+"번 글을 읽었습니다.");
+		System.out.println(rollingPaperNo + "번 글을 읽었습니다.");
 //		rollingPaperDao.updateViewCnt(rollingPaperNo);
 		return rollingPaperDao.selectOne(rollingPaperNo);
 	}
@@ -37,11 +36,11 @@ public class RollingPaperServiceImpl implements RollingPaperService {
 	@Override
 	public RollingPaper writeRollingPaper(RollingPaper rollingPaper) {
 		System.out.println("롤링페이퍼를 작성합니다.");
-		int RPno =  rollingPaperDao.insertRollingPaper(rollingPaper);
-		if(RPno>0) {
+		int RPno = rollingPaperDao.insertRollingPaper(rollingPaper);
+		if(RPno > 0) {
 			return rollingPaper;
 		}else {
-			System.out.println("여기서 에러나는 듯");
+			System.out.println("여기서 에러");
 			return null;
 		}
 	}
@@ -49,7 +48,7 @@ public class RollingPaperServiceImpl implements RollingPaperService {
 	@Transactional
 	@Override
 	public void removeRollingPaper(int rollingPaperNo) {
-		System.out.println(rollingPaperNo+"번 글을 삭제 했습니다.");
+		System.out.println(rollingPaperNo + "번 글을 삭제 했습니다.");
 		rollingPaperDao.deleteRollingPaper(rollingPaperNo);
 	}
 
@@ -59,8 +58,8 @@ public class RollingPaperServiceImpl implements RollingPaperService {
 		rollingPaperDao.updateRollingPaper(rollingPaper);
 	}
 
-	@Override
-	public List<RollingPaper> search(SearchCondition condition) {
-		return rollingPaperDao.search(condition);
-	}
+//	@Override
+//	public List<RollingPaper> search(SearchCondition condition) {
+//		return rollingPaperDao.search(condition);
+//	}
 }
