@@ -1,5 +1,4 @@
 <template>
-  <br />
   <div class="container">
     <div class="sketchbook-container">
       <h2 class="sketchbook-title">Sign Up</h2>

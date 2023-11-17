@@ -35,9 +35,15 @@ public class RollingPaperServiceImpl implements RollingPaperService {
 
 	@Transactional
 	@Override
-	public void writeRollingPaper(RollingPaper rollingPaper) {
+	public RollingPaper writeRollingPaper(RollingPaper rollingPaper) {
 		System.out.println("롤링페이퍼를 작성합니다.");
-		rollingPaperDao.insertRollingPaper(rollingPaper);
+		int RPno =  rollingPaperDao.insertRollingPaper(rollingPaper);
+		if(RPno>0) {
+			return rollingPaper;
+		}else {
+			System.out.println("여기서 에러나는 듯");
+			return null;
+		}
 	}
 
 	@Transactional

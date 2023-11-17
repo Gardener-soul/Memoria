@@ -13,7 +13,7 @@ public interface RollingPaperService {
 	RollingPaper getRollingPaper(int rollingPaperNo);
 
 	// 롤링페이퍼 등록
-	void writeRollingPaper(RollingPaper rollingPaper);
+	RollingPaper writeRollingPaper(RollingPaper rollingPaper);
 
 	// 롤링페이퍼 삭제
 	void removeRollingPaper(int rollingPaperNo);

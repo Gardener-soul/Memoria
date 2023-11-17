@@ -11,7 +11,7 @@ public interface RollingPaperDao {
 
 	public RollingPaper selectOne(int rollingPaperNo);
 
-	public void insertRollingPaper(RollingPaper rollingPaper);
+	public int insertRollingPaper(RollingPaper rollingPaper);
 
 	public void deleteRollingPaper(int rollingPaperNo);
 

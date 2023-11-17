@@ -13,6 +13,10 @@ public class RollingPaper {
 		super();
 	}
 	
+	public RollingPaper(String title) {
+		this.title = title;
+	}
+	
 	public RollingPaper(int rollingPaperNo, int owner, String title, int writerCount, LocalDateTime regDate) {
 		super();
 		this.rollingPaperNo = rollingPaperNo;
