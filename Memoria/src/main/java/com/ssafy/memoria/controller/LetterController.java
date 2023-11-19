@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.memoria.model.dto.Letter;
@@ -23,20 +25,35 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/letter")
 @Api(tags="편지 컨트롤러")
+@CrossOrigin("*")
 public class LetterController {
 
 	@Autowired
 	private LetterService letterService;
 
+//	//1. 목록
+//	@GetMapping("list")
+//	@ApiOperation(value="편지 조회", notes="검색조건도 넣으면 같이 가져온다.")
+//	public ResponseEntity<?> list(@RequestParam int rollingPaperNo){
+//		List<Letter> list; // 전체 조회
+////		List<Letter> list = letterService.search(condition); // 검색 조건이 있다면 그것으로 조회
+//		System.out.println(list);
+//		if(list == null || list.size() == 0) return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+//			
+//		return new ResponseEntity<List<Letter>>(list, HttpStatus.OK);
+//	}
+	
 	//1. 목록
 	@GetMapping("list")
 	@ApiOperation(value="편지 조회", notes="검색조건도 넣으면 같이 가져온다.")
 	public ResponseEntity<?> list(Letter letter){
+		
 		List<Letter> list = letterService.getList(letter); // 전체 조회
 //		List<Letter> list = letterService.search(condition); // 검색 조건이 있다면 그것으로 조회
-		System.out.println(list);
-		if(list == null || list.size() == 0)
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		System.out.println(list); // 전체 리스트 잘 받아와지는지 확인
+		
+		if(list == null || list.size() == 0) return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+			
 		return new ResponseEntity<List<Letter>>(list, HttpStatus.OK);
 	}
 	
