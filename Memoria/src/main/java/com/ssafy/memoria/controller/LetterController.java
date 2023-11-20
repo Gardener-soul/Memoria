@@ -83,6 +83,7 @@ public class LetterController {
 	}
 
 	// 5. 수정
+	@CrossOrigin("*")
 	@PutMapping("update")
 	public ResponseEntity<Void> update(Letter letter, @RequestParam(required = false) MultipartFile image) throws IOException {
 		letterService.modifyLetter(letter, image);

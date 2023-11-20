@@ -174,13 +174,6 @@ const submit = () => {
   submitFormData.append("backColor", selectedBgColor.value);
   submitFormData.append("image", formData.get("img")); // 이미지 파일 추가
 
-submitFormData.append("rollingPaperNo", rollingPaperNo);
-submitFormData.append("writerNo", writerNo);
-submitFormData.append("content", content.value);
-submitFormData.append("fontColor", selectedFontColor.value);
-submitFormData.append("backColor", selectedBgColor.value);
-submitFormData.append("image", formData.get("img")); // 이미지 파일 추가
-
 axios({
     method: "post",
     url: "http://localhost:8080/letter/write",
