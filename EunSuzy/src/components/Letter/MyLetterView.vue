@@ -4,8 +4,9 @@
       <p class="text" :style="{ color: item.fontColor, fontFamily: item.font }">
         {{ item.content }}
       </p>
+      <img :src="`http://localhost:8080/letter/image/${item.img}`">
       <h5 class="writer">FROM. {{ item.userName }}</h5>
-      <p class="date">{{ item.regDate }}</p>
+      <p class="date">{{ date(item.regDate) }}</p>
       <button class="card-button" @click="goBack">롤페 보기</button>
       <div v-if="isAuthor" class="card-buttons">
         <button class="card-button" @click="goModify">수정</button>
@@ -53,6 +54,10 @@ const deleteLetter = () => {
       console.error("Error deleting letter", error);
     });
 };
+
+function date(regDate) {
+  return regDate[0] + " / " + regDate[1] + " / " + regDate[2];
+}
 
 function goBack() {
   router.back();

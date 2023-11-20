@@ -73,7 +73,7 @@
     </div>
   </div>
 </template>
-
+  
 <script setup>
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -95,19 +95,19 @@ const selectedFont = ref(""); // 선택된 글씨체를 저장하는 ref
 const fonts = ["Roboto", "Open Sans"];
 
 const colors = [
-  { name: "black", label: "검정" },
-  { name: "blue", label: "파랑" },
-  { name: "purple", label: "보라" },
-  { name: "green", label: "초록" },
-  { name: "navy", label: "네이비" },
+{ name: "black", label: "검정" },
+{ name: "blue", label: "파랑" },
+{ name: "purple", label: "보라" },
+{ name: "green", label: "초록" },
+{ name: "navy", label: "네이비" },
 ];
 const bgColors = [
-  { name: "white", label: "흰색" },
-  { name: "black", label: "검정" },
-  { name: "blue", label: "파랑" },
-  { name: "purple", label: "보라" },
-  { name: "green", label: "초록" },
-  { name: "navy", label: "네이비" },
+{ name: "white", label: "흰색" },
+{ name: "black", label: "검정" },
+{ name: "blue", label: "파랑" },
+{ name: "purple", label: "보라" },
+{ name: "green", label: "초록" },
+{ name: "navy", label: "네이비" },
 ];
 
 function selectFont(font) {
@@ -115,11 +115,11 @@ function selectFont(font) {
 }
 
 const selectBgColor = (bgColor) => {
-  selectedBgColor.value = bgColor;
+selectedBgColor.value = bgColor;
 };
 
 const selectFontColor = (fColor) => {
-  selectedFontColor.value = fColor;
+selectedFontColor.value = fColor;
 };
 
 const showFontColorPicker = ref(false);
@@ -152,7 +152,7 @@ function toggleBgColorPicker() {
 const showModal = ref(false);
 
 const checkContentAndSend = () => {
-  if (content.value.trim() === "") {
+if (content.value.trim() === "") {
     showModal.value = true;
   } else {
     submit();
@@ -174,7 +174,14 @@ const submit = () => {
   submitFormData.append("backColor", selectedBgColor.value);
   submitFormData.append("image", formData.get("img")); // 이미지 파일 추가
 
-  axios({
+submitFormData.append("rollingPaperNo", rollingPaperNo);
+submitFormData.append("writerNo", writerNo);
+submitFormData.append("content", content.value);
+submitFormData.append("fontColor", selectedFontColor.value);
+submitFormData.append("backColor", selectedBgColor.value);
+submitFormData.append("image", formData.get("img")); // 이미지 파일 추가
+
+axios({
     method: "post",
     url: "http://localhost:8080/letter/write",
     headers: { "Content-Type": "multipart/form-data" },
@@ -191,64 +198,64 @@ const submit = () => {
     });
 };
 </script>
-
+  
 <style scoped>
 .color-selection-container {
-  display: flex;
-  justify-content: space-around; /* 버튼을 양쪽으로 정렬 */
-  margin-bottom: 10px;
+display: flex;
+justify-content: space-around; /* 버튼을 양쪽으로 정렬 */
+margin-bottom: 10px;
 }
 
 .send-button-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+display: flex;
+justify-content: center;
+margin-bottom: 20px;
 }
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #f0f0f0;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 50px auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 20px;
+background-color: #f0f0f0;
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+max-width: 600px;
+margin: 50px auto;
 }
 
 p {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 20px;
+font-size: 24px;
+color: #333;
+margin-bottom: 20px;
 }
 textarea {
-  width: 100%;
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 16px;
-  resize: vertical;
+width: 100%;
+padding: 15px;
+margin-bottom: 20px;
+border: 1px solid #ddd;
+border-radius: 5px;
+box-sizing: border-box;
+font-size: 16px;
+resize: vertical;
 }
 
 button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #bf94e4;
-  color: white;
-  cursor: pointer;
-  margin: 0 auto;
-  display: block;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+background-color: #bf94e4;
+color: white;
+cursor: pointer;
+margin: 0 auto;
+display: block;
 }
 
 .btn-group,
 .btn-bg-group {
-  display: flex;
-  justify-content: center; /* 버튼들을 중앙 정렬 */
-  flex-wrap: wrap; /* 버튼이 너무 많으면 다음 줄로 넘김 */
-  margin-bottom: 10px;
+display: flex;
+justify-content: center; /* 버튼들을 중앙 정렬 */
+flex-wrap: wrap; /* 버튼이 너무 많으면 다음 줄로 넘김 */
+margin-bottom: 10px;
 }
 .btn-font-group {
   display: flex; /* Flexbox 레이아웃 사용 */
@@ -268,89 +275,89 @@ button {
   font-size: 16px;
 }
 .my-button {
-  background-color: #bf94e4;
-  border: none;
-  padding: 10px 15px;
-  margin-right: 10px;
-  cursor: pointer;
-  color: white;
-  font-weight: bold;
-  text-align: center;
+background-color: #bf94e4;
+border: none;
+padding: 10px 15px;
+margin-right: 10px;
+cursor: pointer;
+color: white;
+font-weight: bold;
+text-align: center;
 }
 
 .my-button:last-child {
-  margin-right: 0;
+margin-right: 0;
 }
 
 .btn {
-  /* 공통 버튼 스타일 */
-  margin: 5px;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
+/* 공통 버튼 스타일 */
+margin: 5px;
+padding: 10px 20px;
+border: none;
+cursor: pointer;
+font-size: 16px;
 }
 
 .btn-selected {
-  border: 2px solid #ff4500; /* 하이라이트 표시 */
-  font-weight: bold; /* 선택된 버튼의 글씨 굵게 */
+border: 2px solid #ff4500; /* 하이라이트 표시 */
+font-weight: bold; /* 선택된 버튼의 글씨 굵게 */
 }
 
 .modal {
-  display: block;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+display: block;
+position: fixed;
+z-index: 1000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+background-color: #fefefe;
+margin: 15% auto;
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
 }
 
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+color: black;
+text-decoration: none;
+cursor: pointer;
 }
 
 .btn-white {
-  background-color: white;
-  color: black;
+background-color: white;
+color: black;
 }
 .btn-black {
-  background-color: black;
-  color: white;
+background-color: black;
+color: white;
 }
 .btn-blue {
-  background-color: blue;
-  color: white;
+background-color: blue;
+color: white;
 }
 .btn-purple {
-  background-color: purple;
-  color: white;
+background-color: purple;
+color: white;
 }
 .btn-green {
-  background-color: green;
-  color: white;
+background-color: green;
+color: white;
 }
 .btn-navy {
-  background-color: navy;
-  color: white;
+background-color: navy;
+color: white;
 }
 </style>

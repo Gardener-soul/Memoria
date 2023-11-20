@@ -22,20 +22,21 @@ import com.ssafy.memoria.model.dto.Letter;
 public class LetterServiceImpl implements LetterService {
 
 	private LetterDao letterDao;
-	
+
 	@Autowired
 	public void setLetterDao(LetterDao letterDao) {
 		this.letterDao = letterDao;
 	}
-	
+
 	// 파일 입출력 멤버변수
 	File uploadFolder = new File("uploads");
 	Path uploadFolderPath = null;
+
 	// 파일 입출력 생성자
 	LetterServiceImpl() throws IOException {
 		uploadFolderPath = Paths.get(uploadFolder.getCanonicalPath());
 	}
-	
+
 	@Override
 	public List<Letter> getList(Letter letter) {
 		System.out.println("모든 편지를 가지고 왔습니다.");
@@ -52,29 +53,29 @@ public class LetterServiceImpl implements LetterService {
 	@Override
 	public int writeLetter(Letter letter, MultipartFile image) throws IOException {
 		System.out.println("편지를 작성합니다.");
-		
-		if(image==null) return letterDao.insertLetter(letter);
-		
-		if (!uploadFolder.exists()) {
-			Files.createDirectory(uploadFolderPath);
-		}
 
-		if (!image.isEmpty() && image.getSize() != 0) {
-			String today = Long.toString(System.currentTimeMillis());
-			String newImageName = today + "_" + image.getOriginalFilename();
+		if (image != null) {
+			if (!uploadFolder.exists()) {
+				Files.createDirectory(uploadFolderPath);
+			}
 
-			letter.setOrgImg(image.getOriginalFilename());
-			letter.setImg(newImageName);
+			if (!image.isEmpty() && image.getSize() != 0) {
+				String today = Long.toString(System.currentTimeMillis());
+				String newImageName = today + "_" + image.getOriginalFilename();
 
-			Path imagePath = uploadFolderPath.resolve(letter.getImg());
+				letter.setOrgImg(image.getOriginalFilename());
+				letter.setImg(newImageName);
 
-			image.transferTo(new File(imagePath.toString()));
+				Path imagePath = uploadFolderPath.resolve(letter.getImg());
+
+				image.transferTo(new File(imagePath.toString()));
+			}
 		}
 		
 		return letterDao.insertLetter(letter);
 
 	}
-	
+
 	@Override
 	public Resource loadImage(String imageName) {
 		Path characterIamge = uploadFolderPath.resolve(imageName);
@@ -100,7 +101,7 @@ public class LetterServiceImpl implements LetterService {
 	public void modifyLetter(Letter letter) {
 		letterDao.updateLetter(letter);
 	}
-	
+
 //	@Override
 //	public List<letterDao> search(SearchCondition condition) {
 //		return letterDao.search(condition);

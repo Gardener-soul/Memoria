@@ -20,7 +20,7 @@
           {{ item.title }}
         </td>
         <td>{{ item.writerCount }}</td>
-        <td>{{ item.regDate }}</td>
+        <td>{{ date(item.regDate) }}</td>
         <td>
           <div v-if="item.userName === useStore.userName">
             <button @click="showEditModal(item)">수정</button>
@@ -125,6 +125,7 @@ export default {
           console.error("Error updating rolling paper:", error)
         );
     };
+
     //목록 삭제
     const deleteRP = (rollingPaperNo) => {
       axios
@@ -138,6 +139,11 @@ export default {
           console.error("Error deleting rolling paper:", error);
         });
     };
+
+    function date(regDate) {
+      return regDate[0] + " / " + regDate[1] + " / " + regDate[2];
+    }
+
     // 컴포넌트 마운트 시 롤링페이퍼 목록 가져오기
     onMounted(fetchRollingPapers);
 
@@ -155,6 +161,7 @@ export default {
       showEditModal,
       updateRP,
       deleteRP,
+      date,
       useStore,
     };
   },

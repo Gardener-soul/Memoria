@@ -35,19 +35,6 @@ public class LetterController {
 	@Autowired
 	private LetterService letterService;
 
-	// //1. 목록
-	// @GetMapping("list")
-	// @ApiOperation(value="편지 조회", notes="검색조건도 넣으면 같이 가져온다.")
-	// public ResponseEntity<?> list(@RequestParam int rollingPaperNo){
-	// List<Letter> list; // 전체 조회
-	//// List<Letter> list = letterService.search(condition); // 검색 조건이 있다면 그것으로 조회
-	// System.out.println(list);
-	// if(list == null || list.size() == 0) return new
-	// ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-	//
-	// return new ResponseEntity<List<Letter>>(list, HttpStatus.OK);
-	// }
-
 	// 1. 목록
 	@GetMapping("list")
 	@ApiOperation(value = "편지 조회", notes = "검색조건도 넣으면 같이 가져온다.")
@@ -73,7 +60,6 @@ public class LetterController {
 	// 3. 등록
 	@PostMapping("write")
 	public ResponseEntity<?> write(Letter letter, @RequestParam(required = false) MultipartFile image) throws IOException {
-		System.out.println(image);
 		int result = letterService.writeLetter(letter, image);
 
 		if (result == 1) {
@@ -104,15 +90,6 @@ public class LetterController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-//	@GetMapping("/image/{imgFileName}")
-//	public ResponseEntity<?> getImage(@PathVariable String imgFileName) {
-//		Resource image = userService.loadImage(imgFileName);
-//		return ResponseEntity.ok()
-//				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imgFileName + "\"")
-//				.body(image);
-//	}
-	
-	
 //	@PutMapping("/letter/{letterNo}") //JSON 형태의 데이터로 넘어왔을 떄 처리하고 싶은데?
 //	public ResponseEntity<Void> update(@RequestBody Letter letter, @PathVariable int letterNo){
 //		letter.setLetterNo(letterNo);

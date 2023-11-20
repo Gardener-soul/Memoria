@@ -13,9 +13,9 @@
         >
           {{ item.content }}
         </p>
+        <img :src="`http://localhost:8080/letter/image/${item.img}`">
         <h5 class="writer">FROM. {{ item.userName }}</h5>
-        <p class="date">{{ item.regDate }}</p>
-        <img src="이미지 URL" />
+        <p class="date">{{ date(item.regDate) }}</p>
       </div>
       <div class="card-buttons">
         <button class="card-button" @click="goToThisLetter(item.letterNo)">
@@ -27,8 +27,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import axios from "axios";
+import { ref, onMounted } from "vue";
+import axios from '@/util/http-common';
 import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
@@ -37,7 +37,16 @@ const items = ref([]);
 
 const rollingPaperId = route.params.id;
 
-axios
+function goToThisLetter(letterNo) {
+  router.push({ name: "myletter", params: { letterNo: letterNo } });
+}
+
+function date(regDate) {
+  return regDate[0] + " / " + regDate[1] + " / " + regDate[2];
+}
+
+onMounted(() => {
+  axios
   .get(`http://localhost:8080/letter/list?rollingPaperNo=${rollingPaperId}`)
   .then((response) => {
     items.value = response.data;
@@ -46,10 +55,7 @@ axios
   .catch((error) => {
     console.error(error);
   });
-
-function goToThisLetter(letterNo) {
-  router.push({ name: "myletter", params: { letterNo: letterNo } });
-}
+})
 </script>
 
 <style scoped>
