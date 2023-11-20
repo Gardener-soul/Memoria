@@ -14,8 +14,7 @@ import RollingPaperDetailView from "@/components/RollingPaper/RollingPaperDetail
 import MyRollingPaperView from "@/components/RollingPaper/MyRollingPaperView.vue";
 
 import LetterCreateView from "@/components/Letter/LetterCreateView.vue";
-import LetterFontView from "@/components/Letter/LetterFontView.vue";
-import LetterColorView from "@/components/Letter/LetterColorView.vue";
+import LetterUpdateView from "@/components/Letter/LetterUpdateView.vue";
 import MyLetterView from "@/components/Letter/MyLetterView.vue";
 
 import EventView from "@/views/EventView.vue";
@@ -84,17 +83,13 @@ const router = createRouter({
       path: "/lettercreate",
       name: "lettercreate",
       component: LetterCreateView,
-      children: [
-        {
-          path: "font",
-          component: LetterFontView,
-        },
-        {
-          path: "color",
-          component: LetterColorView,
-        },
-      ],
-    },{
+    },
+    {
+      path: "/letterupdate",
+      name: "letterupdate",
+      component: LetterUpdateView,
+    },
+    {
       path: "/myletter/:letterNo",
       name: "myletter",
       component: MyLetterView, // 새로운 상세 뷰 컴포넌트 사용
