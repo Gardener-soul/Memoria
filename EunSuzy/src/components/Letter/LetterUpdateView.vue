@@ -84,8 +84,7 @@ const router = useRouter();
 
 const formData = new FormData();
 
-const letterNo = route.query.id;
-const writerNo = route.query.userNo;
+const letterNo = route.params.id;
 const content = ref("");
 const selectedFontColor = ref("#000000");
 const selectedBgColor = ref("#FFFFFF");
@@ -167,17 +166,14 @@ const submit = () => {
   const submitFormData = new FormData();
 
   submitFormData.append("letterNo", letterNo);
-  submitFormData.append("writerNo", writerNo);
   submitFormData.append("content", content.value);
   submitFormData.append("font", selectedFont.value);
   submitFormData.append("fontColor", selectedFontColor.value);
   submitFormData.append("backColor", selectedBgColor.value);
   submitFormData.append("image", formData.get("img")); // 이미지 파일 추가
 
-  console.log(letterNo);
-
   axios({
-    method: "update",
+    method: "put",
     url: "http://localhost:8080/letter/update",
     headers: { "Content-Type": "multipart/form-data" },
     data: submitFormData,
