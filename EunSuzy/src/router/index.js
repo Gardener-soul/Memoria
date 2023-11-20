@@ -3,7 +3,7 @@ import HomeView from "@/views/HomeView.vue";
 
 import MyPageView from "@/views/MyPageView.vue";
 import MyPageRollView from "@/components/MyPage/MyPageRollView.vue";
-import MyPageMessageView from "@/components/MyPage/MyPageMessageView.vue";
+import MyPageLetterView from "@/components/MyPage/MyPageLetterView.vue";
 
 import LoginView from "@/components/User/LoginView.vue";
 import SignUpView from "@/components/User/SignUpView.vue";
@@ -11,8 +11,12 @@ import SignUpView from "@/components/User/SignUpView.vue";
 import RollingPaperView from "@/views/RollingPaperView.vue";
 import RollingPaperCreateView from "@/components/RollingPaper/RollingPaperCreateView.vue";
 import RollingPaperDetailView from "@/components/RollingPaper/RollingPaperDetailView.vue";
+import MyRollingPaperView from "@/components/RollingPaper/MyRollingPaperView.vue";
 
 import LetterCreateView from "@/components/Letter/LetterCreateView.vue";
+import LetterFontView from "@/components/Letter/LetterFontView.vue";
+import LetterColorView from "@/components/Letter/LetterColorView.vue";
+import MyLetterView from "@/components/Letter/MyLetterView.vue";
 
 import EventView from "@/views/EventView.vue";
 
@@ -34,8 +38,8 @@ const router = createRouter({
           component: MyPageRollView,
         },
         {
-          path: "mymessage",
-          component: MyPageMessageView,
+          path: "myletter",
+          component: MyPageLetterView,
         },
       ],
     },
@@ -71,9 +75,30 @@ const router = createRouter({
       props: true,
     },
     {
+      path: "/myroll/:id",
+      name: "MyRollingPaper",
+      component: MyRollingPaperView, // 새로운 상세 뷰 컴포넌트 사용
+      props: true,
+    },
+    {
       path: "/lettercreate",
       name: "lettercreate",
       component: LetterCreateView,
+      children: [
+        {
+          path: "font",
+          component: LetterFontView,
+        },
+        {
+          path: "color",
+          component: LetterColorView,
+        },
+      ],
+    },{
+      path: "/myletter/:letterNo",
+      name: "myletter",
+      component: MyLetterView, // 새로운 상세 뷰 컴포넌트 사용
+      props: true,
     },
   ],
 });
