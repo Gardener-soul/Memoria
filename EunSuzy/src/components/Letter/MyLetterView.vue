@@ -1,33 +1,40 @@
 <template>
-    <div>
-        <div class="card-body" :style="{ backgroundColor: item.backColor }">
-            <p class="text" :style="{ color: item.fontColor, fontFamily: item.font }">{{ item.content }}</p>
-            <h5 class="writer">FROM. {{ item.userName }}</h5>
-            <p class="date">{{ item.regDate }}</p>
-            <div class="card-buttons">
-              <button class="card-button" @click="goBack">롤페 보기</button>
-              <button class="card-button">수정</button>
-              <button class="card-button" @click="deleteLetter">삭제</button>
-            </div>
-        </div>
+  <div>
+    <div class="card-body" :style="{ backgroundColor: item.backColor }">
+      <p class="text" :style="{ color: item.fontColor, fontFamily: item.font }">
+        {{ item.content }}
+      </p>
+      <h5 class="writer">FROM. {{ item.userName }}</h5>
+      <p class="date">{{ item.regDate }}</p>
+      <button class="card-button" @click="goBack">롤페 보기</button>
+      <div v-if="isAuthor" class="card-buttons">
+        <button class="card-button" @click="goModify">수정</button>
+        <button class="card-button" @click="deleteLetter">삭제</button>
+      </div>
     </div>
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import axios from 'axios';
+import { ref } from "vue";
+import axios from "axios";
 import { useRoute } from "vue-router";
-import router from '../../router';
+import router from "@/router";
+import { useUserStore } from "@/stores/user";
 
+const useStore = useUserStore();
 const route = useRoute();
 const item = ref({});
+const isAuthor = ref(false);
 
 const letterNo = route.params.letterNo; // URL 파라미터에 맞춰 수정
 console.log(letterNo);
 
-axios.get(`http://localhost:8080/letter/${letterNo}`) // URL 형식 수정
+axios
+  .get(`http://localhost:8080/letter/${letterNo}`) // URL 형식 수정
   .then((response) => {
     item.value = response.data; // 단일 객체로 할당
+    isAuthor.value = useStore.userNo === item.value.writerNo; // 사용자 번호 비교
     console.log("편지 받아오기 성공", response);
   })
   .catch((error) => {
@@ -36,21 +43,24 @@ axios.get(`http://localhost:8080/letter/${letterNo}`) // URL 형식 수정
 
 // 삭제 함수
 const deleteLetter = () => {
-  axios.delete(`http://localhost:8080/letter/delete/${letterNo}`)
+  axios
+    .delete(`http://localhost:8080/letter/delete/${letterNo}`)
     .then(() => {
       console.log(`Letter ${letterNo} deleted successfully`);
       router.back();
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Error deleting letter", error);
     });
 };
 
-function goBack{
+function goBack() {
   router.back();
+}
+
+function goModify() {
+  router.push("/letterupdate");
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

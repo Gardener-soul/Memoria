@@ -1,22 +1,34 @@
 <template>
-    <div class="cards-container">
-      <div class="card" v-for="item in items" :key="item.letterNo" :style="{ backgroundColor: item.backColor }">
-        <div class="card-body">
-            <p class="text" :style="{ color: item.fontColor, fontFamily: item.font }">{{ item.content }}</p>
-            <h5 class="writer">FROM. {{ item.userName }}</h5>
-          <p class="date">{{ item.regDate }}</p>
-        </div>
-        <div class="card-buttons">
-            <button class="card-button" @click="goToThisLetter(item.letterNo)">보기</button>
-        </div>
+  <div class="cards-container">
+    <div
+      class="card"
+      v-for="item in items"
+      :key="item.letterNo"
+      :style="{ backgroundColor: item.backColor }"
+    >
+      <div class="card-body">
+        <p
+          class="text"
+          :style="{ color: item.fontColor, fontFamily: item.font }"
+        >
+          {{ item.content }}
+        </p>
+        <h5 class="writer">FROM. {{ item.userName }}</h5>
+        <p class="date">{{ item.regDate }}</p>
+        <img src="이미지 URL" />
+      </div>
+      <div class="card-buttons">
+        <button class="card-button" @click="goToThisLetter(item.letterNo)">
+          보기
+        </button>
       </div>
     </div>
-  </template>
-  
+  </div>
+</template>
 
 <script setup>
-import { ref } from 'vue';
-import axios from 'axios';
+import { ref } from "vue";
+import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
@@ -25,7 +37,8 @@ const items = ref([]);
 
 const rollingPaperId = route.params.id;
 
-axios.get(`http://localhost:8080/letter/list?rollingPaperNo=${rollingPaperId}`)
+axios
+  .get(`http://localhost:8080/letter/list?rollingPaperNo=${rollingPaperId}`)
   .then((response) => {
     items.value = response.data;
     console.log("편지 받아오기 성공", response);
@@ -35,9 +48,8 @@ axios.get(`http://localhost:8080/letter/list?rollingPaperNo=${rollingPaperId}`)
   });
 
 function goToThisLetter(letterNo) {
-  router.push({ name: 'myletter', params: { letterNo: letterNo } });
+  router.push({ name: "myletter", params: { letterNo: letterNo } });
 }
-
 </script>
 
 <style scoped>
@@ -59,8 +71,9 @@ function goToThisLetter(letterNo) {
   padding: 10px; /* 카드 내부 여백 */
 }
 
-.writer,.date{
-    text-align: right;
+.writer,
+.date {
+  text-align: right;
 }
 
 .card-buttons {

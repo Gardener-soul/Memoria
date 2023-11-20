@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <img src="@/assets/편지 봉투.png">
+    <img src="@/assets/편지 봉투.png" />
     <h4>To. {{ userName }}</h4>
-    <button @click="goToRoll" class="view-rollingpaper-btn">롤페 보러 가기</button>
+    <button @click="goToRoll" class="view-rollingpaper-btn">
+      롤페 보러 가기
+    </button>
     <span>{{ messageCount }}개 작성</span>
-    <button class="writebutton"
-      @click="checkLoginAndGoToMessageCreate"
-    >
+    <button class="writebutton" @click="checkLoginAndGoToMessageCreate">
       글 작성
     </button>
     <div v-if="showModal" class="modal">
@@ -23,7 +23,7 @@
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
-import { useUserStore } from "@/stores/user.js"; 
+import { useUserStore } from "@/stores/user.js";
 
 const route = useRoute();
 const router = useRouter();
@@ -36,7 +36,6 @@ const showModal = ref(false);
 // DB에서 데이터를 가져올 때 컬럼명과 맞출 것
 const rollingPaperNo = route.params.id; // 라우트 파라미터에서 rollingPaperNo 추출
 function fetchData() {
-
   axios
     .get(`http://localhost:8080/rollingPaper/${rollingPaperNo}`) // 백엔드 API의 경로
     .then((response) => {
@@ -64,11 +63,11 @@ function goToMessageCreate() {
   }
 
   // 로그인 상태일 경우, letterCreateView로 이동하면서 필요한 데이터 전달
-  router.push({ 
+  router.push({
     name: "lettercreate",
-    query: { 
+    query: {
       userNo: userStore.userNo,
-      id: route.params.id // 'id' 값을 query로 전달
+      id: route.params.id, // 'id' 값을 query로 전달
     },
   });
 }
@@ -101,7 +100,7 @@ onMounted(fetchData);
 
 .container h4 {
   position: absolute;
-  font-size : 30px;
+  font-size: 30px;
   color: black;
   z-index: 2;
   margin: 0;
@@ -159,8 +158,8 @@ onMounted(fetchData);
   width: 100%;
   height: 100%;
   overflow: auto; /* 필요하면 스크롤바를 추가합니다. */
-  background-color: rgb(0,0,0); /* 모달 배경 */
-  background-color: rgba(0,0,0,0.4); /* 약간의 투명도를 추가합니다. */
+  background-color: rgb(0, 0, 0); /* 모달 배경 */
+  background-color: rgba(0, 0, 0, 0.4); /* 약간의 투명도를 추가합니다. */
 }
 .modal-message {
   text-align: center;
