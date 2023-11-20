@@ -23,7 +23,7 @@ public interface LetterService {
 	void removeLetter(int letterNo);
 
 	// 편지 수정
-	void modifyLetter(Letter letter);
+	void modifyLetter(Letter letter, MultipartFile image) throws IOException;
 
 	// 검색 버튼을 눌렀을 때 처리할 메서드
 //	List<Letter> search(SearchCondition condition);

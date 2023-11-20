@@ -11,5 +11,6 @@ public interface UserDao {
 	int insertUser(User user);
 	
 	User selectOne(String userId);
-	
+
+	void updateUser(User user);
 }

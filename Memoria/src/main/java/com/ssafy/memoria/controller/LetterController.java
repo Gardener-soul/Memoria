@@ -39,7 +39,6 @@ public class LetterController {
 	@GetMapping("list")
 	@ApiOperation(value = "편지 조회", notes = "검색조건도 넣으면 같이 가져온다.")
 	public ResponseEntity<?> list(Letter letter) {
-
 		List<Letter> list = letterService.getList(letter); // 전체 조회
 		// List<Letter> list = letterService.search(condition); // 검색 조건이 있다면 그것으로 조회
 		System.out.println(list); // 전체 리스트 잘 받아와지는지 확인
@@ -64,7 +63,7 @@ public class LetterController {
 
 		if (result == 1) {
 			return new ResponseEntity<Letter>(letter, HttpStatus.CREATED);
-			}
+		}
 		return new ResponseEntity<String>("유저 추가 실패", HttpStatus.NOT_ACCEPTABLE);
 	}
 	
@@ -76,7 +75,7 @@ public class LetterController {
 				.body(image);
 	}
 
-	//4. 삭제
+	// 4. 삭제
 	@DeleteMapping("delete/{letterNo}")
 	public ResponseEntity<Void> delete(@PathVariable int letterNo) {
 		letterService.removeLetter(letterNo);
@@ -85,8 +84,8 @@ public class LetterController {
 
 	// 5. 수정
 	@PutMapping("update")
-	public ResponseEntity<Void> update(@RequestBody Letter letter) {
-		letterService.modifyLetter(letter);
+	public ResponseEntity<Void> update(Letter letter, @RequestParam(required = false) MultipartFile image) throws IOException {
+		letterService.modifyLetter(letter, image);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 

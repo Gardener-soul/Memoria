@@ -73,7 +73,6 @@ public class LetterServiceImpl implements LetterService {
 		}
 		
 		return letterDao.insertLetter(letter);
-
 	}
 
 	@Override
@@ -98,7 +97,27 @@ public class LetterServiceImpl implements LetterService {
 
 	@Transactional
 	@Override
-	public void modifyLetter(Letter letter) {
+	public void modifyLetter(Letter letter, MultipartFile image) throws IOException {
+		System.out.println("편지를 수정합니다.");
+		
+		if (image != null) {
+			if (!uploadFolder.exists()) {
+				Files.createDirectory(uploadFolderPath);
+			}
+
+			if (!image.isEmpty() && image.getSize() != 0) {
+				String today = Long.toString(System.currentTimeMillis());
+				String newImageName = today + "_" + image.getOriginalFilename();
+
+				letter.setOrgImg(image.getOriginalFilename());
+				letter.setImg(newImageName);
+
+				Path imagePath = uploadFolderPath.resolve(letter.getImg());
+
+				image.transferTo(new File(imagePath.toString()));
+			}
+		}
+		
 		letterDao.updateLetter(letter);
 	}
 

@@ -9,12 +9,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.memoria.model.dto.Letter;
 import com.ssafy.memoria.model.dto.User;
+import com.ssafy.memoria.model.service.LetterService;
 import com.ssafy.memoria.model.service.UserService;
 
 import io.swagger.annotations.Api;
@@ -26,6 +29,9 @@ import io.swagger.annotations.Api;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private LetterService letterService;
 
 	// 전체 유저 가져오기
 	@GetMapping("users")
@@ -60,5 +66,14 @@ public class UserController {
 		
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
+	
+	// 마이페이지
+	@GetMapping("/{letterNo}")
+	public ResponseEntity<Letter> detail(@PathVariable int letterNo) {
+		Letter letter = letterService.getLetter(letterNo);
+		return new ResponseEntity<Letter>(letter, HttpStatus.OK);
+	}
+	
+	
 	
 }
