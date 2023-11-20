@@ -9,12 +9,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.memoria.model.dto.Letter;
 import com.ssafy.memoria.model.dto.User;
+import com.ssafy.memoria.model.service.LetterService;
 import com.ssafy.memoria.model.service.UserService;
 
 import io.swagger.annotations.Api;
@@ -24,9 +27,11 @@ import io.swagger.annotations.Api;
 @Api(tags="로그인 컨트롤러")
 @CrossOrigin("*")
 public class UserController {
-	// UserService 라고 하는 친구를 주입
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private LetterService letterService;
 
 	// 전체 유저 가져오기
 	@GetMapping("users")
@@ -34,7 +39,6 @@ public class UserController {
 		return userService.getUserList();
 	}
 
-	// 회원가입을 해보자 form 태그 형식으로 넘어왔다.
 	@PostMapping("signup")
 	public ResponseEntity<Integer> signup(@RequestBody User user) {
 		int result = userService.signup(user);
@@ -46,7 +50,6 @@ public class UserController {
 	@PostMapping("login")
 	public ResponseEntity<?> login(@RequestBody User user, HttpSession session) {
 		User tmp = userService.login(user);
-		System.out.println(tmp);
 		// 로그인 실패
 		if(tmp == null)
 			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
@@ -63,5 +66,14 @@ public class UserController {
 		
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
+	
+	// 마이페이지
+	@GetMapping("/{letterNo}")
+	public ResponseEntity<Letter> detail(@PathVariable int letterNo) {
+		Letter letter = letterService.getLetter(letterNo);
+		return new ResponseEntity<Letter>(letter, HttpStatus.OK);
+	}
+	
+	
 	
 }
