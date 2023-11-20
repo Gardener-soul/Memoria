@@ -13,7 +13,10 @@
         >
           {{ item.content }}
         </p>
-        <img :src="`http://localhost:8080/letter/image/${item.img}`">
+        <img
+          v-if="item.img"
+          :src="`http://localhost:8080/letter/image/${item.img}`"
+        />
         <h5 class="writer">FROM. {{ item.userName }}</h5>
         <p class="date">{{ date(item.regDate) }}</p>
       </div>
@@ -28,7 +31,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import axios from '@/util/http-common';
+import axios from "@/util/http-common";
 import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
@@ -47,15 +50,15 @@ function date(regDate) {
 
 onMounted(() => {
   axios
-  .get(`http://localhost:8080/letter/list?rollingPaperNo=${rollingPaperId}`)
-  .then((response) => {
-    items.value = response.data;
-    console.log("편지 받아오기 성공", response);
-  })
-  .catch((error) => {
-    console.error(error);
-  });
-})
+    .get(`http://localhost:8080/letter/list?rollingPaperNo=${rollingPaperId}`)
+    .then((response) => {
+      items.value = response.data;
+      console.log("편지 받아오기 성공", response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
 </script>
 
 <style scoped>

@@ -85,9 +85,10 @@ const router = createRouter({
       component: LetterCreateView,
     },
     {
-      path: "/letterupdate",
+      path: "/letterupdate/:id",
       name: "letterupdate",
       component: LetterUpdateView,
+      props: true,
     },
     {
       path: "/myletter/:letterNo",

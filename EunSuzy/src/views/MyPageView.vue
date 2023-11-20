@@ -26,7 +26,7 @@ function goRoll() {
 }
 
 function goMessage() {
-  router.push("/mypage/mymessage");
+  router.push("/mypage/myletter");
 }
 </script>
 
