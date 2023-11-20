@@ -124,6 +124,7 @@ const signUp = async () => {
 </script>
 
 <style scoped>
+
 .container {
   height: 90vh;
   display: flex;

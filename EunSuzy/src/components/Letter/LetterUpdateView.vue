@@ -1,23 +1,17 @@
 <template>
   <div>
-    <p>편지 작성</p>
+    <p>편지 수정</p>
     <textarea
       v-model="content"
-      placeholder="마음을 적어주세요"
+      placeholder="이야기를 다시 써볼까요?"
       rows="10"
     ></textarea>
 
     <div class="color-selection-container">
-      <!-- <button @click="toggleFontMenu">글씨체 선택</button> -->
+      <button>글씨체 선택</button>
       <button @click="toggleFontColorPicker">글씨 색상 선택</button>
       <button @click="toggleBgColorPicker">배경 색상 선택</button>
     </div>
-
-    <!-- <div v-if="showFontMenu">
-      <button v-for="font in fonts" :key="font" @click="selectFont(font)">
-        {{ font }}
-      </button>
-    </div> -->
 
     <div class="btn-group" v-if="showFontColorPicker">
       <button
@@ -58,25 +52,16 @@
         <p>편지 내용을 입력해 주세요.</p>
       </div>
     </div>
-
-    <div>
-      <label for="image">이미지</label>
-      <input type="file" id="image" @change="appendImage" />
-      <br />
-      <button type="button" @click="submit">전송</button>
-    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
-// import axios from "axios";
-import axios from "@/util/http-common";
+import { useRoute } from "vue-router";
+import axios from "axios";
+import router from "../../router";
 
 const route = useRoute();
-const router = useRouter();
-const formData = new FormData();
 
 const rollingPaperNo = route.query.id;
 const writerNo = route.query.userNo;
@@ -157,28 +142,6 @@ function sendLetter() {
       console.error("편지 전송 실패", error);
     });
 }
-
-const appendImage = (e) => {
-  formData.append("image", e.target.files[0]);
-};
-
-const submit = () => {
-  // formData.append("name", name.value);
-
-  axios({
-    method: "post",
-    url: "http://localhost:8080/letter/write",
-    headers: { "Content-Type": "multipart/form-data" },
-    data: formData,
-  }).then((response) => {
-    if (response.data === "OK") {
-      alert("등록 완료");
-      router.push("/list");
-    } else {
-      alert("등록 실패");
-    }
-  });
-};
 </script>
 
 <style scoped>
