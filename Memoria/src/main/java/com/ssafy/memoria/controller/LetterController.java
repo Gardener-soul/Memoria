@@ -72,8 +72,10 @@ public class LetterController {
 
 	// 3. 등록
 	@PostMapping("write")
-	public ResponseEntity<?> write(Letter letter, @RequestParam(required = true) MultipartFile image) throws IOException {
+	public ResponseEntity<?> write(Letter letter, @RequestParam(required = false) MultipartFile image) throws IOException {
+		System.out.println(image);
 		int result = letterService.writeLetter(letter, image);
+
 		if (result == 1) {
 			return new ResponseEntity<Letter>(letter, HttpStatus.CREATED);
 			}

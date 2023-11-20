@@ -6,7 +6,7 @@
 
 	<!-- 전체 조회 -->
 	<select id="selectAll" parameterType="Letter" resultType="Letter">
-		SELECT letterNo, l.rollingPaperNo, writerNo, u.userName, content, font, fontColor, backColor, date_format(l.regDate, '%Y-%m-%d') as regDate
+		SELECT letterNo, l.rollingPaperNo, writerNo , u.userName, content, font, fontColor, backColor, date_format(l.regDate, '%Y-%m-%d') as regDate
 		FROM letters l
 		LEFT JOIN users u
 		ON l.writerNo = u.userNo
@@ -40,7 +40,7 @@
 	<!-- 편지 수정 -->
 	<update id="updateLetter" parameterType="Letter">
 		UPDATE letters
-		SET content = #{content}, font = #{font}, fontColor = #{fontColor}, backColor = #{backColor}, regDate = now()
+		SET content = #{content}, font = #{font}, fontColor = #{fontColor}, backColor = #{backColor}, img = #{img}, orgImg = #{orgImg}, regDate = now()
 		WHERE letterNo = #{letterNo}
 	</update>
 
