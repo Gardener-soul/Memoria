@@ -6,7 +6,7 @@
 
 	<!-- 전체 조회 -->
 	<select id="selectAll" resultType="RollingPaper">
-		SELECT rollingPaperNo, u.userName, title, writerCount, r.regDate
+		SELECT rollingPaperNo, u.userName, title, writerCount, date_format(r.regDate, '%Y-%m-%d') as regDate
 		FROM rollingPapers r
 		LEFT JOIN users u
 		ON r.ownerNo = u.userNo

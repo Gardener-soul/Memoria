@@ -44,9 +44,9 @@ CREATE TABLE `Letters` (
 	`content` TEXT NOT NULL,
 	`img` VARCHAR(200),
 	`orgImg` VARCHAR(200),
-	`font` VARCHAR(50) DEFAULT 'Arial, sans-serif',
-	`fontColor` VARCHAR(50) DEFAULT '#000000',
-	`backColor` VARCHAR(50) DEFAULT '#FFFFFF',
+	`font` VARCHAR(50),
+	`fontColor` VARCHAR(50),
+	`backColor` VARCHAR(50),
 	`regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (`letterNo`),
 	FOREIGN KEY (`rollingPaperNo`) REFERENCES RollingPapers(`rollingPaperNo`),
@@ -84,6 +84,7 @@ SELECT *
 FROM Events;
 
 
+
 INSERT INTO `Users` (userId, userPwd, userName, email)
 VALUES
 ('eunsooo', '97', '박은수', 'suzy@naver.com'),
@@ -102,5 +103,4 @@ VALUES
 (2, 2, 3, '수지 덕분에 즐거웠어'),
 (3, 1, 3, '은수햄 덕분에 행복했어'),
 (4, 3, 2, '엘지뽀이 한재훈');
-
 

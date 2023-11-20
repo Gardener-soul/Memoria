@@ -25,8 +25,6 @@ public interface LetterService {
 	// 편지 수정
 	void modifyLetter(Letter letter);
 
-//	public Resource loadImage(String imageName);
-	
 	// 검색 버튼을 눌렀을 때 처리할 메서드
 //	List<Letter> search(SearchCondition condition);
 }
