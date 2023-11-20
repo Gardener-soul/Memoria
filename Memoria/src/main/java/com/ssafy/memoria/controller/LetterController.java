@@ -1,10 +1,14 @@
 package com.ssafy.memoria.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.memoria.model.dto.Letter;
 import com.ssafy.memoria.model.service.LetterService;
@@ -23,6 +29,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/letter")
 @Api(tags="편지 컨트롤러")
+@CrossOrigin("*")
 public class LetterController {
 
 	@Autowired
@@ -49,11 +56,22 @@ public class LetterController {
 	
 	//3. 등록
 	@PostMapping("write")
-	public ResponseEntity<Letter> write(@RequestBody Letter letter){
-		Letter wl = letterService.writeLetter(letter);
-		return new ResponseEntity<Letter>(wl, HttpStatus.CREATED);
+	public ResponseEntity<?> write(Letter letter, @RequestParam(required = true) MultipartFile image) throws IOException {
+		int result = letterService.writeLetter(letter, image);
+		if (result == 1) {
+			return new ResponseEntity<Letter>(letter, HttpStatus.CREATED);
+			}
+		return new ResponseEntity<String>("유저 추가 실패", HttpStatus.NOT_ACCEPTABLE);
 	}
 	
+	@GetMapping("/image/{imgFileName}")
+	public ResponseEntity<?> getImage(@PathVariable String imgFileName) {
+		Resource image = letterService.loadImage(imgFileName);
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imgFileName + "\"")
+				.body(image);
+	}
+
 	//4. 삭제
 	@DeleteMapping("delete/{letterNo}")
 	public ResponseEntity<Void> delete(@PathVariable int letterNo){
@@ -67,6 +85,15 @@ public class LetterController {
 		letterService.modifyLetter(letter);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
+
+//	@GetMapping("/image/{imgFileName}")
+//	public ResponseEntity<?> getImage(@PathVariable String imgFileName) {
+//		Resource image = userService.loadImage(imgFileName);
+//		return ResponseEntity.ok()
+//				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imgFileName + "\"")
+//				.body(image);
+//	}
+	
 	
 //	@PutMapping("/letter/{letterNo}") //JSON 형태의 데이터로 넘어왔을 떄 처리하고 싶은데?
 //	public ResponseEntity<Void> update(@RequestBody Letter letter, @PathVariable int letterNo){

@@ -6,7 +6,7 @@
 
 	<!-- 전체 조회 -->
 	<select id="selectAll" parameterType="Letter" resultType="Letter">
-		SELECT letterNo, l.rollingPaperNo, writerNo, u.userName, content, font, fontColor, backColor, date_format(l.regDate, '%Y-%m-%d') as regDate
+		SELECT letterNo, l.rollingPaperNo, writerNo, u.userName, content, font, fontColor, backColor, l.regDate
 		FROM letters l
 		LEFT JOIN users u
 		ON l.writerNo = u.userNo
@@ -27,8 +27,8 @@
 	<!-- 편지 등록 -->
 	<insert id="insertLetter" parameterType="Letter"
         useGeneratedKeys="true" keyProperty="letterNo">
-		INSERT INTO letters (rollingPaperNo, writerNo, content, img, orgImg, font, fontColor, backColor)
-		VALUES (#{rollingPaperNo}, #{writerNo}, #{content}, #{img}, #{orgImg}, #{font}, #{fontColor}, #{backColor})
+		INSERT INTO letters (rollingPaperNo, writerNo, content, font, fontColor, backColor)
+		VALUES (#{rollingPaperNo}, #{writerNo}, #{content}, #{font}, #{fontColor}, #{backColor})
 	</insert>
 
 	<!-- 편지 삭제 -->
