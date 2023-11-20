@@ -4,12 +4,18 @@
       <p class="text" :style="{ color: item.fontColor, fontFamily: item.font }">
         {{ item.content }}
       </p>
-      <img :src="`http://localhost:8080/letter/image/${item.img}`">
+      <img
+        v-if="item.img"
+        :src="`http://localhost:8080/letter/image/${item.img}`"
+      />
       <h5 class="writer">FROM. {{ item.userName }}</h5>
       <p class="date">{{ date(item.regDate) }}</p>
       <button class="card-button" @click="goBack">롤페 보기</button>
       <div v-if="isAuthor" class="card-buttons">
-        <button class="card-button" @click="goModify">수정</button>
+        <button class="card-button" @click="goModify(item.letterNo)">
+          수정
+        </button>
+
         <button class="card-button" @click="deleteLetter">삭제</button>
       </div>
     </div>
@@ -63,9 +69,71 @@ function goBack() {
   router.back();
 }
 
-function goModify() {
-  router.push("/letterupdate");
+function goModify(letterNo) {
+  router.push({ name: "letterupdate", params: { id: letterNo } });
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.card-body {
+  position: relative; /* 상대적 위치 설정 */
+  padding: 20px; /* 내부 여백 */
+  background-color: #fff; /* 배경색 */
+  border-radius: 10px; /* 테두리 둥글게 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+  max-width: 600px; /* 최대 너비 설정 */
+  margin: 20px auto; /* 자동 마진으로 중앙 정렬 */
+  text-align: left; /* 텍스트 좌측 정렬 */
+}
+
+.text {
+  margin-bottom: 10px; /* 단락 사이 간격 */
+  /* 필요한 경우 여기에 추가적인 스타일을 적용 */
+}
+
+.writer {
+  font-weight: bold; /* 글씨 굵게 */
+  margin-bottom: 5px; /* 작성자와 날짜 사이 간격 */
+}
+
+.date {
+  margin-bottom: 20px; /* 날짜와 버튼 사이 간격 */
+}
+
+.card-buttons {
+  position: absolute; /* 절대적 위치 설정 */
+  bottom: 10px; /* 하단에서 10px 떨어진 위치 */
+  right: 10px; /* 우측에서 10px 떨어진 위치 */
+  display: flex; /* 버튼들을 가로로 배치 */
+}
+.card-button {
+  background-color: #bf94e4; /* 배경색 */
+  color: white; /* 글자색 */
+  border: none; /* 테두리 없음 */
+  padding: 10px 15px; /* 내부 여백 */
+  border-radius: 5px; /* 테두리 둥글게 */
+  cursor: pointer; /* 커서 모양 */
+  margin-left: 10px; /* 버튼 사이 간격 */
+}
+
+.card-button {
+  background-color: #bf94e4; /* 배경색 */
+  color: white; /* 글자색 */
+  border: none; /* 테두리 없음 */
+  padding: 10px 15px; /* 내부 여백 */
+  border-radius: 5px; /* 테두리 둥글게 */
+  cursor: pointer; /* 커서 모양 */
+  margin-left: 10px; /* 버튼 사이 간격 */
+}
+
+.card-button:hover {
+  background-color: #a476c1; /* 호버 시 배경색 변경 */
+}
+
+img {
+  max-width: 100%; /* 이미지 최대 너비 */
+  height: auto; /* 이미지 높이 자동 조정 */
+  border-radius: 5px; /* 이미지 테두리 둥글게 */
+  margin-bottom: 10px; /* 이미지와 텍스트 사이 간격 */
+}
+</style>

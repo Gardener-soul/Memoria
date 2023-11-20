@@ -84,7 +84,7 @@ const router = useRouter();
 
 const formData = new FormData();
 
-const rollingPaperNo = route.query.id;
+const letterNo = route.query.id;
 const writerNo = route.query.userNo;
 const content = ref("");
 const selectedFontColor = ref("#000000");
@@ -166,13 +166,15 @@ const appendImage = (e) => {
 const submit = () => {
   const submitFormData = new FormData();
 
-  submitFormData.append("rollingPaperNo", rollingPaperNo);
+  submitFormData.append("letterNo", letterNo);
   submitFormData.append("writerNo", writerNo);
   submitFormData.append("content", content.value);
   submitFormData.append("font", selectedFont.value);
   submitFormData.append("fontColor", selectedFontColor.value);
   submitFormData.append("backColor", selectedBgColor.value);
   submitFormData.append("image", formData.get("img")); // 이미지 파일 추가
+
+  console.log(letterNo);
 
   axios({
     method: "update",
@@ -183,7 +185,7 @@ const submit = () => {
     .then((response) => {
       // 처리 성공 시 로직
       alert("등록 완료");
-      router.push("/myroll/" + rollingPaperNo);
+      router.push("/myroll/" + writerNo);
     })
     .catch((error) => {
       alert(`등록 실패: ${error.message}`);
