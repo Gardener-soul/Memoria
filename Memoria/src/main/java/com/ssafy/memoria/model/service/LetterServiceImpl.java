@@ -53,6 +53,8 @@ public class LetterServiceImpl implements LetterService {
 	public int writeLetter(Letter letter, MultipartFile image) throws IOException {
 		System.out.println("편지를 작성합니다.");
 		
+		if(image==null) return letterDao.insertLetter(letter);
+		
 		if (!uploadFolder.exists()) {
 			Files.createDirectory(uploadFolderPath);
 		}
@@ -68,8 +70,9 @@ public class LetterServiceImpl implements LetterService {
 
 			image.transferTo(new File(imagePath.toString()));
 		}
-
+		
 		return letterDao.insertLetter(letter);
+
 	}
 	
 	@Override
