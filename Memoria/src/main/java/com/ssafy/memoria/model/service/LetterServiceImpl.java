@@ -71,8 +71,9 @@ public class LetterServiceImpl implements LetterService {
 				image.transferTo(new File(imagePath.toString()));
 			}
 		}
-
+		
 		return letterDao.insertLetter(letter);
+
 	}
 
 	@Override

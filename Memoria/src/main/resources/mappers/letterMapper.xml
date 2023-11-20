@@ -40,7 +40,7 @@
 	<!-- 편지 수정 -->
 	<update id="updateLetter" parameterType="Letter">
 		UPDATE letters
-		SET content = #{content}, font = #{font}, fontColor = #{fontColor}, backColor = #{backColor}, regDate = now()
+		SET content = #{content}, font = #{font}, fontColor = #{fontColor}, backColor = #{backColor}, img = #{img}, orgImg = #{orgImg}, regDate = now()
 		WHERE letterNo = #{letterNo}
 	</update>
 

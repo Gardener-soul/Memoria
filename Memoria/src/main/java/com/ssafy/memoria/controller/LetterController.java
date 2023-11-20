@@ -61,6 +61,7 @@ public class LetterController {
 	@PostMapping("write")
 	public ResponseEntity<?> write(Letter letter, @RequestParam(required = false) MultipartFile image) throws IOException {
 		int result = letterService.writeLetter(letter, image);
+
 		if (result == 1) {
 			return new ResponseEntity<Letter>(letter, HttpStatus.CREATED);
 			}
