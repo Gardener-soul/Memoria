@@ -6,7 +6,10 @@
       :key="item.letterNo"
       :style="{ backgroundColor: item.backColor }"
     >
-      <div class="card-body">
+      <div
+        class="card-body"
+        :class="{ 'with-img': item.img, 'without-img': !item.img }"
+      >
         <p
           class="text"
           :style="{ color: item.fontColor, fontFamily: item.font }"
@@ -101,5 +104,34 @@ onMounted(() => {
 
 .card-button:hover {
   background-color: #a885c2;
+}
+.card-body {
+  position: relative;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  min-height: 200px; /* 최소 높이 설정 */
+  margin: 20px auto;
+  text-align: left;
+}
+
+.with-img {
+  /* 이미지가 있는 경우 적용할 스타일 */
+  min-height: 300px; /* 이미지의 최대 높이와 일치하도록 설정 */
+}
+
+.without-img {
+  /* 이미지가 없는 경우 적용할 스타일 */
+  min-height: 200px; /* 기본 최소 높이 */
+  padding: 20px; /* 내부 여백 */
+  border-radius: 10px; /* 둥근 테두리 */
+}
+
+img {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 </style>

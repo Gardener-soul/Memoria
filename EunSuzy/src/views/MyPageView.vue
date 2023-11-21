@@ -1,11 +1,7 @@
 <template>
   <div class="container">
     <h2>My Page</h2>
-    <img
-      :src="'@/assets/기본 프로필 이미지.jpg'"
-      alt="Profile"
-      @click="openFilePicker"
-    />
+    <img :src="profileImage" alt="Profile" @click="openFilePicker" />
     <input
       type="file"
       ref="fileInput"
@@ -26,10 +22,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, computed } from "vue";
 import { useUserStore } from "@/stores/user.js";
 import { useRouter } from "vue-router";
 import axios from "axios";
+import defaultProfileImage from "@/assets/기본 프로필 이미지.jpg";
 
 const userStore = useUserStore();
 const router = useRouter();
@@ -37,6 +34,10 @@ const fileInput = ref(null);
 const formData = new FormData();
 
 const userNo = userStore.userNo;
+
+const profileImage = computed(() => {
+  return userStore.img || defaultProfileImage;
+});
 
 const openFilePicker = () => {
   fileInput.value.click();

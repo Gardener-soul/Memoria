@@ -6,12 +6,14 @@ export const useUserStore = defineStore("user", {
     isLoggedIn: false,
     userName: null,
     userNo: null,
+    img: null,
   }),
   actions: {
     setUser(data) {
       this.isLoggedIn = true;
       this.userName = data.userName;
       this.userNo = data.userNo; // Set userNo from the data
+      this.img = data.img;
       sessionStorage.setItem("user", JSON.stringify(data));
     },
 
@@ -19,6 +21,7 @@ export const useUserStore = defineStore("user", {
       this.isLoggedIn = false;
       this.userData = null;
       this.userNo = null; // Clear userNo when logging out
+      this.img = null;
       sessionStorage.removeItem("user");
     },
 
