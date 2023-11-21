@@ -76,14 +76,15 @@ function goModify(letterNo) {
 
 <style scoped>
 .card-body {
-  position: relative; /* 상대적 위치 설정 */
-  padding: 20px; /* 내부 여백 */
-  background-color: #fff; /* 배경색 */
-  border-radius: 10px; /* 테두리 둥글게 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
-  max-width: 600px; /* 최대 너비 설정 */
-  margin: 20px auto; /* 자동 마진으로 중앙 정렬 */
-  text-align: left; /* 텍스트 좌측 정렬 */
+  position: relative;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  min-height: 200px; /* 최소 높이 설정 */
+  margin: 20px auto;
+  text-align: left;
 }
 
 .text {
@@ -129,11 +130,11 @@ function goModify(letterNo) {
 .card-button:hover {
   background-color: #a476c1; /* 호버 시 배경색 변경 */
 }
-
 img {
   max-width: 100%; /* 이미지 최대 너비 */
-  height: auto; /* 이미지 높이 자동 조정 */
-  border-radius: 5px; /* 이미지 테두리 둥글게 */
-  margin-bottom: 10px; /* 이미지와 텍스트 사이 간격 */
+  max-height: 300px; /* 이미지 최대 높이 설정 */
+  object-fit: contain; /* 이미지를 비율에 맞게 조정하면서 `card-body`에 맞춤 */
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 </style>
