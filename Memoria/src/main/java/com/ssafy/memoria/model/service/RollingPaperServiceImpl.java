@@ -22,6 +22,7 @@ public class RollingPaperServiceImpl implements RollingPaperService {
 	@Override
 	public List<RollingPaper> getList() {
 		System.out.println("모든 롤링페이퍼를 가지고 왔습니다.");
+		
 		return rollingPaperDao.selectAll();
 	}
 

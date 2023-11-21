@@ -42,7 +42,7 @@ public class LetterServiceImpl implements LetterService {
 		System.out.println("모든 편지를 가지고 왔습니다.");
 		return letterDao.selectAll(letter);
 	}
-
+	
 	@Override
 	public Letter getLetter(int letterNo) {
 		System.out.println(letterNo + "번 편지를 읽었습니다.");
@@ -119,6 +119,12 @@ public class LetterServiceImpl implements LetterService {
 		}
 		
 		letterDao.updateLetter(letter);
+	}
+
+	@Override
+	public List<Letter> getMyList(Letter letter) {
+		System.out.println("내가 쓴 편지를 가지고 왔습니다.");
+		return letterDao.selectMy(letter);
 	}
 
 //	@Override

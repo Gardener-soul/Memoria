@@ -16,5 +16,7 @@ public interface LetterDao {
 
 	public void updateLetter(Letter letter);
 
+	public List<Letter> selectMy(Letter letter);
+	
 //	public List<Letter> search(SearchCondition condition);
 }
