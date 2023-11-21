@@ -78,18 +78,21 @@
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "@/util/http-common";
+import { useUserStore } from "@/stores/user.js";
 
 const route = useRoute();
 const router = useRouter();
+const useStore = useUserStore();
 
 const formData = new FormData();
 
 const letterNo = route.params.id;
+const writerNo = useStore.userNo;
 const content = ref("");
 const selectedFontColor = ref("#000000");
 const selectedBgColor = ref("#FFFFFF");
-const showFontMenu = ref("Ariel"); // 글씨체 메뉴 표시 여부
-const selectedFont = ref(""); // 선택된 글씨체를 저장하는 ref
+const showFontMenu = ref(""); // 글씨체 메뉴 표시 여부
+const selectedFont = ref("Ariel"); // 선택된 글씨체를 저장하는 ref
 
 const fonts = ["Roboto", "Open Sans"];
 
@@ -166,6 +169,7 @@ const submit = () => {
   const submitFormData = new FormData();
 
   submitFormData.append("letterNo", letterNo);
+  submitFormData.append("writerNo", writerNo);
   submitFormData.append("content", content.value);
   submitFormData.append("font", selectedFont.value);
   submitFormData.append("fontColor", selectedFontColor.value);
@@ -181,7 +185,7 @@ const submit = () => {
     .then((response) => {
       // 처리 성공 시 로직
       alert("등록 완료");
-      router.push("/myroll/" + writerNo);
+      router.back();
     })
     .catch((error) => {
       alert(`등록 실패: ${error.message}`);
