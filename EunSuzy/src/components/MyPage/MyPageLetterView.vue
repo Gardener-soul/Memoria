@@ -39,7 +39,6 @@ import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "@/stores/user.js";
 
 const router = useRouter();
-const route = useRoute();
 const useStore = useUserStore();
 const items = ref([]);
 

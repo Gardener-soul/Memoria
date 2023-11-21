@@ -18,6 +18,7 @@ import LetterUpdateView from "@/components/Letter/LetterUpdateView.vue";
 import MyLetterView from "@/components/Letter/MyLetterView.vue";
 
 import EventView from "@/views/EventView.vue";
+import DailyEvent from "@/components/Event/DailyEvent.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -61,6 +62,12 @@ const router = createRouter({
       path: "/event",
       name: "event",
       component: EventView,
+      children: [
+        {
+          path: ":day",
+          component: DailyEvent,
+        },
+      ],
     },
     {
       path: "/create",

@@ -19,7 +19,7 @@ public interface UserService {
 	User login(User user);
 
 	// 내 프로필 수정
-	void modifyUser(User user, MultipartFile image) throws IOException;
+	User modifyUser(User user, MultipartFile image) throws IOException;
 	Resource loadImage(String imageName);
 
 }
