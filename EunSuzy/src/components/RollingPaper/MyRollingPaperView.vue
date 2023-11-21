@@ -1,5 +1,8 @@
 <template>
   <div class="cards-container">
+    <div id="count">
+      <p>작성한 사람 수 : {{ writerCount }}</p>
+    </div>
     <div
       class="card"
       v-for="item in items"
@@ -41,6 +44,7 @@ const router = useRouter();
 const route = useRoute();
 const items = ref([]);
 
+const writerCount = ref("");
 const rollingPaperId = route.params.id;
 
 function goToThisLetter(letterNo) {
@@ -53,9 +57,10 @@ function date(regDate) {
 
 onMounted(() => {
   axios
-    .get(`http://localhost:8080/rollingPaper/list?rollingPaperNo=${rollingPaperId}`)
+    .get(`http://localhost:8080/letter/list?rollingPaperNo=${rollingPaperId}`)
     .then((response) => {
       items.value = response.data;
+      writerCount.value = items.value.length;
       console.log("편지 받아오기 성공", response);
     })
     .catch((error) => {
@@ -73,6 +78,13 @@ onMounted(() => {
   padding: 10px;
 }
 
+#count {
+  display: flex;
+  justify-content: flex-end; /* 버튼을 우측으로 정렬 */
+  align-items: center;
+  width: 100%;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -81,11 +93,21 @@ onMounted(() => {
   width: calc(25% - 10px);
   border: 1px solid black;
   padding: 10px; /* 카드 내부 여백 */
+  border-radius: 20px;
 }
 
-.writer,
+.writer {
+  /* text-align: right; */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 10px;
+}
 .date {
-  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
 }
 
 .card-buttons {
@@ -100,6 +122,7 @@ onMounted(() => {
   padding: 5px 10px;
   margin-left: 5px; /* 버튼 간의 간격 */
   cursor: pointer;
+  border-radius: 20px;
 }
 
 .card-button:hover {
@@ -111,7 +134,7 @@ onMounted(() => {
   border-radius: 10px;
   max-width: 600px;
   min-height: 200px; /* 최소 높이 설정 */
-  margin: 20px auto;
+  margin: 0px;
   text-align: left;
 }
 

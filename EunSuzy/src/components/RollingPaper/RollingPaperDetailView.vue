@@ -7,7 +7,7 @@
     </button>
     <span>{{ messageCount }}개 작성</span>
     <button class="writebutton" @click="checkLoginAndGoToMessageCreate">
-      글 작성
+      편지 쓰기
     </button>
     <div v-if="showModal" class="modal">
       <div class="modal-content">
@@ -119,21 +119,21 @@ onMounted(fetchData);
 .writebutton {
   position: absolute;
   z-index: 2;
-  top: 45%;
+  top: 47%;
   left: 50%;
   transform: translateX(-50%);
   color: white;
-  background-color: #d8b6e2;
+  background-color: #ffb2c1;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 50%; /* 버튼을 원형으로 만듭니다 */
-  width: 100px; /* 버튼의 너비를 설정 */
+  width: 110px; /* 버튼의 너비를 설정 */
   height: 100px; /* 버튼의 높이를 설정 */
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px; /* 필요한 경우 글꼴 크기 조정 */
+  font-size: 15px; /* 필요한 경우 글꼴 크기 조정 */
 }
 
 .view-rollingpaper-btn {

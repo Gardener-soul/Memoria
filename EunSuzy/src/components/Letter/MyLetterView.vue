@@ -10,7 +10,7 @@
       />
       <h5 class="writer">FROM. {{ item.userName }}</h5>
       <p class="date">{{ date(item.regDate) }}</p>
-      <button class="card-button" @click="goBack">롤페 보기</button>
+      <button class="card-button" id="one" @click="goBack">롤페 보기</button>
       <div v-if="isAuthor" class="card-buttons">
         <button class="card-button" @click="goModify(item.letterNo)">
           수정
@@ -93,12 +93,21 @@ function goModify(letterNo) {
 }
 
 .writer {
+  position: absolute;
+  left: 0;
   font-weight: bold; /* 글씨 굵게 */
-  margin-bottom: 5px; /* 작성자와 날짜 사이 간격 */
+  margin-left: 20px; /* 작성자와 날짜 사이 간격 */
 }
 
 .date {
-  margin-bottom: 20px; /* 날짜와 버튼 사이 간격 */
+  position: absolute;
+  right: 0;
+  margin-right: 20px; /* 날짜와 버튼 사이 간격 */
+}
+
+#one {
+  position: absolute; /* 절대적 위치 설정 */
+  bottom: 10px; /* 하단에서 10px 떨어진 위치 */
 }
 
 .card-buttons {
@@ -107,16 +116,6 @@ function goModify(letterNo) {
   right: 10px; /* 우측에서 10px 떨어진 위치 */
   display: flex; /* 버튼들을 가로로 배치 */
 }
-.card-button {
-  background-color: #bf94e4; /* 배경색 */
-  color: white; /* 글자색 */
-  border: none; /* 테두리 없음 */
-  padding: 10px 15px; /* 내부 여백 */
-  border-radius: 5px; /* 테두리 둥글게 */
-  cursor: pointer; /* 커서 모양 */
-  margin-left: 10px; /* 버튼 사이 간격 */
-}
-
 .card-button {
   background-color: #bf94e4; /* 배경색 */
   color: white; /* 글자색 */

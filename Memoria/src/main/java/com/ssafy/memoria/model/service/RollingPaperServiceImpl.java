@@ -13,17 +13,23 @@ import com.ssafy.memoria.model.dto.RollingPaper;
 public class RollingPaperServiceImpl implements RollingPaperService {
 
 	private RollingPaperDao rollingPaperDao;
-	
+
 	@Autowired
 	public void setRollingPaperDao(RollingPaperDao rollingPaperDao) {
 		this.rollingPaperDao = rollingPaperDao;
 	}
-	
+
 	@Override
 	public List<RollingPaper> getList() {
 		System.out.println("모든 롤링페이퍼를 가지고 왔습니다.");
+		List<RollingPaper> list = rollingPaperDao.selectAll();
 		
-		return rollingPaperDao.selectAll();
+	    for (RollingPaper paper : list) {
+	        int writerCount = rollingPaperDao.selectLetterCount(paper.getRollingPaperNo());
+	        paper.setWriterCount(writerCount);
+	    }
+
+	    return list;
 	}
 
 	@Override

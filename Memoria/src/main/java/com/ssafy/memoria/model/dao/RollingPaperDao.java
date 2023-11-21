@@ -8,6 +8,8 @@ public interface RollingPaperDao {
 
 	public List<RollingPaper> selectAll();
 
+	public int selectLetterCount(int rollingPaperNo);
+	
 	public RollingPaper selectOne(int rollingPaperNo);
 
 	public int insertRollingPaper(RollingPaper rollingPaper);

@@ -95,19 +95,28 @@ const selectedFont = ref(""); // 선택된 글씨체를 저장하는 ref
 const fonts = ["Roboto", "Open Sans"];
 
 const colors = [
-{ name: "black", label: "검정" },
-{ name: "blue", label: "파랑" },
-{ name: "purple", label: "보라" },
-{ name: "green", label: "초록" },
-{ name: "navy", label: "네이비" },
+  { name: "white", label: "흰색" },
+  { name: "black", label: "검정" },
+  { name: "#ff0000", label: "빨강" },
+  { name: "#ff7f50", label: "주황" },
+  { name: "#ffff00", label: "노랑" },
+  { name: "#3cb371", label: "연두" },
+  { name: "#00bfff", label: "하늘" },
+  { name: "#4169e1", label: "파랑" },
+  { name: "#9400d3", label: "보라" },
+  { name: "#ff1493", label: "핑크" },
 ];
 const bgColors = [
 { name: "white", label: "흰색" },
 { name: "black", label: "검정" },
-{ name: "blue", label: "파랑" },
-{ name: "purple", label: "보라" },
-{ name: "green", label: "초록" },
-{ name: "navy", label: "네이비" },
+{ name: "#ffdddd", label: "빨강" },
+{ name: "#ffeedd", label: "주황" },
+{ name: "#ffffdd", label: "노랑" },
+{ name: "#ddf6dd", label: "연두" },
+{ name: "#ddffff", label: "하늘" },
+{ name: "#ddeeff", label: "파랑" },
+{ name: "#ddddff", label: "보라" },
+{ name: "#ffddf6", label: "핑크" },
 ];
 
 function selectFont(font) {
@@ -337,8 +346,17 @@ color: black;
 background-color: black;
 color: white;
 }
-.btn-blue {
-background-color: blue;
+
+/* { name: "#ffdddd", label: "빨강" },
+{ name: "#ffeedd", label: "주황" },
+{ name: "#ffffdd", label: "노랑" },
+{ name: "#ddf6dd", label: "연두" },
+{ name: "#ddffff", label: "하늘" },
+{ name: "#ddeeff", label: "파랑" },
+{ name: "#ddddff", label: "보라" },
+{ name: "#ffddf6", label: "핑크" }, */
+.btn-#ffdddd {
+background-color: #ffdddd;
 color: white;
 }
 .btn-purple {
