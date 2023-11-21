@@ -1,5 +1,6 @@
 <template>
   <div class="cards-container">
+    <div class="card-title"><h1>To. {{ title }}</h1></div>
     <div
       class="card"
       v-for="item in items"
@@ -39,6 +40,7 @@ const router = useRouter();
 const useStore = useUserStore();
 const items = ref([]);
 
+const title = ref("");
 const rollingPaperNo = useStore.userNo;
 
 function goToThisLetter(letterNo) {
@@ -51,10 +53,11 @@ function date(regDate) {
 
 onMounted(() => {
   axios
-    .get(`http://localhost:8080/user/list?rollingPaperNo=${rollingPaperNo}`)
+    .get(`http://localhost:8080/user/mine?rollingPaperNo=${rollingPaperNo}`)
     .then((response) => {
       items.value = response.data;
-      console.log("롤링페이퍼 받아오기 성공", response);
+      title.value = items.value[0].title;
+      console.log("롤링페이퍼 받아오기 성공", response.date);
     })
     .catch((error) => {
       console.error(error);
@@ -70,6 +73,11 @@ onMounted(() => {
   gap: 10px;
   padding: 10px;
 }
+
+/* .card-title {
+  display: flex;
+  flex-wrap: wrap;
+} */
 
 .card {
   display: flex;

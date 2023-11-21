@@ -6,7 +6,7 @@
 
 	<!-- 전체 조회 -->
 	<select id="selectAll" parameterType="Letter" resultType="Letter">
-		SELECT letterNo, l.rollingPaperNo, writerNo, u.userName, content, l.img, font, fontColor, backColor, date_format(l.regDate, '%Y-%m-%d') as regDate
+		SELECT letterNo, l.rollingPaperNo, writerNo, u.userName, title, content, l.img, font, fontColor, backColor, date_format(l.regDate, '%Y-%m-%d') as regDate
 		FROM letters l
 		LEFT JOIN users u
 		ON l.writerNo = u.userNo
@@ -44,4 +44,12 @@
 		WHERE letterNo = #{letterNo}
 	</update>
 
+	<!-- 내가 쓴 편지 전체 조회 -->
+	<select id="selectMy" parameterType="Letter" resultType="Letter">
+		SELECT letterNo, rollingPaperNo, writerNo, u.userName, content, l.img, font, fontColor, backColor, date_format(l.regDate, '%Y-%m-%d') as regDate
+		FROM letters l
+		LEFT JOIN users u
+		ON l.writerNo = u.userNo
+		WHERE writerNo = #{writerNo}
+	</select>
 </mapper>

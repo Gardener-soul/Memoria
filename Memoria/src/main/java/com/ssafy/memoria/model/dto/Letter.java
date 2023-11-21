@@ -7,6 +7,7 @@ public class Letter {
     private int rollingPaperNo;
     private int writerNo;
     private String userName;
+    private String title;
     private String content;
 	private String img;
 	private String orgImg;
@@ -64,6 +65,14 @@ public class Letter {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getContent() {
@@ -125,7 +134,7 @@ public class Letter {
 	@Override
 	public String toString() {
 		return "Letter [letterNo=" + letterNo + ", rollingPaperNo=" + rollingPaperNo + ", writerNo=" + writerNo
-				+ ", userName=" + userName + ", content=" + content + ", img=" + img + ", orgImg="
+				+ ", userName=" + userName + ", title=" + title + ", content=" + content + ", img=" + img + ", orgImg="
 				+ orgImg + ", font=" + font + ", fontColor=" + fontColor + ", backColor=" + backColor + ", regDate="
 				+ regDate + "]";
 	}

@@ -1,7 +1,18 @@
 <template>
   <div class="container">
     <h2>My Page</h2>
-    <img src="@/assets/기본 프로필 이미지.jpg" alt="Profile" />
+    <img
+      :src="'@/assets/기본 프로필 이미지.jpg'"
+      alt="Profile"
+      @click="openFilePicker"
+    />
+    <input
+      type="file"
+      ref="fileInput"
+      @change="appendImage"
+      style="display: none"
+    />
+    <button @click="submit">사진 수정</button>
     <h3>{{ userStore.userName }}</h3>
     <hr />
     <div class="button-container">
@@ -15,11 +26,50 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
 import { useUserStore } from "@/stores/user.js";
 import { useRouter } from "vue-router";
+import axios from "axios";
 
 const userStore = useUserStore();
 const router = useRouter();
+const fileInput = ref(null);
+const formData = new FormData();
+
+const userNo = userStore.userNo;
+
+const openFilePicker = () => {
+  fileInput.value.click();
+};
+
+const appendImage = (event) => {
+  if (event.target.files && event.target.files[0]) {
+    formData.append("img", event.target.files[0]);
+  }
+};
+
+const submit = () => {
+  const submitFormData = new FormData();
+
+  submitFormData.append("userNo", userNo);
+  submitFormData.append("image", formData.get("img")); // 이미지 파일 추가
+
+  axios({
+    method: "put",
+    url: "http://localhost:8080/user/update",
+    headers: { "Content-Type": "multipart/form-data" },
+    data: submitFormData,
+  })
+    .then((response) => {
+      // 처리 성공 시 로직
+      alert("등록 완료");
+      // router.push("/myroll/" + rollingPaperNo);
+    })
+    .catch((error) => {
+      alert(`등록 실패: ${error.message}`);
+      console.error("전송 실패", error);
+    });
+};
 
 function goRoll() {
   router.push("/mypage/myroll");
