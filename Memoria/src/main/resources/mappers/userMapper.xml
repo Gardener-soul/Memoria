@@ -22,8 +22,8 @@
 	
 	<update id="updateUser" parameterType="User">
 		UPDATE users
-		SET userId = #{userId}, userPwd = #{userPwd}, userName = #{userName}, img = #{img}, orgImg = #{orgImg}, regDate = now()
-		WHERE userId = #{userId}
+		SET img = #{img}, orgImg = #{orgImg}
+		WHERE userNo = #{userNo}
 	</update>
 
 </mapper>

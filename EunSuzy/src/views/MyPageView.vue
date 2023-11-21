@@ -56,7 +56,7 @@ const submit = () => {
   submitFormData.append("image", formData.get("img")); // 이미지 파일 추가
 
   axios({
-    method: "post",
+    method: "put",
     url: "http://localhost:8080/user/update",
     headers: { "Content-Type": "multipart/form-data" },
     data: submitFormData,
@@ -64,7 +64,7 @@ const submit = () => {
     .then((response) => {
       // 처리 성공 시 로직
       alert("등록 완료");
-      router.push("/myroll/" + rollingPaperNo);
+      // router.push("/myroll/" + rollingPaperNo);
     })
     .catch((error) => {
       alert(`등록 실패: ${error.message}`);

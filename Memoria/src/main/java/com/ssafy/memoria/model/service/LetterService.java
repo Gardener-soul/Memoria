@@ -25,6 +25,9 @@ public interface LetterService {
 	// 편지 수정
 	void modifyLetter(Letter letter, MultipartFile image) throws IOException;
 
+	// 내가 쓴 편지 전체 조회
+	List<Letter> getMyList(Letter letter);
+	
 	// 검색 버튼을 눌렀을 때 처리할 메서드
 //	List<Letter> search(SearchCondition condition);
 }

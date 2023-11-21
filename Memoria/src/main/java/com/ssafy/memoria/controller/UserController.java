@@ -1,19 +1,25 @@
 package com.ssafy.memoria.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.memoria.model.dto.Letter;
 import com.ssafy.memoria.model.dto.User;
@@ -29,7 +35,7 @@ import io.swagger.annotations.Api;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private LetterService letterService;
 
@@ -39,6 +45,7 @@ public class UserController {
 		return userService.getUserList();
 	}
 
+	// 회원가입
 	@PostMapping("signup")
 	public ResponseEntity<Integer> signup(@RequestBody User user) {
 		int result = userService.signup(user);
@@ -47,6 +54,7 @@ public class UserController {
 		return new ResponseEntity<Integer>(result, HttpStatus.CREATED);
 	}
 
+	// 로그인
 	@PostMapping("login")
 	public ResponseEntity<?> login(@RequestBody User user, HttpSession session) {
 		User tmp = userService.login(user);
@@ -59,21 +67,50 @@ public class UserController {
 		return new ResponseEntity<User>(userInfo, HttpStatus.OK);
 	}
 
+	// 로그아웃
 	@GetMapping("logout")
 	public ResponseEntity<Void> logout(HttpSession session) {
-//		session.removeAttribute("loginUser");
 		session.invalidate();
 		
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
-	
-	// 마이페이지
-	@GetMapping("/{letterNo}")
-	public ResponseEntity<Letter> detail(@PathVariable int letterNo) {
-		Letter letter = letterService.getLetter(letterNo);
-		return new ResponseEntity<Letter>(letter, HttpStatus.OK);
+
+	// 내 프로필 수정
+	@CrossOrigin("*")
+	@PutMapping("update")
+	public ResponseEntity<Void> update(User user, @RequestParam(required = false) MultipartFile image) throws IOException {
+		userService.modifyUser(user, image);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
-	
-	
-	
+
+	@GetMapping("/image/{imgFileName}")
+	public ResponseEntity<?> getImage(@PathVariable String imgFileName) {
+		Resource image = letterService.loadImage(imgFileName);
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imgFileName + "\"")
+				.body(image);
+	}
+
+	// 마이페이지 내 롤링페이퍼
+	@GetMapping("mine")
+	public ResponseEntity<?> myRollList(Letter letter) {
+		List<Letter> list = letterService.getList(letter);
+
+		if (list == null || list.size() == 0)
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+
+		return new ResponseEntity<List<Letter>>(list, HttpStatus.OK);
+	}
+
+	// 마이페이지 내가 쓴 편지
+	@GetMapping("letters")
+	public ResponseEntity<?> myLetterList(Letter letter) {
+		List<Letter> list = letterService.getMyList(letter);
+		System.out.println(list); // 전체 리스트 잘 받아와지는지 확인
+
+		if (list == null || list.size() == 0)
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+
+		return new ResponseEntity<List<Letter>>(list, HttpStatus.OK);
+	}
 }
