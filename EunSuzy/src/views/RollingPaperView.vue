@@ -20,7 +20,7 @@
           {{ item.title }}
         </td>
         <td>{{ item.writerCount }}</td>
-        <td>{{ item.regDate }}</td>
+        <td>{{ date(item.regDate) }}</td>
         <td>
           <div v-if="item.userName === useStore.userName">
             <button @click="showEditModal(item)">수정</button>
@@ -52,9 +52,11 @@
 import { ref, computed, onMounted } from "vue";
 import axios from "axios";
 import { useUserStore } from "@/stores/user.js";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    const router = useRouter();
     const useStore = useUserStore();
     const items = ref([]);
     const currentPage = ref(1);
@@ -86,7 +88,7 @@ export default {
 
     // 롤링페이퍼 상세보기로 이동
     const navigateToRollingPaper = (rollingPaperId) => {
-      // 라우터 이동 로직
+      router.push(`/rollingPaper/${rollingPaperId}`);
     };
 
     // 이전 페이지로 이동
@@ -123,6 +125,7 @@ export default {
           console.error("Error updating rolling paper:", error)
         );
     };
+
     //목록 삭제
     const deleteRP = (rollingPaperNo) => {
       axios
@@ -136,6 +139,11 @@ export default {
           console.error("Error deleting rolling paper:", error);
         });
     };
+
+    function date(regDate) {
+      return regDate[0] + " / " + regDate[1] + " / " + regDate[2];
+    }
+
     // 컴포넌트 마운트 시 롤링페이퍼 목록 가져오기
     onMounted(fetchRollingPapers);
 
@@ -153,6 +161,7 @@ export default {
       showEditModal,
       updateRP,
       deleteRP,
+      date,
       useStore,
     };
   },

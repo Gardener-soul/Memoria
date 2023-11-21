@@ -31,7 +31,7 @@ function createAndNavigate() {
   console.log(axios);
   axios
     .post("http://localhost:8080/rollingPaper/write", {
-      owner: userStore.userNo,
+      ownerNo: userStore.userNo,
       title: title.value,
     })
     .then((response) => {
@@ -48,28 +48,30 @@ function createAndNavigate() {
 <style scoped>
 /* CSS 파일 내에서 body 태그에 대한 스타일 */
 body {
-  margin: 0; /* 모든 여백 제거 */
-  padding: 0; /* 모든 패딩 제거 */
-  display: flex; /* Flexbox 사용 */
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
-  height: 40vh;
-  background-color: #f0e6d6; /* 배경색 설정 */
-  font-family: "Comic Sans MS", cursive, sans-serif; /* 글꼴 설정 */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Flexbox 레이아웃 사용 */
+  justify-content: center; /* 수평 방향으로 중앙 정렬 */
+  align-items: center; /* 세로 방향으로 중앙 정렬 */
+  height: 40vh; /* 뷰포트 높이에 맞춤 */
+  background-color: #f0e6d6;
+  font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 /* .container 클래스에 대한 스타일 */
 .container {
-  display: flex; /* Flexbox 사용 */
-  flex-direction: column; /* 세로 방향 정렬 */
-  align-items: center; /* 세로축을 중심으로 중앙 정렬 */
-  justify-content: center; /* 수평축을 중심으로 중앙 정렬 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
   background-color: #fffaf0;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 700px; /* 최대 너비 설정 */
+  max-width: 700px;
+  margin: auto; /* 자동 마진으로 중앙 정렬 */
+  margin-top: 200px;
 }
 
 .title {

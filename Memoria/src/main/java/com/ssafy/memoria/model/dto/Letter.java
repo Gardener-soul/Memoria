@@ -8,6 +8,8 @@ public class Letter {
     private int writerNo;
     private String userName;
     private String content;
+	private String img;
+	private String orgImg;
     private String font;
     private String fontColor;
     private String backColor;
@@ -17,12 +19,15 @@ public class Letter {
 		super();
 	}
 
-	public Letter(int letterNo, int rollingPaperNo, int writerNo, String content, String font, String fontColor, String backColor, LocalDateTime regDate) {
+	public Letter(int letterNo, int rollingPaperNo, int writerNo, String content, String img,
+			String orgImg, String font, String fontColor, String backColor, LocalDateTime regDate) {
 		super();
 		this.letterNo = letterNo;
 		this.rollingPaperNo = rollingPaperNo;
 		this.writerNo = writerNo;
 		this.content = content;
+		this.img = img;
+		this.orgImg = orgImg;
 		this.font = font;
 		this.fontColor = fontColor;
 		this.backColor = backColor;
@@ -69,6 +74,22 @@ public class Letter {
 		this.content = content;
 	}
 
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public String getOrgImg() {
+		return orgImg;
+	}
+
+	public void setOrgImg(String orgImg) {
+		this.orgImg = orgImg;
+	}
+
 	public String getFont() {
 		return font;
 	}
@@ -104,8 +125,9 @@ public class Letter {
 	@Override
 	public String toString() {
 		return "Letter [letterNo=" + letterNo + ", rollingPaperNo=" + rollingPaperNo + ", writerNo=" + writerNo
-				+ ", userName=" + userName + ", content=" + content + ", font=" + font + ", fontColor=" + fontColor
-				+ ", backColor=" + backColor + ", regDate=" + regDate + "]";
+				+ ", userName=" + userName + ", content=" + content + ", img=" + img + ", orgImg="
+				+ orgImg + ", font=" + font + ", fontColor=" + fontColor + ", backColor=" + backColor + ", regDate="
+				+ regDate + "]";
 	}
 
 }

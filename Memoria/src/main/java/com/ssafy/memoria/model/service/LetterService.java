@@ -1,6 +1,10 @@
 package com.ssafy.memoria.model.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.springframework.core.io.Resource;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.memoria.model.dto.Letter;
 
@@ -12,13 +16,14 @@ public interface LetterService {
 	Letter getLetter(int letterNo);
 
 	// 편지 등록
-	Letter writeLetter(Letter letter);
-
+	int writeLetter(Letter letter, MultipartFile image) throws IOException;
+	Resource loadImage(String imageName);
+	
 	// 편지 삭제
 	void removeLetter(int letterNo);
 
 	// 편지 수정
-	void modifyLetter(Letter letter);
+	void modifyLetter(Letter letter, MultipartFile image) throws IOException;
 
 	// 검색 버튼을 눌렀을 때 처리할 메서드
 //	List<Letter> search(SearchCondition condition);
