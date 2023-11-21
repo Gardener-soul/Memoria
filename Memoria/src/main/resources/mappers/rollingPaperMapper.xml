@@ -12,6 +12,12 @@
 		ON r.ownerNo = u.userNo
 	</select>
 
+	<select id="selectLetterCount" resultType="int">
+	    SELECT COUNT(*)
+	    FROM letters
+	    WHERE rollingPaperNo = #{rollingPaperNo}
+	</select>
+
 	<!-- 상세 조회 -->
 	<select id="selectOne" parameterType="int">
 		SELECT u.userName, writerCount
@@ -47,5 +53,4 @@
 		SET view_cnt = view_cnt+1
 		WHERE id = #{id}
 	</update> -->
-
 </mapper>
