@@ -36,7 +36,9 @@ const formData = new FormData();
 const userNo = userStore.userNo;
 
 const profileImage = computed(() => {
-  return userStore.img || defaultProfileImage;
+  return userStore.img
+    ? `http://localhost:8080/letter/image/${userStore.img}`
+    : defaultProfileImage;
 });
 
 const openFilePicker = () => {
@@ -62,9 +64,9 @@ const submit = () => {
     data: submitFormData,
   })
     .then((response) => {
-      // 처리 성공 시 로직
-      alert("등록 완료");
-      // router.push("/myroll/" + rollingPaperNo);
+      const updatedImage = response.data.img; // 응답 구조에 따라 수정 필요
+
+      userStore.setimage({ img: updatedImage });
     })
     .catch((error) => {
       alert(`등록 실패: ${error.message}`);

@@ -9,12 +9,16 @@ export const useUserStore = defineStore("user", {
     img: null,
   }),
   actions: {
+    setimage(data) {
+      this.img = data.img;
+    },
     setUser(data) {
       this.isLoggedIn = true;
       this.userName = data.userName;
       this.userNo = data.userNo; // Set userNo from the data
       this.img = data.img;
       sessionStorage.setItem("user", JSON.stringify(data));
+      console.log(data.img);
     },
 
     clearUser() {

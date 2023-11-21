@@ -17,9 +17,10 @@ public class User {
 		super();
 	}
 	
-	public User(int userNo, String userName) {
+	public User(int userNo, String userName, String img) {
 		this.userNo = userNo;
 		this.userName = userName;
+		this.img = img;
 	}
 	
 	public User(String userId, String userPwd, String userName, String email, String nickname) {
