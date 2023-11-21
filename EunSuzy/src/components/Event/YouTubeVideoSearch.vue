@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h4>검색 컴포넌트</h4>
-    <input type="text" v-model="keyword" />
+    <h4>유튜브 검색</h4>
+    <input type="text" v-model="keyword" placeholder="원하는 운동 영상 검색" />
     <button @click="search">검색</button>
   </div>
 </template>

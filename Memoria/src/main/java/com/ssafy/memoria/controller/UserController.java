@@ -62,7 +62,7 @@ public class UserController {
 		if(tmp == null)
 			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
 		
-		User userInfo = new User(tmp.getUserNo(), tmp.getUserName());
+		User userInfo = new User(tmp.getUserNo(), tmp.getUserName(), tmp.getImg());
 		
 		return new ResponseEntity<User>(userInfo, HttpStatus.OK);
 	}
@@ -78,9 +78,10 @@ public class UserController {
 	// 내 프로필 수정
 	@CrossOrigin("*")
 	@PutMapping("update")
-	public ResponseEntity<Void> update(User user, @RequestParam(required = false) MultipartFile image) throws IOException {
-		userService.modifyUser(user, image);
-		return new ResponseEntity<Void>(HttpStatus.OK);
+	public ResponseEntity<User> update(User user, @RequestParam(required = false) MultipartFile image) throws IOException {
+		User tmp = userService.modifyUser(user, image);
+		System.out.println(tmp);
+		return new ResponseEntity<User>(tmp, HttpStatus.OK);
 	}
 
 	@GetMapping("/image/{imgFileName}")

@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Transactional
 	@Override
-	public void modifyUser(User user, MultipartFile image) throws IOException {
+	public User modifyUser(User user, MultipartFile image) throws IOException {
 		System.out.println("내 정보를 수정합니다.");
 		
 		if (image != null) {
@@ -75,6 +75,7 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		userDao.updateUser(user);
+		return user;
 	}
 	
 	@Override

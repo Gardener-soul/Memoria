@@ -15,12 +15,27 @@
 
 ---
 
+## Day 9
+
+--BackEnd
+
+- [x] 마이페이지 사진 입출력
+- [ ] Event BackEnd 작성
+
+--FrontEnd
+
+- [x] Update 수정
+- [x] 이벤트, Youtube 영상 기반 검색 완성.
+- [ ] MyPage 수정
+
+---
+
 ## Day 8
 
 --BackEnd
 
 - [x] 파일 입출력, 이미지
-- [ ] 백엔드 update 로직 수정
+- [x] 백엔드 update 로직 수정
 - [ ] 0개 작성 해결
 - [ ] 색깔, 글씨체 고르기
 
@@ -32,9 +47,9 @@
 - [x] 전체적인 디자인 구조 수정, 색깔
 - [ ] MyPage
 - [x] 롤페 만들기 맨 가운데로
-- [ ] 마이 롤페 뷰 img null일 때 img 태그 안나오게 하기 v-if
-- [ ] 상세 메세지 img null일 때 img 태그 안나오게 하기
-- [ ] 버튼 디자인
+- [x] 마이 롤페 뷰 img null일 때 img 태그 안나오게 하기 v-if
+- [x] 상세 메세지 img null일 때 img 태그 안나오게 하기
+- [x] 버튼 디자인
 
 ---
 
