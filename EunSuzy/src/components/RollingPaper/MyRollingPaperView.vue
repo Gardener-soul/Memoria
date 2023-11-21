@@ -50,7 +50,7 @@ function date(regDate) {
 
 onMounted(() => {
   axios
-    .get(`http://localhost:8080/letter/list?rollingPaperNo=${rollingPaperId}`)
+    .get(`http://localhost:8080/rollingPaper/list?rollingPaperNo=${rollingPaperId}`)
     .then((response) => {
       items.value = response.data;
       console.log("편지 받아오기 성공", response);
