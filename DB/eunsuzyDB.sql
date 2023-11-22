@@ -8,79 +8,78 @@ DROP TABLE IF EXISTS eunsuzyDB;
 
 DROP TABLE Users;
 CREATE TABLE `Users` (
-	`userNo` INT NOT NULL AUTO_INCREMENT,
-	`userId` VARCHAR(30) UNIQUE NOT NULL,
-	`userPwd` VARCHAR(100) NOT NULL,
-	`userName` VARCHAR(20) NOT NULL,
-	`email` VARCHAR(50) UNIQUE NOT NULL,
-	`img` VARCHAR(200),
-	`orgImg` VARCHAR(200),
-	`regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
-	`reportCount` INT DEFAULT 0,
-	PRIMARY KEY(`userNo`)
+    `userNo` INT NOT NULL AUTO_INCREMENT,
+    `userId` VARCHAR(30) UNIQUE NOT NULL,
+    `userPwd` VARCHAR(100) NOT NULL,
+    `userName` VARCHAR(20) NOT NULL,
+    `email` VARCHAR(50) UNIQUE NOT NULL,
+    `img` VARCHAR(200),
+    `orgImg` VARCHAR(200),
+    `userEvent` INT DEFAULT 0,
+    `achieve` VARCHAR(1),
+    `achieveDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(`userNo`),
+    CHECK(`achieve` IN ('F', 'T'))
 )ENGINE=InnoDB;
 SELECT *
 FROM Users;
 
 DROP TABLE RollingPapers;
 CREATE TABLE `RollingPapers` (
-	`rollingPaperNo` INT NOT NULL AUTO_INCREMENT,
-	`ownerNo` INT NOT NULL,
-	`title` VARCHAR(100) NOT NULL,
-	`writerCount` INT DEFAULT 0,
-	`regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
-	-- emoticon VARCHAR(200),
-	PRIMARY KEY (`rollingPaperNo`),
-	FOREIGN KEY (`ownerNo`) REFERENCES Users(`userNo`)
+    `rollingPaperNo` INT NOT NULL AUTO_INCREMENT,
+    `ownerNo` INT NOT NULL,
+    `title` VARCHAR(100) NOT NULL,
+    `writerCount` INT DEFAULT 0,
+    `regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    -- emoticon VARCHAR(200),
+    PRIMARY KEY (`rollingPaperNo`),
+    FOREIGN KEY (`ownerNo`) REFERENCES Users(`userNo`)
 )ENGINE=InnoDB;
 SELECT *
 FROM RollingPapers;
 
 DROP TABLE Letters;
 CREATE TABLE `Letters` (
-	`letterNo` INT NOT NULL AUTO_INCREMENT,
-	`rollingPaperNo` INT NOT NULL,
-	`writerNo` INT NOT NULL,
-	`content` TEXT NOT NULL,
-	`font` VARCHAR(50),
-	`fontColor` VARCHAR(50),
-	`backColor` VARCHAR(50),
-	`img` VARCHAR(200),
-	`orgImg` VARCHAR(200),
-	`regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (`letterNo`),
-	FOREIGN KEY (`rollingPaperNo`) REFERENCES RollingPapers(`rollingPaperNo`),
-	FOREIGN KEY (`writerNo`) REFERENCES Users(`userNo`)
+    `letterNo` INT NOT NULL AUTO_INCREMENT,
+    `rollingPaperNo` INT NOT NULL,
+    `writerNo` INT NOT NULL,
+    `content` TEXT NOT NULL,
+    `font` VARCHAR(50),
+    `fontColor` VARCHAR(50),
+    `backColor` VARCHAR(50),
+    `img` VARCHAR(200),
+    `orgImg` VARCHAR(200),
+    `regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`letterNo`),
+    FOREIGN KEY (`rollingPaperNo`) REFERENCES RollingPapers(`rollingPaperNo`),
+    FOREIGN KEY (`writerNo`) REFERENCES Users(`userNo`)
 )ENGINE=InnoDB;
 SELECT *
 FROM Letters;
 
 DROP TABLE Events;
 CREATE TABLE `Events` (
-	`eventNo` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	`userNo` INT NOT NULL,
-	`eventTitle` VARCHAR(50),
-	`description` VARCHAR(200),
-    `day` INT DEFAULT 0,
-	`achieve` VARCHAR(1),
-	`achieveDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (`userNo`) REFERENCES Users(`userNo`),
-    CHECK(`achieve` IN ('F', 'T'))
+    `eventNo` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `eventTitle` VARCHAR(50),
+    `description` VARCHAR(200),
+    `eventDay` INT DEFAULT 0,
+    PRIMARY KEY (`eventNo`)
 )ENGINE=InnoDB;
 SELECT *
 FROM Events;
 
 -- DROP TABLE Photos;
 -- CREATE TABLE `Photos` (
--- 	`photoNo` INT NOT NULL AUTO_INCREMENT,
--- 	`rollingPaperNo` INT NOT NULL,
--- 	`writerNo` INT NOT NULL,
--- 	`img` VARCHAR(200) NOT NULL,
--- 	`orgImg` VARCHAR(200) NOT NULL,
--- 	`regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
--- 	PRIMARY KEY (`photoNo`),
--- 	FOREIGN KEY (`rollingPaperNo`) REFERENCES RollingPapers(`rollingPaperNo`),
--- 	FOREIGN KEY (`writerNo`) REFERENCES Users(`userNo`)
+--     `photoNo` INT NOT NULL AUTO_INCREMENT,
+--     `rollingPaperNo` INT NOT NULL,
+--     `writerNo` INT NOT NULL,
+--     `img` VARCHAR(200) NOT NULL,
+--     `orgImg` VARCHAR(200) NOT NULL,
+--     `regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
+--     PRIMARY KEY (`photoNo`),
+--     FOREIGN KEY (`rollingPaperNo`) REFERENCES RollingPapers(`rollingPaperNo`),
+--     FOREIGN KEY (`writerNo`) REFERENCES Users(`userNo`)
 -- )ENGINE=InnoDB;
 -- SELECT *
 -- FROM photo;
@@ -128,4 +127,3 @@ HIIT 운동 도전하기: 고강도 인터벌 트레이닝(HIIT) 운동 영상 �
 (1, '7일차', '운동 성과 공유하기: 일주일간의 운동 성과 SNS에 공유하기.
 스트레스 해소 운동 찾기: 스트레스 해소에 좋은 운동 영상 찾아보기.
 휴식과 명상: 휴식과 명상을 위한 가이드 영상 시청하기.', 'T');
-
