@@ -1,31 +1,21 @@
 package com.ssafy.memoria.model.dto;
 
-import java.time.LocalDateTime;
-
 public class Event {
-
 	private int eventNo;
-	private int userNo;
 	private String eventTitle;
 	private String description;
-    private int day;
-    private String achieve;
-    private LocalDateTime achieveDate;
-    
+    private int eventDay;
+
 	public Event() {
 		super();
 	}
 
-	public Event(int eventNo, int userNo, String eventTitle, String description, int day, String achieve,
-			LocalDateTime achieveDate) {
+	public Event(int eventNo, String eventTitle, String description, int eventDay) {
 		super();
 		this.eventNo = eventNo;
-		this.userNo = userNo;
 		this.eventTitle = eventTitle;
 		this.description = description;
-		this.day = day;
-		this.achieve = achieve;
-		this.achieveDate = achieveDate;
+		this.eventDay = eventDay;
 	}
 
 	public int getEventNo() {
@@ -34,14 +24,6 @@ public class Event {
 
 	public void setEventNo(int eventNo) {
 		this.eventNo = eventNo;
-	}
-
-	public int getUserNo() {
-		return userNo;
-	}
-
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
 	}
 
 	public String getEventTitle() {
@@ -60,34 +42,18 @@ public class Event {
 		this.description = description;
 	}
 
-	public int getDay() {
-		return day;
+	public int getEventDay() {
+		return eventDay;
 	}
 
-	public void setDay(int day) {
-		this.day = day;
-	}
-
-	public String getAchieve() {
-		return achieve;
-	}
-
-	public void setAchieve(String achieve) {
-		this.achieve = achieve;
-	}
-
-	public LocalDateTime getAchieveDate() {
-		return achieveDate;
-	}
-
-	public void setAchieveDate(LocalDateTime achieveDate) {
-		this.achieveDate = achieveDate;
+	public void setEventDay(int eventDay) {
+		this.eventDay = eventDay;
 	}
 
 	@Override
 	public String toString() {
-		return "Event [eventNo=" + eventNo + ", userNo=" + userNo + ", eventTitle=" + eventTitle + ", description="
-				+ description + ", day=" + day + ", achieve=" + achieve + ", achieveDate=" + achieveDate + "]";
+		return "Event [eventNo=" + eventNo + ", eventTitle=" + eventTitle + ", description=" + description
+				+ ", eventDay=" + eventDay + "]";
 	}
 
 }
