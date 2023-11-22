@@ -62,7 +62,7 @@ public class UserController {
 		if(tmp == null)
 			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
 		
-		User userInfo = new User(tmp.getUserNo(), tmp.getUserName(), tmp.getImg());
+		User userInfo = new User(tmp.getUserNo(), tmp.getUserName(), tmp.getImg(), tmp.getEventDay());
 		
 		return new ResponseEntity<User>(userInfo, HttpStatus.OK);
 	}

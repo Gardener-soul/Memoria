@@ -19,12 +19,12 @@
 
 --BackEnd
 
-- [x] Event BackEnd 작성
-- [ ]
+- [ ] Event BackEnd 작성
 
 --FrontEnd
 
-- [ ] OnMounted 활용한 NavGuard 걸어놓기.
+- [x] 관리자 페이지 - 관리자 계정만 진입 가능하게 설정..?
+- [x] OnMounted 활용한 NavGuard 걸어놓기.
 
 ---
 
@@ -168,9 +168,8 @@ Day 1
 - [ ] 피그마 목업 제작, PPT도 제작
 - [ ] 서버 배포
 - [ ] 다크모드? - CSS 2배 작성
-- [ ] Kakao API Map 추가 가능?
+- [ ] Kakao API Map 추가 가능? (찍찍 추가)
 - [ ] 댓글, 대댓글 ㄷㄷ
-- [ ] 관리자 페이지 - 관리자 계정만 진입 가능하게 설정..?
 - [ ] GAANT CHART
 - [ ] 유즈 케이스, Figma 만들기
 - [ ] 배경 음악 추가

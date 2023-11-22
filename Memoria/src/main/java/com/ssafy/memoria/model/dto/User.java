@@ -20,10 +20,11 @@ public class User {
 		super();
 	}
 	
-	public User(int userNo, String userName, String img) {
+	public User(int userNo, String userName, String img, int eventDay) {
 		this.userNo = userNo;
 		this.userName = userName;
 		this.img = img;
+		this.eventDay = eventDay;
 	}
 	
 	public User(String userId, String userPwd, String userName, String email, String nickname) {

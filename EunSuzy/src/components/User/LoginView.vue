@@ -73,7 +73,7 @@ const login = async () => {
     // User 객체에서 UserNo와 UserName을 가져옴
     const userNo = response.data.userNo;
     const userName = response.data.userName;
-    console.log(userNo, userName);
+    const event = response.data.eventDay;
 
     userStore.setUser(response.data);
     router.push("/");
