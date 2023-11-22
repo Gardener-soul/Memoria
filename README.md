@@ -19,6 +19,7 @@
 
 --BackEnd
 
+- [x] Event BackEnd 작성
 - [ ]
 
 --FrontEnd
@@ -32,7 +33,8 @@
 --BackEnd
 
 - [x] 마이페이지 사진 입출력
-- [ ] Event BackEnd 작성
+- [x] 0개 작성 해결
+- [x] 색깔, 글씨체 고르기
 
 --FrontEnd
 
@@ -48,8 +50,6 @@
 
 - [x] 파일 입출력, 이미지
 - [x] 백엔드 update 로직 수정
-- [ ] 0개 작성 해결
-- [ ] 색깔, 글씨체 고르기
 
 --FrontEnd
 

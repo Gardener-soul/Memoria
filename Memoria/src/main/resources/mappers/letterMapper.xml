@@ -6,7 +6,7 @@
 
 	<!-- 전체 조회 -->
 	<select id="selectAll" parameterType="Letter" resultType="Letter">
-		SELECT letterNo, l.rollingPaperNo, writerNo, u.userName, title, content, l.img, font, fontColor, backColor, date_format(l.regDate, '%Y-%m-%d') as regDate
+		SELECT *
 		FROM letters l
 		LEFT JOIN users u
 		ON l.writerNo = u.userNo
