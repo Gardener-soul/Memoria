@@ -14,52 +14,36 @@
     </div>
     <div class="checkbox-wrapper">
       <div>오늘의 미션</div>
-      <div class="form-check">
+      <div class="form-check" v-for="item in filteredItems" :key="item.eventNo">
         <input
           class="form-check-input"
           type="checkbox"
-          value=""
-          id="flexCheckDefault"
+          :value="item.eventNo"
+          :id="`flexCheck${item.eventNo}`"
+          v-model="checkedEvents[item.eventNo]"
         />
-        <label class="form-check-label" for="flexCheckDefault">
-          Default checkbox
-        </label>
-      </div>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          id="flexCheckDefault"
-        />
-        <label class="form-check-label" for="flexCheckDefault">
-          Default checkbox
-        </label>
-      </div>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          id="flexCheckDefault"
-        />
-        <label class="form-check-label" for="flexCheckDefault">
-          Default checkbox
+        <label class="form-check-label" :for="`flexCheck${item.eventNo}`">
+          {{ item.eventTitle }}
         </label>
       </div>
       <div class="button-wrapper">
-        <button>제출</button>
+        <button @click="handleSubmit">제출</button>
       </div>
     </div>
   </div>
 </template>
+
 <script setup>
 import { useYouTubeStore } from "@/stores/youtube";
-import { computed, onMounted, watch } from "vue";
+import { useUserStore } from "@/stores/user";
+import { ref, computed, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
+import axios from "axios";
 
+const useStore = useUserStore();
 const store = useYouTubeStore();
 const route = useRoute();
+const items = ref([]);
 
 // 각 날짜에 해당하는 YouTube 영상 ID를 매핑합니다.
 const dailyVideos = {
@@ -71,7 +55,35 @@ const dailyVideos = {
   6: "RMyfEJkBa88",
   7: "B9GsLAPeA2M",
 };
+const filteredItems = computed(() => {
+  const routeId = parseInt(route.params.day, 10);
+  const filtered = items.value.filter((item) => item.eventDay === routeId);
+  return filtered;
+});
 
+const checkedEvents = ref({});
+const allChecked = computed(() => {
+  return filteredItems.value.every((item) => checkedEvents.value[item.eventNo]);
+});
+
+const handleSubmit = () => {
+  if (allChecked.value) {
+    const eventDay = parseInt(route.params.day, 10);
+    const userNo = useStore.userNo;
+
+    axios
+      .put("http://localhost:8080/event/check", { eventDay, userNo })
+      .then((response) => {
+        useStore.eventDay = eventDay;
+        console.log("Event checked:", response);
+      })
+      .catch((error) => {
+        console.error("Error checking event:", error);
+      });
+  } else {
+    alert("모든 이벤트를 완료하지 못했습니다.");
+  }
+};
 // 페이지가 마운트될 때와 라우트가 변경될 때 영상을 업데이트합니다.
 const updateVideo = () => {
   const day = route.params.day; // 라우트 매개변수에서 'day'를 가져옵니다.
@@ -87,6 +99,18 @@ const videoURL = computed(() => {
   const videoId = store.selectedVideo?.id.videoId || "";
   return `https://www.youtube.com/embed/${videoId}`;
 });
+
+const fetchEvent = () => {
+  axios
+    .get("http://localhost:8080/event/list")
+    .then((response) => {
+      items.value = response.data;
+      console.log(items.value);
+    })
+    .catch((error) => console.error(error));
+};
+
+onMounted(fetchEvent);
 </script>
 <style scoped>
 .video-container {
