@@ -5,7 +5,6 @@
     <button @click="goToRoll" class="view-rollingpaper-btn">
       롤페 보러 가기
     </button>
-    <span>{{ messageCount }}개 작성</span>
     <button class="writebutton" @click="checkLoginAndGoToMessageCreate">
       편지 쓰기
     </button>

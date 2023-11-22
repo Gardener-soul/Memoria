@@ -7,7 +7,6 @@
       </button>
     </div>
     <RouterView />
-    <p>여기에 케러셀을 넣기</p>
   </div>
 </template>
 
@@ -30,7 +29,7 @@ const goToDay = (day) => {
 }
 
 .day-buttons button {
-  background-color: #bf94e4;; /* 버튼 배경색 */
+  background-color: #bf94e4; /* 버튼 배경색 */
   color: white; /* 버튼 텍스트 색상 */
   border: none; /* 테두리 제거 */
   padding: 10px 15px; /* 내부 여백 */

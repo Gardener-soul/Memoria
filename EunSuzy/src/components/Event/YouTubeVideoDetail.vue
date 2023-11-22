@@ -1,41 +1,56 @@
 <template>
   <div v-if="store.selectedVideo" class="video-container">
     <div class="video-wrapper">
-    <h4>추천 이벤트 영상</h4>
-    <iframe
-      width="560"
-      height="315"
-      :src="videoURL"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-    ></iframe>
+      <h4>추천 이벤트 영상</h4>
+      <iframe
+        width="560"
+        height="315"
+        :src="videoURL"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
     </div>
     <div class="checkbox-wrapper">
       <div>오늘의 미션</div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="flexCheckDefault"
+        />
         <label class="form-check-label" for="flexCheckDefault">
-        Default checkbox
+          Default checkbox
         </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="flexCheckDefault"
+        />
         <label class="form-check-label" for="flexCheckDefault">
-        Default checkbox
+          Default checkbox
         </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="flexCheckDefault"
+        />
         <label class="form-check-label" for="flexCheckDefault">
-        Default checkbox
+          Default checkbox
         </label>
-    </div>
-    <div class="button-wrapper">
+      </div>
+      <div class="button-wrapper">
         <button>제출</button>
       </div>
-  </div>
+    </div>
   </div>
 </template>
 <script setup>
@@ -127,13 +142,13 @@ button {
   color: white;
   border: none;
   border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
 }
 
 /* 버튼 호버 효과 */
 button:hover {
   background-color: darkblue;
-  box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 </style>

@@ -75,12 +75,14 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "@/util/http-common";
+import { useUserStore } from "@/stores/user.js";
 
 const route = useRoute();
 const router = useRouter();
+const useStore = useUserStore();
 
 const formData = new FormData();
 
@@ -107,16 +109,16 @@ const colors = [
   { name: "#ff1493", label: "핑크" },
 ];
 const bgColors = [
-{ name: "white", label: "흰색" },
-{ name: "black", label: "검정" },
-{ name: "#ffdddd", label: "빨강" },
-{ name: "#ffeedd", label: "주황" },
-{ name: "#ffffdd", label: "노랑" },
-{ name: "#ddf6dd", label: "연두" },
-{ name: "#ddffff", label: "하늘" },
-{ name: "#ddeeff", label: "파랑" },
-{ name: "#ddddff", label: "보라" },
-{ name: "#ffddf6", label: "핑크" },
+  { name: "white", label: "흰색" },
+  { name: "black", label: "검정" },
+  { name: "#ffdddd", label: "빨강" },
+  { name: "#ffeedd", label: "주황" },
+  { name: "#ffffdd", label: "노랑" },
+  { name: "#ddf6dd", label: "연두" },
+  { name: "#ddffff", label: "하늘" },
+  { name: "#ddeeff", label: "파랑" },
+  { name: "#ddddff", label: "보라" },
+  { name: "#ffddf6", label: "핑크" },
 ];
 
 function selectFont(font) {
@@ -164,7 +166,11 @@ const checkContentAndSend = () => {
   if (content.value.trim() === "") {
     showModal.value = true;
   } else {
-    submit();
+    if (useStore.isLoggedIn) {
+      submit();
+    } else {
+      alert("로그인이 필요합니다.");
+    }
   }
 };
 
@@ -190,8 +196,6 @@ const submit = () => {
     data: submitFormData,
   })
     .then((response) => {
-      // 처리 성공 시 로직
-      alert("등록 완료");
       router.push("/myroll/" + rollingPaperNo);
     })
     .catch((error) => {
@@ -199,6 +203,12 @@ const submit = () => {
       console.error("전송 실패", error);
     });
 };
+onMounted(() => {
+  if (!userStore.isLoggedIn) {
+    alert("로그인이 필요합니다.");
+    router.push("/login");
+  }
+});
 </script>
 
 <style scoped>
@@ -356,8 +366,8 @@ button {
 { name: "#ddddff", label: "보라" },
 { name: "#ffddf6", label: "핑크" }, */
 .btn-#ffdddd {
-background-color: #ffdddd;
-color: white;
+  background-color: #ffdddd;
+  color: white;
 }
 .btn-purple {
   background-color: purple;
