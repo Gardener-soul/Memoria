@@ -11,14 +11,12 @@
       -은수지-
     </p>
     <br />
-    <button class="create-button" @click="createAndNavigate">
-      롤링 페이퍼 만들기
-    </button>
+    <button class="create-button" @click="loginTF">롤링 페이퍼 만들기</button>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/user.js";
@@ -27,8 +25,17 @@ const title = ref("");
 const router = useRouter();
 const userStore = useUserStore();
 
+function loginTF() {
+  if (title.value.length > 0 && userStore.isLoggedIn) {
+    createAndNavigate();
+  } else if (title.value.length == 0) {
+    alert("제목을 빈 칸으로 하면 멋 없어요.");
+  } else if (!userStore.isLoggedIn) {
+    alert("Login이 필요한 기능입니다.");
+  }
+}
+
 function createAndNavigate() {
-  console.log(axios);
   axios
     .post("http://localhost:8080/rollingPaper/write", {
       ownerNo: userStore.userNo,
@@ -43,6 +50,12 @@ function createAndNavigate() {
       console.error(error);
     });
 }
+onMounted(() => {
+  if (!userStore.isLoggedIn) {
+    alert("로그인이 필요합니다.");
+    router.push("/login");
+  }
+});
 </script>
 
 <style scoped>

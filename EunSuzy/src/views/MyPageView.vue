@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useUserStore } from "@/stores/user.js";
 import { useRouter } from "vue-router";
 import axios from "axios";
@@ -81,6 +81,12 @@ function goRoll() {
 function goMessage() {
   router.push("/mypage/myletter");
 }
+onMounted(() => {
+  if (!userStore.isLoggedIn) {
+    alert("로그인이 필요합니다.");
+    router.push("/login");
+  }
+});
 </script>
 
 <style scoped>

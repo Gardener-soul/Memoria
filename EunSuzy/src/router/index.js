@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useUserStore } from "@/stores/user.js";
+
 import HomeView from "@/views/HomeView.vue";
 
 import MyPageView from "@/views/MyPageView.vue";
@@ -19,6 +21,18 @@ import MyLetterView from "@/components/Letter/MyLetterView.vue";
 
 import EventView from "@/views/EventView.vue";
 import DailyEvent from "@/components/Event/DailyEvent.vue";
+
+import AdminView from "@/views/AdminView.vue";
+import AdminUser from "@/components/admin/AdminUser.vue";
+import AdminLetter from "@/components/admin/AdminLetter.vue";
+
+const requireLogin = () => (to, from, next) => {
+  const useStore = useUserStore();
+  if (!useStore.isLoggedIn) {
+    alert("로그인 후 이용해주세요.");
+    router.push("/login");
+  }
+};
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -73,6 +87,7 @@ const router = createRouter({
       path: "/create",
       name: "rollingpapercreate",
       component: RollingPaperCreateView,
+      // beforeUpdate: requireLogin(),
     },
     {
       path: "/rollingpaper/:id",
@@ -102,6 +117,21 @@ const router = createRouter({
       name: "myletter",
       component: MyLetterView, // 새로운 상세 뷰 컴포넌트 사용
       props: true,
+    },
+    {
+      path: "/admin",
+      name: "admin",
+      component: AdminView,
+      children: [
+        {
+          path: "letter",
+          component: AdminLetter,
+        },
+        {
+          path: "user",
+          component: AdminUser,
+        },
+      ],
     },
   ],
 });

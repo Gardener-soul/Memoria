@@ -15,6 +15,18 @@
 
 ---
 
+## Day 10
+
+--BackEnd
+
+- [ ]
+
+--FrontEnd
+
+- [ ] OnMounted 활용한 NavGuard 걸어놓기.
+
+---
+
 ## Day 9
 
 --BackEnd
@@ -26,7 +38,7 @@
 
 - [x] Update 수정
 - [x] 이벤트, Youtube 영상 기반 검색 완성.
-- [ ] MyPage 수정
+- [x] MyPage 수정
 
 ---
 

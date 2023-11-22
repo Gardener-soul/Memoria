@@ -5,7 +5,7 @@
         <div class="nav-links">
           <RouterLink to="/"> Home </RouterLink> |
           <RouterLink to="/rollingpaper">Rolling Paper</RouterLink> |
-          <RouterLink to="/event">Event</RouterLink>
+          <RouterLink to="/event">Event</RouterLink> |
         </div>
         <div class="user-links">
           <span v-if="userStore.isLoggedIn"
@@ -14,6 +14,9 @@
           <RouterLink to="/mypage" v-if="userStore.isLoggedIn"
             >My Page</RouterLink
           >
+          <RouterLink to="/admin" v-if="userStore.userNo === 0"
+            >Admin</RouterLink
+          >
           <RouterLink to="/" v-if="userStore.isLoggedIn" @click="logout"
             >Log out</RouterLink
           >
@@ -21,6 +24,17 @@
         </div>
       </nav>
     </header>
+    <footer class="footer">
+      <div class="footer-content">
+        <span>MEMORIA © 2023. All rights reserved.</span> |
+        <span>연락처: info@rollingpaper.com</span>
+        <div class="social-links">
+          <a href="#" target="_blank">Facebook</a> |
+          <a href="#" target="_blank">Twitter</a> |
+          <a href="#" target="_blank">Instagram</a>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -85,5 +99,28 @@ header {
 
 .user-links {
   margin-left: auto;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #d8b6e2;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.footer-content p {
+  margin: 5px 0;
+}
+
+.social-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
 }
 </style>
