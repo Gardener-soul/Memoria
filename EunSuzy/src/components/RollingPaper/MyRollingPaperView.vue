@@ -1,7 +1,7 @@
 <template>
   <div class="cards-container">
-    <div id="count">
-      <p>작성한 사람 수 : {{ writerCount }}</p>
+    <div id="title">
+      <p>{{  }}님 에게 {{ writerCount }}명의 편지가 도착했어요 !!💌</p>
     </div>
     <div
       class="card"
@@ -39,13 +39,16 @@
 import { ref, onMounted } from "vue";
 import axios from "@/util/http-common";
 import { useRouter, useRoute } from "vue-router";
+import { useUserStore } from "@/stores/user";
 
+const useStore = useUserStore();
 const router = useRouter();
 const route = useRoute();
 const items = ref([]);
 
 const writerCount = ref("");
 const rollingPaperId = route.params.id;
+const userNum = ref("");
 
 function goToThisLetter(letterNo) {
   router.push({ name: "myletter", params: { letterNo: letterNo } });
@@ -61,6 +64,7 @@ onMounted(() => {
     .then((response) => {
       items.value = response.data;
       writerCount.value = items.value.length;
+      userNum.value = items.value.ownerNo;
       console.log("편지 받아오기 성공", response);
     })
     .catch((error) => {
@@ -78,11 +82,13 @@ onMounted(() => {
   padding: 10px;
 }
 
-#count {
+#title {
   display: flex;
-  justify-content: flex-end; /* 버튼을 우측으로 정렬 */
-  align-items: center;
+  justify-content: center; /* 수평 정렬 */
+  align-items: center; /* 수직 정렬 */
   width: 100%;
+  font-weight: bold;
+  font-size: x-large;
 }
 
 .card {
@@ -97,12 +103,12 @@ onMounted(() => {
 }
 
 .writer {
-  /* text-align: right; */
   position: absolute;
   bottom: 0;
   left: 0;
   margin: 10px;
 }
+
 .date {
   position: absolute;
   bottom: 0;
@@ -128,6 +134,7 @@ onMounted(() => {
 .card-button:hover {
   background-color: #a885c2;
 }
+
 .card-body {
   position: relative;
   padding: 20px;

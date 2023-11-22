@@ -1,16 +1,18 @@
 <template>
   <div>
-    <p>편지 작성</p>
-    <textarea
-      v-model="content"
-      :style="{
-        fontFamily: selectedFont,
-        color: selectedFontColor,
-        backgroundColor: selectedBgColor,
-      }"
-      placeholder="마음을 적어주세요"
-      rows="10"
-    ></textarea>
+    <div id="write">
+      <p>🎄편지를 남겨주세요🎄</p>
+      <textarea
+        v-model="content"
+        :style="{
+          fontFamily: selectedFont,
+          color: selectedFontColor,
+          backgroundColor: selectedBgColor,
+        }"
+        placeholder="마음을 적어주세요"
+        rows="10"
+      ></textarea>
+    </div>
 
     <div class="color-selection-container">
       <button @click="toggleFontMenu">글씨체 선택</button>
@@ -82,7 +84,7 @@ import { useUserStore } from "@/stores/user.js";
 
 const route = useRoute();
 const router = useRouter();
-const useStore = useUserStore();
+const userStore = useUserStore();
 
 const formData = new FormData();
 
@@ -218,21 +220,10 @@ onMounted(() => {
   margin-bottom: 10px;
 }
 
-.send-button-container {
+#write {
   display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #f0f0f0;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 50px auto;
+  justify-content: center; /* 수평 정렬 */
+  align-items: center; /* 수직 정렬 */
 }
 
 p {
@@ -240,14 +231,15 @@ p {
   color: #333;
   margin-bottom: 20px;
 }
+
 textarea {
-  width: 100%;
+  width: 50%;
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  box-sizing: border-box;
+  border-radius: 20px;
   font-size: 16px;
+  box-sizing: border-box;
   resize: vertical;
 }
 
