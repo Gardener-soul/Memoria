@@ -7,6 +7,7 @@ export const useUserStore = defineStore("user", {
     userName: null,
     userNo: null,
     img: null,
+    eventDay: null,
   }),
   actions: {
     setimage(data) {
@@ -17,8 +18,8 @@ export const useUserStore = defineStore("user", {
       this.userName = data.userName;
       this.userNo = data.userNo; // Set userNo from the data
       this.img = data.img;
+      this.eventDay = data.eventDay;
       sessionStorage.setItem("user", JSON.stringify(data));
-      console.log(data.img);
     },
 
     clearUser() {

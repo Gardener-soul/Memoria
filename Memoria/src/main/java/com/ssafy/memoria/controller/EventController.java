@@ -30,9 +30,8 @@ public class EventController {
 
 	// 목록
 	@GetMapping("list")
-	public ResponseEntity<?> list(SearchCondition condition){
-//		List<Event> list = eventService.getList(); // 전체 조회
-		List<Event> list = eventService.search(condition); // 검색 조건이 있다면 그것으로 조회
+	public ResponseEntity<?> list(Event event){
+		List<Event> list = eventService.getList(); // 전체 조회
 		System.out.println(list);
 		if(list == null || list.size() == 0)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
