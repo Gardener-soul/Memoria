@@ -49,8 +49,6 @@ public class UserController {
 	@PostMapping("signup")
 	public ResponseEntity<Integer> signup(@RequestBody User user) {
 		int result = userService.signup(user);
-		// result 가 0이면 등록 x
-		// result 가 1이면 등록 o
 		return new ResponseEntity<Integer>(result, HttpStatus.CREATED);
 	}
 
@@ -71,7 +69,6 @@ public class UserController {
 	@GetMapping("logout")
 	public ResponseEntity<Void> logout(HttpSession session) {
 		session.invalidate();
-		
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
@@ -80,7 +77,6 @@ public class UserController {
 	@PutMapping("update")
 	public ResponseEntity<User> update(User user, @RequestParam(required = false) MultipartFile image) throws IOException {
 		User tmp = userService.modifyUser(user, image);
-		System.out.println(tmp);
 		return new ResponseEntity<User>(tmp, HttpStatus.OK);
 	}
 
@@ -107,7 +103,6 @@ public class UserController {
 	@GetMapping("letters")
 	public ResponseEntity<?> myLetterList(Letter letter) {
 		List<Letter> list = letterService.getMyList(letter);
-		System.out.println(list); // 전체 리스트 잘 받아와지는지 확인
 
 		if (list == null || list.size() == 0)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

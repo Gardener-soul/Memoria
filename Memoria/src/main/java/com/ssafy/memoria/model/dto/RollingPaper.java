@@ -15,9 +15,10 @@ public class RollingPaper {
 	}
 	
 	public RollingPaper(String title) {
+		super();
 		this.title = title;
 	}
-	
+
 	public RollingPaper(int rollingPaperNo, int ownerNo, String title, int writerCount, LocalDateTime regDate) {
 		super();
 		this.rollingPaperNo = rollingPaperNo;
@@ -26,19 +27,23 @@ public class RollingPaper {
 		this.writerCount = writerCount;
 		this.regDate = regDate;
 	}
-	
+
 	public int getRollingPaperNo() {
 		return rollingPaperNo;
 	}
-	
+
 	public void setRollingPaperNo(int rollingPaperNo) {
 		this.rollingPaperNo = rollingPaperNo;
 	}
-	
+
 	public int getOwnerNo() {
 		return ownerNo;
 	}
-	
+
+	public void setOwnerNo(int ownerNo) {
+		this.ownerNo = ownerNo;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -47,30 +52,26 @@ public class RollingPaper {
 		this.userName = userName;
 	}
 
-	public void setOwnerNo(int ownerNo) {
-		this.ownerNo = ownerNo;
-	}
-	
 	public String getTitle() {
 		return title;
 	}
-	
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public int getWriterCount() {
 		return writerCount;
 	}
-	
+
 	public void setWriterCount(int writerCount) {
 		this.writerCount = writerCount;
 	}
-	
+
 	public LocalDateTime getRegDate() {
 		return regDate;
 	}
-	
+
 	public void setRegDate(LocalDateTime regDate) {
 		this.regDate = regDate;
 	}

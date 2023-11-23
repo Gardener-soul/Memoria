@@ -25,5 +25,4 @@
 		SET img = #{img}, orgImg = #{orgImg}
 		WHERE userNo = #{userNo}
 	</update>
-
 </mapper>

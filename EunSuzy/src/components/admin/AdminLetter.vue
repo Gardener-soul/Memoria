@@ -40,7 +40,6 @@ const fetchUsers = () => {
     .get("http://localhost:8080/letter/admin/list")
     .then((response) => {
       items.value = response.data;
-      console.log(items.value);
     })
     .catch((error) => console.error(error));
 };

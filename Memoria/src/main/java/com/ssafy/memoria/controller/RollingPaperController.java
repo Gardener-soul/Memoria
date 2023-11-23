@@ -34,11 +34,11 @@ public class RollingPaperController {
 	@GetMapping("list")
 	@ApiOperation(value="롤링페이퍼 조회", notes="검색조건도 넣으면 같이 가져온다.")
 	public ResponseEntity<?> list(RollingPaper rollingPaper){
-		List<RollingPaper> list = rollingPaperService.getList(); // 전체 조회
-//		List<RollingPaper> list = rollingPaperService.search(condition); // 검색 조건이 있다면 그것으로 조회
-		System.out.println(list);
+		List<RollingPaper> list = rollingPaperService.getList();
+		
 		if(list == null || list.size() == 0)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		
 		return new ResponseEntity<List<RollingPaper>>(list, HttpStatus.OK);
 	}
 	
@@ -46,8 +46,6 @@ public class RollingPaperController {
 	@GetMapping("/{rollingPaperNo}")
 	public ResponseEntity<RollingPaper> detail(@PathVariable int rollingPaperNo){
 		RollingPaper rollingPaper = rollingPaperService.getRollingPaper(rollingPaperNo);
-		//꼬옥 주소창을 통해 접근하려고 하는 악의무리가 있기 때문에 만약 없는 값을 보냈을때... 처리를 해주어라. (해볼것)
-		System.out.println(rollingPaper);
 		return new ResponseEntity<RollingPaper>(rollingPaper, HttpStatus.OK);
 	}
 	
@@ -71,12 +69,4 @@ public class RollingPaperController {
 		rollingPaperService.modifyRollingPaper(rollingPaper);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
-	
-//	@PutMapping("/board/{rollingPaperNo}") //JSON 형태의 데이터로 넘어왔을 떄 처리하고 싶은데?
-//	public ResponseEntity<Void> update(@RequestBody RollingPaper rollingPaper, @PathVariable int rollingPaperNo){
-//		rollingPaper.setRollingPaperNo(rollingPaperNo);
-//		rollingPaperService.modifyRollingPaper(rollingPaper);
-//		
-//		return new ResponseEntity<Void>(HttpStatus.OK);
-//	}
 }

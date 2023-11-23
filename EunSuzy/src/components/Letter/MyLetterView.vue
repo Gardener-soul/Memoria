@@ -37,7 +37,6 @@ const item = ref({});
 const isAuthor = ref(false);
 
 const letterNo = route.params.letterNo; // URL 파라미터에 맞춰 수정
-console.log(letterNo);
 
 axios
   .get(`http://localhost:8080/letter/${letterNo}`) // URL 형식 수정

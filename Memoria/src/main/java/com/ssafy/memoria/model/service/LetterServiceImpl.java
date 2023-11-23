@@ -39,27 +39,22 @@ public class LetterServiceImpl implements LetterService {
 
 	@Override
 	public List<Letter> getList(Letter letter) {
-		System.out.println("모든 편지를 가지고 왔습니다.");
 		return letterDao.selectAll(letter);
 	}
 	
 	@Override
 	public List<Letter> getAdminList(Letter letter) {
-		System.out.println("모든 편지를 가지고 왔습니다.");
 		return letterDao.selectAdminAll(letter);
 	}
 	
 	@Override
 	public Letter getLetter(int letterNo) {
-		System.out.println(letterNo + "번 편지를 읽었습니다.");
 		return letterDao.selectOne(letterNo);
 	}
 
 	@Transactional
 	@Override
 	public int writeLetter(Letter letter, MultipartFile image) throws IOException {
-		System.out.println("편지를 작성합니다.");
-
 		if (image != null) {
 			if (!uploadFolder.exists()) {
 				Files.createDirectory(uploadFolderPath);
@@ -97,15 +92,12 @@ public class LetterServiceImpl implements LetterService {
 	@Transactional
 	@Override
 	public void removeLetter(int letterNo) {
-		System.out.println(letterNo + "번 편지를 삭제 했습니다.");
 		letterDao.deleteLetter(letterNo);
 	}
 
 	@Transactional
 	@Override
 	public void modifyLetter(Letter letter, MultipartFile image) throws IOException {
-		System.out.println("편지를 수정합니다.");
-		
 		if (image != null) {
 			if (!uploadFolder.exists()) {
 				Files.createDirectory(uploadFolderPath);
@@ -129,12 +121,6 @@ public class LetterServiceImpl implements LetterService {
 
 	@Override
 	public List<Letter> getMyList(Letter letter) {
-		System.out.println("내가 쓴 편지를 가지고 왔습니다.");
 		return letterDao.selectMy(letter);
 	}
-
-//	@Override
-//	public List<letterDao> search(SearchCondition condition) {
-//		return letterDao.search(condition);
-//	}
 }

@@ -68,21 +68,6 @@ CREATE TABLE `Events` (
 SELECT *
 FROM Events;
 
--- DROP TABLE Photos;
--- CREATE TABLE `Photos` (
---     `photoNo` INT NOT NULL AUTO_INCREMENT,
---     `rollingPaperNo` INT NOT NULL,
---     `writerNo` INT NOT NULL,
---     `img` VARCHAR(200) NOT NULL,
---     `orgImg` VARCHAR(200) NOT NULL,
---     `regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
---     PRIMARY KEY (`photoNo`),
---     FOREIGN KEY (`rollingPaperNo`) REFERENCES RollingPapers(`rollingPaperNo`),
---     FOREIGN KEY (`writerNo`) REFERENCES Users(`userNo`)
--- )ENGINE=InnoDB;
--- SELECT *
--- FROM photo;
-
 INSERT INTO `Users` (userId, userPwd, userName, email)
 VALUES
 ('eunsoo', '97', '박은수', 'ssafy1@ssafy.com'),
