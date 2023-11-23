@@ -72,10 +72,9 @@
             required
           />
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit">회원가입 하기</button>
         <br />
-        <br />
-        <button @click="toLogin">로그인하기</button>
+        <button @click="toLogin">로그인 하기</button>
       </form>
     </div>
   </div>
@@ -137,17 +136,6 @@ function toLogin() {
   align-items: center;
 }
 
-body {
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  background-color: #f0e6d6;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
 label {
   text-align: left;
   margin-left: 5px;
@@ -165,7 +153,6 @@ label {
   font-size: 28px;
   color: #333;
   text-align: center;
-  margin-bottom: 30px;
 }
 
 .sketchbook-form {
@@ -195,19 +182,22 @@ label {
 }
 
 button {
-  width: 100%;
-  padding: 10px;
   margin-top: 20px;
-  border: none;
-  border-radius: 8px;
-  background-color: #bf94e4;
-  color: white;
   font-size: 18px;
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #d8b6e2;
+  color: white;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
 }
 
 button:hover {
-  background-color: #ffb8c6;
+  background-color: #bf94e4;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1); /* 호버 시 크기 증가 */
 }
 </style>

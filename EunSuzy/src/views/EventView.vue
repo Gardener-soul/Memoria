@@ -92,6 +92,14 @@ const closeNotTodayModal = () => {
 </script>
 
 <style scoped>
+h2 {
+  font-family: 'Gaegu', sans-serif;
+  font-size: 30px;
+  color: #bf94e4;
+  margin: 20px 10px;
+  margin-left: 300px;
+}
+
 .day-buttons {
   display: flex;
   justify-content: center;
@@ -99,25 +107,26 @@ const closeNotTodayModal = () => {
 }
 
 .day-buttons button {
-  background-color: #ffc0cb; /* 버튼 배경색 */
-  color: white; /* 버튼 텍스트 색상 */
-  border: none; /* 테두리 제거 */
-  padding: 10px 15px; /* 내부 여백 */
-  margin: 0 10px; /* 각 버튼 사이의 간격 */
-  cursor: pointer; /* 마우스 오버 시 커서 변경 */
-  transition: background-color 0.3s, transform 0.3s; /* 부드러운 색상 및 변형 변화 */
-  border-radius: 5px; /* 둥근 모서리 */
-  margin-right: 5px;
+  margin: 0 10px;
+  padding: 12px 15px;
+  background-color: #ffc0cb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .day-buttons button:hover {
-  background-color: #ffb8c6; /* 호버 시 배경색 변경 */
-  transform: scale(1.1); /* 호버 시 크기 증가 */
+  background-color: #ffb8c6;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1);
 }
 
 .day-button-image {
-  width: 100px; /* 이미지의 너비를 50픽셀로 설정 */
-  height: 100px; /* 이미지의 높이를 50픽셀로 설정 */
+  width: 100px;
+  height: 100px;
 }
 .modal {
   position: fixed;

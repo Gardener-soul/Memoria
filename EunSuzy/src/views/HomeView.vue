@@ -83,22 +83,40 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-html,
 body {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  background-color: #f0e6d6;
   margin: 0;
-  height: 100%;
+  padding: 0;
 }
-
-#app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 80vh;
+}
+
+.memoria-title {
+  font-family: 'Gaegu', sans-serif;
+  font-size: 30px;
+}
+
+h1 {
+  margin: 0px;
+}
+
+.memoria-title,
+.start-rolling-paper-button {
+  display: block;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
   justify-content: center;
   flex: 1;
 }
@@ -123,7 +141,23 @@ body {
   text-decoration: none;
 }
 
-.social-links a:hover {
-  text-decoration: underline;
+.start-rolling-paper-button {
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+  padding: 15px 30px;
+  background-color: #bf94e4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.start-rolling-paper-button:hover {
+  background-color: #ffb8c6;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1);
 }
 </style>

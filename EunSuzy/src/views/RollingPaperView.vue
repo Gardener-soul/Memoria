@@ -3,12 +3,12 @@
     <h2>Memoria RollingPaper</h2>
     <table border="1">
       <tr>
-        <th>롤페 번호</th>
-        <th>롤페 주인</th>
-        <th>롤페 제목</th>
-        <th>작성한 사람 수</th>
-        <th>작성 일자</th>
-        <th>수정 / 삭제</th>
+        <th id="one">번호</th>
+        <th id="two">편지함 주인</th>
+        <th id="three">제목</th>
+        <th id="four">받은 편지</th>
+        <th id="five">작성 일자</th>
+        <th id="six">수정 / 삭제</th>
       </tr>
       <tr v-for="(item, index) in paginatedData" :key="index">
         <td>{{ item.rollingPaperNo }}</td>
@@ -26,15 +26,14 @@
             <button @click="showEditModal(item)">수정</button>
             <button @click="deleteRP(item.rollingPaperNo)">삭제</button>
           </div>
+          <div v-else id="notMine">내 계정 아니면 안 보이지롱</div>
         </td>
       </tr>
     </table>
     <div class="pagination">
       <button @click="prevPage" :disabled="currentPage === 1">이전</button>
-      <span>페이지 {{ currentPage }} / {{ totalPages }}</span>
-      <button @click="nextPage" :disabled="currentPage === totalPages">
-        다음
-      </button>
+      <span id="page">페이지 {{ currentPage }} / {{ totalPages }}</span>
+      <button @click="nextPage" :disabled="currentPage === totalPages">다음</button>
     </div>
     <div v-if="showModal" class="modal">
       <div class="modal-content">
@@ -182,54 +181,101 @@ export default {
 }
 
 h2 {
-  color: #bf94e4; /* 제목 색상 */
-  margin-bottom: 20px; /* 여백 증가 */
+  font-family: 'Gaegu', sans-serif;
+  font-size: 30px;
+  color: #bf94e4;
+  margin: 20px 10px;
+  margin-left: 300px;
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+  border-collapse: collapse; /* 테이블 테두리가 겹치지 않도록 설정 */
   margin-bottom: 20px;
-  background-color: white; /* 테이블 배경색 추가 */
+  background-color: white;
+}
+
+tr:first-child {
+  /* border: none; */
+  background-color: #ffc0cb;
+  color: #fefefe;
+  transition: background-color 0.3s;
 }
 
 th,
 td {
-  border: 1px solid #bf94e4;
   padding: 8px;
+  border: none;
+  border-bottom: 1px solid #ffdbe6;
   text-align: center;
+}
+
+#one {
+  width: 5%;
+}
+#two {
+  width: 15%;
+}
+#three {
+  width: 30%;
+}
+#four {
+  width: 15%;
+}
+#five {
+  width: 15%;
+}
+#six {
+  width: 20%;
 }
 
 .clickable {
   cursor: pointer;
   text-decoration: underline;
-  color: #bf94e4; /* 클릭 가능한 텍스트 색상 */
-}
-.pagination {
-  display: flex;
-  justify-content: flex-end; /* 버튼을 우측으로 정렬 */
-  align-items: center;
-  width: 100%;
-}
-button {
-  background-color: #bf94e4; /* 버튼 배경색 */
-  color: white; /* 버튼 텍스트 색상 */
-  border: none; /* 테두리 없음 */
-  padding: 8px 16px; /* 버튼 패딩 */
-  border-radius: 4px; /* 둥근 버튼 모서리 */
-  margin: 5px; /* 버튼 간격 */
-  cursor: pointer; /* 커서 변경 */
-  font-weight: bold; /* 글자 두껍게 */
+  color: #bf94e4;
 }
 
-button:disabled {
-  background-color: #ccc; /* 비활성화 버튼 색상 */
-  cursor: not-allowed; /* 비활성화 커서 변경 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  margin: 5px;
+  padding: 8px 16px;
+  font-weight: bold;
+  background-color: #d8b6e2;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
 }
 
 button:hover:not(:disabled) {
-  background-color: #a476c1; /* 호버 시 버튼 색상 변경 */
+  background-color: #bf94e4;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
+
+/* 비활성화 버튼 */
+button:disabled {
+  background-color: #d8b6e2;
+  cursor: not-allowed;
+}
+
+#page {
+  margin: 0px 10px;
+}
+
+#notMine {
+  color: #909090;
+}
+
 .modal {
   display: block; /* Hidden by default */
   position: fixed; /* Stay in place */

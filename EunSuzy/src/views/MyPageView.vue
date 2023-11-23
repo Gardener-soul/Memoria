@@ -8,12 +8,12 @@
       @change="appendImage"
       style="display: none"
     />
-    <button @click="submit">사진 수정</button>
+    <button id="photoBtn" @click="submit">사진 수정</button>
     <h3>{{ userStore.userName }}</h3>
     <hr />
     <div class="button-container">
-      <button class="my-button" @click="goRoll">내가 만든 롤</button>
-      <button class="my-button" @click="goMessage">내가 쓴 메세지</button>
+      <button @click="goRoll">내 편지함</button>
+      <button @click="goMessage">내가 남긴 편지</button>
     </div>
     <hr />
     <tr></tr>
@@ -81,6 +81,7 @@ function goRoll() {
 function goMessage() {
   router.push("/mypage/myletter");
 }
+
 onMounted(() => {
   if (!userStore.isLoggedIn) {
     alert("로그인이 필요합니다.");
@@ -97,10 +98,6 @@ onMounted(() => {
   text-align: center;
 }
 
-h2 {
-  margin-bottom: 20px;
-}
-
 img {
   border-radius: 50%;
   width: 100px;
@@ -109,32 +106,34 @@ img {
   margin-bottom: 20px;
 }
 
-h3 {
-  margin-bottom: 10px;
-}
-
 hr {
   width: 80%;
   margin: 20px auto;
+  border: 1px solid #ddddff;
 }
 
-.button-container {
-  display: flex; /* 버튼들을 가로로 정렬합니다. */
-  margin-bottom: 20px; /* 버튼과 다음 요소 간격 조절 */
-}
-
-.my-button {
-  background-color: #bf94e4; /* 버튼 배경색을 기본 색상으로 설정 */
-  border: none;
-  padding: 10px 15px;
-  margin-right: 10px;
-  cursor: pointer;
-  color: white; /* 버튼 텍스트 색상을 흰색으로 설정 */
+/* 버튼 스타일링 */
+button {
+  margin: 0 10px;
   font-weight: bold;
-  text-align: center;
+  width: 150px;
+  padding: 12px 15px;
+  background-color: #d8b6e2;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
 }
 
-.my-button:last-child {
-  margin-right: 0;
+/* 버튼 호버 효과 */
+button:hover {
+  background-color: #bf94e4;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#photoBtn {
+  width: 100px;
 }
 </style>
