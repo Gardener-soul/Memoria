@@ -21,7 +21,7 @@
         <button class="confirm-button" @click="goToSignUp">회원가입</button>
       </div>
     </div>
-    <footer class="footer" v-if="showFooter">
+    <footer class="footer">
       <div class="footer-content">
         <span>MEMORIA © 2023. All rights reserved.</span> |
         <span>연락처: info@rollingpaper.com</span>
@@ -36,14 +36,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/user.js";
 
 const userStore = useUserStore();
 const router = useRouter();
 const showLoginModal = ref(false);
-const showFooter = ref(false); // 초기 값은 false로 설정합니다.
 
 function handleRollingPaperStart() {
   if (userStore.isLoggedIn) {
@@ -60,26 +59,10 @@ function closeLoginModal() {
 function goToLogin() {
   router.push("/login");
 }
+
 function goToSignUp() {
   router.push("/signup");
 }
-
-const checkContentHeight = () => {
-  showFooter.value =
-    document.documentElement.scrollHeight >
-    document.documentElement.clientHeight;
-};
-
-onMounted(() => {
-  checkContentHeight();
-  window.addEventListener("resize", checkContentHeight);
-  window.addEventListener("scroll", checkContentHeight);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("resize", checkContentHeight);
-  window.removeEventListener("scroll", checkContentHeight);
-});
 </script>
 
 <style scoped>
@@ -93,12 +76,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 80vh;
+  padding: 10px;
+  min-height: 90vh;
+  margin-top: 250px;
 }
 
 .memoria-title {
-  font-family: 'Gaegu', sans-serif;
+  font-family: "Gaegu", sans-serif;
   font-size: 30px;
+  margin: 0;
 }
 
 h1 {
@@ -118,22 +104,52 @@ h1 {
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
-  flex: 1;
+  align-items: center;
 }
 
-.memoria-title,
-.start-rolling-paper-button,
-.footer {
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
   text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 80%;
+  max-width: 400px;
 }
 
-.footer {
-  width: 100%;
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.confirm-button {
   background-color: #d8b6e2;
   color: white;
-  padding: 10px 0;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-right: 10px;
+  transition: background-color 0.3s;
 }
 
+.confirm-button:hover {
+  background-color: #bf94e4;
+}
+.footer {
+  position: fixed; /* 화면 하단에 고정 */
+  bottom: 0; /* 하단 0의 위치에 */
+  width: 100%; /* 전체 너비 */
+  background-color: #d8b6e2; /* 배경색 */
+  color: white; /* 글자색 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+  padding: 10px 0; /* 상하 패딩 */
+}
 .footer-content span,
 .social-links a {
   margin: 5px 0;

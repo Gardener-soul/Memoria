@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>내가 쓴 메세지들</h1>
+    <h1>내가 남긴 편지들 💌</h1>
   </div>
   <div class="cards-container">
     <div
@@ -79,7 +79,7 @@ onMounted(() => {
   border: 1px solid black;
   padding: 10px;
   margin: 10px; /* 카드 간의 여백 추가 */
-  max-width: calc(25% - 20px); /* 최대 너비 설정 */
+  max-width: calc(25% - 20px);
 }
 
 img {
