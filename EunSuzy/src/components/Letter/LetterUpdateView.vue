@@ -3,15 +3,15 @@
     <p>편지 수정</p>
     <textarea
       v-model="content"
-      :style="{
-        fontFamily: selectedFont,
-        color: selectedFontColor,
-        backgroundColor: selectedBgColor,
-      }"
-      placeholder="마음을 적어주세요"
+      :style="textareaStyle"
+      placeholder="마음을 고쳐주세요"
       rows="10"
     ></textarea>
-
+    <div>
+      <label for="image">이미지</label>
+      <input type="file" id="image" @change="appendImage" />
+    </div>
+    <br />
     <div class="color-selection-container">
       <button @click="toggleFontMenu">글씨체 선택</button>
       <button @click="toggleFontColorPicker">글씨 색상 선택</button>
@@ -61,21 +61,18 @@
     <div v-if="showModal" class="modal">
       <div class="modal-content">
         <span class="close" @click="showModal = false">&times;</span>
-        <p>편지 내용을 입력해 주세요.</p>
+        <p>편지 내용을 수정해 주세요.</p>
       </div>
     </div>
 
     <div>
-      <label for="image">이미지</label>
-      <input type="file" id="image" @change="appendImage" />
-      <br />
       <button type="button" @click="update">전송</button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "@/util/http-common";
 import { useUserStore } from "@/stores/user.js";
@@ -89,37 +86,43 @@ const formData = new FormData();
 const letterNo = route.params.id;
 const writerNo = useStore.userNo;
 const content = ref("");
+
 const selectedFontColor = ref("#000000");
 const selectedBgColor = ref("#FFFFFF");
-const showFontMenu = ref(""); // 글씨체 메뉴 표시 여부
-const selectedFont = ref("Ariel"); // 선택된 글씨체를 저장하는 ref
-
 const fonts = ["Roboto", "Open Sans"];
+const selectedFont = ref(fonts[0]);
 
 const colors = [
-  { name: "white", label: "흰색" },
-  { name: "black", label: "검정" },
-  { name: "#ff0000", label: "빨강" },
-  { name: "#ff7f50", label: "주황" },
-  { name: "#ffff00", label: "노랑" },
-  { name: "#3cb371", label: "연두" },
-  { name: "#00bfff", label: "하늘" },
-  { name: "#4169e1", label: "파랑" },
-  { name: "#9400d3", label: "보라" },
-  { name: "#ff1493", label: "핑크" },
+  { name: "FFFFFF", label: "흰색" },
+  { name: "000000", label: "검정" },
+  { name: "ff0000", label: "빨강" },
+  { name: "ff7f50", label: "주황" },
+  { name: "ffff00", label: "노랑" },
+  { name: "3cb371", label: "연두" },
+  { name: "00bfff", label: "하늘" },
+  { name: "4169e1", label: "파랑" },
+  { name: "9400d3", label: "보라" },
+  { name: "ff1493", label: "핑크" },
 ];
 const bgColors = [
-  { name: "white", label: "흰색" },
-  { name: "black", label: "검정" },
-  { name: "#ffdddd", label: "빨강" },
-  { name: "#ffeedd", label: "주황" },
-  { name: "#ffffdd", label: "노랑" },
-  { name: "#ddf6dd", label: "연두" },
-  { name: "#ddffff", label: "하늘" },
-  { name: "#ddeeff", label: "파랑" },
-  { name: "#ddddff", label: "보라" },
-  { name: "#ffddf6", label: "핑크" },
+  { name: "FFFFFF", label: "흰색" },
+  { name: "000000", label: "검정" },
+  { name: "ffdddd", label: "빨강" },
+  { name: "ffeedd", label: "주황" },
+  { name: "ffffdd", label: "노랑" },
+  { name: "ddf6dd", label: "연두" },
+  { name: "ddffff", label: "하늘" },
+  { name: "ddeeff", label: "파랑" },
+  { name: "ddddff", label: "보라" },
+  { name: "ffddf6", label: "핑크" },
 ];
+
+// 스타일을 반응형으로 만들기 위한 computed 속성 생성
+const textareaStyle = computed(() => ({
+  fontFamily: selectedFont.value,
+  color: `#${selectedFontColor.value}`, // 색상 코드 앞에 #을 붙임
+  backgroundColor: `#${selectedBgColor.value}`, // 색상 코드 앞에 #을 붙임
+}));
 
 function selectFont(font) {
   selectedFont.value = font;
@@ -133,6 +136,7 @@ const selectFontColor = (fColor) => {
   selectedFontColor.value = fColor;
 };
 
+const showFontMenu = ref(false); // 글씨체 메뉴 표시 여부
 const showFontColorPicker = ref(false);
 const showBgColorPicker = ref(false);
 

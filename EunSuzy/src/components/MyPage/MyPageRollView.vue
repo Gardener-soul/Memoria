@@ -1,6 +1,8 @@
 <template>
   <div class="cards-container">
-    <div class="card-title"><h1>To. {{ title }}</h1></div>
+    <div class="card-title">
+      <h1>To. {{ title }}</h1>
+    </div>
     <div
       class="card"
       v-for="item in items"

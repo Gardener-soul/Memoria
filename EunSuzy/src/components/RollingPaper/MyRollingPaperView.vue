@@ -7,7 +7,7 @@
       class="card"
       v-for="item in items"
       :key="item.letterNo"
-      :style="{ backgroundColor: item.backColor }"
+      :style="{ backgroundColor: `#${item.backColor}` }"
     >
       <div
         class="card-body"
@@ -15,7 +15,7 @@
       >
         <p
           class="text"
-          :style="{ color: item.fontColor, fontFamily: item.font }"
+          :style="{ color: `#${item.fontColor}`, fontFamily: item.font }"
         >
           {{ item.content }}
         </p>

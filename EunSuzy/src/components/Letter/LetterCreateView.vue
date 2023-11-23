@@ -3,15 +3,15 @@
     <p>편지 작성</p>
     <textarea
       v-model="content"
-      :style="{
-        fontFamily: selectedFont,
-        color: selectedFontColor,
-        backgroundColor: selectedBgColor,
-      }"
+      :style="textareaStyle"
       placeholder="마음을 적어주세요"
       rows="10"
     ></textarea>
-
+    <div>
+      <label for="image">이미지</label>
+      <input type="file" id="image" @change="appendImage" />
+    </div>
+    <br />
     <div class="color-selection-container">
       <button @click="toggleFontMenu">글씨체 선택</button>
       <button @click="toggleFontColorPicker">글씨 색상 선택</button>
@@ -33,11 +33,7 @@
       <button
         v-for="color in colors"
         :key="color.name"
-        :class="[
-          'btn',
-          `btn-${color.name}`,
-          { 'btn-selected': selectedFontColor === color.name },
-        ]"
+        :class="['btn', `btn-${color.name}`]"
         @click="selectFontColor(color.name)"
       >
         {{ color.label }}
@@ -66,16 +62,13 @@
     </div>
 
     <div>
-      <label for="image">이미지</label>
-      <input type="file" id="image" @change="appendImage" />
-      <br />
       <button type="button" @click="checkContentAndSend">전송</button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "@/util/http-common";
 import { useUserStore } from "@/stores/user.js";
@@ -89,37 +82,49 @@ const formData = new FormData();
 const rollingPaperNo = route.query.id;
 const writerNo = route.query.userNo;
 const content = ref("");
+
 const selectedFontColor = ref("#000000");
 const selectedBgColor = ref("#FFFFFF");
-const showFontMenu = ref("Ariel"); // 글씨체 메뉴 표시 여부
-const selectedFont = ref(""); // 선택된 글씨체를 저장하는 ref
-
-const fonts = ["Roboto", "Open Sans"];
+const fonts = [
+  "Roboto",
+  "Single Day",
+  "Nanum Gothic",
+  "Do Hyeon",
+  "Nanum Pen Script",
+];
+const selectedFont = ref(fonts[0]);
 
 const colors = [
-  { name: "white", label: "흰색" },
-  { name: "black", label: "검정" },
-  { name: "#ff0000", label: "빨강" },
-  { name: "#ff7f50", label: "주황" },
-  { name: "#ffff00", label: "노랑" },
-  { name: "#3cb371", label: "연두" },
-  { name: "#00bfff", label: "하늘" },
-  { name: "#4169e1", label: "파랑" },
-  { name: "#9400d3", label: "보라" },
-  { name: "#ff1493", label: "핑크" },
+  { name: "FFFFFF", label: "흰색" },
+  { name: "000000", label: "검정" },
+  { name: "ff0000", label: "빨강" },
+  { name: "ff7f50", label: "주황" },
+  { name: "ffff00", label: "노랑" },
+  { name: "3cb371", label: "연두" },
+  { name: "00bfff", label: "하늘" },
+  { name: "4169e1", label: "파랑" },
+  { name: "9400d3", label: "보라" },
+  { name: "ff1493", label: "핑크" },
 ];
 const bgColors = [
-  { name: "white", label: "흰색" },
-  { name: "black", label: "검정" },
-  { name: "#ffdddd", label: "빨강" },
-  { name: "#ffeedd", label: "주황" },
-  { name: "#ffffdd", label: "노랑" },
-  { name: "#ddf6dd", label: "연두" },
-  { name: "#ddffff", label: "하늘" },
-  { name: "#ddeeff", label: "파랑" },
-  { name: "#ddddff", label: "보라" },
-  { name: "#ffddf6", label: "핑크" },
+  { name: "FFFFFF", label: "흰색" },
+  { name: "000000", label: "검정" },
+  { name: "ffdddd", label: "빨강" },
+  { name: "ffeedd", label: "주황" },
+  { name: "ffffdd", label: "노랑" },
+  { name: "ddf6dd", label: "연두" },
+  { name: "ddffff", label: "하늘" },
+  { name: "ddeeff", label: "파랑" },
+  { name: "ddddff", label: "보라" },
+  { name: "ffddf6", label: "핑크" },
 ];
+
+// 스타일을 반응형으로 만들기 위한 computed 속성 생성
+const textareaStyle = computed(() => ({
+  fontFamily: selectedFont.value,
+  color: `#${selectedFontColor.value}`, // 색상 코드 앞에 #을 붙임
+  backgroundColor: `#${selectedBgColor.value}`, // 색상 코드 앞에 #을 붙임
+}));
 
 function selectFont(font) {
   selectedFont.value = font;
@@ -135,6 +140,7 @@ const selectFontColor = (fColor) => {
 
 const showFontColorPicker = ref(false);
 const showBgColorPicker = ref(false);
+const showFontMenu = ref(false); // 글씨체 메뉴 표시 여부
 
 function toggleFontMenu() {
   showFontMenu.value = !showFontMenu.value;
@@ -302,12 +308,14 @@ button {
 }
 
 .btn {
-  /* 공통 버튼 스타일 */
   margin: 5px;
   padding: 10px 20px;
-  border: none;
+  /* border: 2px solid black; */
+  font-style: inherit;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   font-size: 16px;
+  color: black;
 }
 
 .btn-selected {
@@ -348,37 +356,61 @@ button {
   cursor: pointer;
 }
 
-.btn-white {
-  background-color: white;
-  color: black;
+.btn-FFFFFF {
+  background-color: #ffffff;
+  color: #000000;
 }
-.btn-black {
-  background-color: black;
-  color: white;
+.btn-000000 {
+  background-color: #000000;
+  color: #ffffff;
+}
+.btn-ff0000 {
+  background-color: #ff0000;
+}
+.btn-ffdddd {
+  background-color: #ffdddd;
+}
+.btn-ff7f50 {
+  background-color: #ff7f50;
+}
+.btn-ffff00 {
+  background-color: #ffff00;
+}
+.btn-3cb371 {
+  background-color: #3cb371;
+}
+.btn-00bfff {
+  background-color: #00bfff;
+}
+.btn-4169e1 {
+  background-color: #4169e1;
+}
+.btn-9400d3 {
+  background-color: #9400d3;
+}
+.btn-ff1493 {
+  background-color: #ff1493;
+}
+.btn-ffeedd {
+  background-color: #ffeedd;
 }
 
-/* { name: "#ffdddd", label: "빨강" },
-{ name: "#ffeedd", label: "주황" },
-{ name: "#ffffdd", label: "노랑" },
-{ name: "#ddf6dd", label: "연두" },
-{ name: "#ddffff", label: "하늘" },
-{ name: "#ddeeff", label: "파랑" },
-{ name: "#ddddff", label: "보라" },
-{ name: "#ffddf6", label: "핑크" }, */
-.btn-#ffdddd {
-  background-color: #ffdddd;
-  color: white;
+.btn-ffffdd {
+  background-color: #ffffdd;
 }
-.btn-purple {
-  background-color: purple;
-  color: white;
+.btn-ddf6dd {
+  background-color: #ddf6dd;
 }
-.btn-green {
-  background-color: green;
-  color: white;
+.btn-ddffff {
+  background-color: #ddffff;
 }
-.btn-navy {
-  background-color: navy;
-  color: white;
+.btn-ddeeff {
+  background-color: #ddeeff;
+}
+.btn-ddddff {
+  background-color: #ddddff;
+}
+.btn-ffddf6 {
+  background-color: #ffddf6;
 }
 </style>

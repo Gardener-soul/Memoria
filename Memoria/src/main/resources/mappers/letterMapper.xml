@@ -15,6 +15,16 @@
 		WHERE l.rollingPaperNo = #{rollingPaperNo}
 	</select>
 
+	<!-- Admin 편지 조회 -->
+	<select id="selectAdminAll" parameterType="Letter" resultType="Letter">
+		SELECT letterNo, l.rollingPaperNo, writerNo, u.userName, title, content, l.img, font, fontColor, backColor, date_format(l.regDate, '%Y-%m-%d') as regDate
+		FROM letters l
+		LEFT JOIN users u
+		ON l.writerNo = u.userNo
+		LEFT JOIN rollingPapers r
+		ON l.rollingPaperNo = r.rollingPaperNo
+	</select>
+
 	<!-- 상세 조회 -->
 	<select id="selectOne" parameterType="int">
 		SELECT letterNo, l.rollingPaperNo, writerNo, u.userName, content, l.img, font, fontColor, backColor, date_format(l.regDate, '%Y-%m-%d') as regDate

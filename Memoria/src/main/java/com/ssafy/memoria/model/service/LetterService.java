@@ -9,9 +9,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ssafy.memoria.model.dto.Letter;
 
 public interface LetterService {
-	// 편지 전체 조회
+	// 해당 롤페에 맞는 편지 전체 조회
 	List<Letter> getList(Letter letter);
 
+	// Admin 편지 전체 조회
+	public List<Letter> getAdminList(Letter letter);
+	
 	// 편지 상세 조회
 	Letter getLetter(int letterNo);
 

@@ -44,6 +44,12 @@ public class LetterServiceImpl implements LetterService {
 	}
 	
 	@Override
+	public List<Letter> getAdminList(Letter letter) {
+		System.out.println("모든 편지를 가지고 왔습니다.");
+		return letterDao.selectAdminAll(letter);
+	}
+	
+	@Override
 	public Letter getLetter(int letterNo) {
 		System.out.println(letterNo + "번 편지를 읽었습니다.");
 		return letterDao.selectOne(letterNo);

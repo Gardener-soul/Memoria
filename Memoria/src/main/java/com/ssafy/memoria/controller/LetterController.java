@@ -48,6 +48,19 @@ public class LetterController {
 		return new ResponseEntity<List<Letter>>(list, HttpStatus.OK);
 	}
 
+	// 1.5 Admin 편지 목록
+	@GetMapping("admin/list")
+	@ApiOperation(value = "편지 조회", notes = "검색조건도 넣으면 같이 가져온다.")
+	public ResponseEntity<?> Adminlist(Letter letter) {
+		List<Letter> list = letterService.getAdminList(letter);		
+		System.out.println(list); // 전체 리스트 잘 받아와지는지 확인
+		
+		if (list == null || list.size() == 0)
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+
+		return new ResponseEntity<List<Letter>>(list, HttpStatus.OK);
+	}
+	
 	// 2. 상세
 	@GetMapping("/{letterNo}")
 	public ResponseEntity<Letter> detail(@PathVariable int letterNo) {

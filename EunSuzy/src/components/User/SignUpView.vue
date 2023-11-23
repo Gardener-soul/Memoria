@@ -74,6 +74,9 @@
           />
         </div>
         <button type="submit">Sign Up</button>
+        <br />
+        <br />
+        <button @click="toLogin">로그인하기</button>
       </form>
     </div>
   </div>
@@ -121,10 +124,13 @@ const signUp = async () => {
     alert("회원가입 실패");
   }
 };
+
+function toLogin() {
+  router.push("/login");
+}
 </script>
 
 <style scoped>
-
 .container {
   height: 90vh;
   display: flex;
