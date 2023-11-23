@@ -1,7 +1,10 @@
 <template>
   <div>
-    <div class="card-body" :style="{ backgroundColor: item.backColor }">
-      <p class="text" :style="{ color: item.fontColor, fontFamily: item.font }">
+    <div class="card-body" :style="{ backgroundColor: `#${item.backColor}` }">
+      <p
+        class="text"
+        :style="{ color: `#${item.fontColor}`, fontFamily: item.font }"
+      >
         {{ item.content }}
       </p>
       <img

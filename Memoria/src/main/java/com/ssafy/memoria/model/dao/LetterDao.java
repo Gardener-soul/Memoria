@@ -8,6 +8,8 @@ public interface LetterDao {
 
 	public List<Letter> selectAll(Letter letter);
 
+	public List<Letter> selectAdminAll(Letter letter);
+	
 	public Letter selectOne(int letterNo);
 
 	public int insertLetter(Letter letter);
