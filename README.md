@@ -8,10 +8,29 @@
 
 <details><summary>To-do-List</summary>
 
+- [x] 매일매일 30분 - 1시간씩, 방향성 설계 및 코드 리뷰
+
+---
+
+## DAY 12
+
 - [ ] ChkList 완료 후, README File 꾸미기 -메인 페이지, 작동화면(gif), 기능
 - [ ] 최종 완료 보고서 (ppt) 만들기
 - [ ] 파일 전체적으로 필요없는 부분 정리 및 주석 달기.
-- [ ] 매일매일 30분 - 1시간씩, 방향성 설계 및 코드 리뷰
+
+---
+
+## Day 11
+
+--BackEnd
+
+- [ ] 서버 배포 알아보기
+
+--FrontEnd
+
+- [x] Admin 페이지 완성
+- [x] CSS 수정
+- [ ] 페이지 수정 후 이슈 수정
 
 ---
 
@@ -19,12 +38,14 @@
 
 --BackEnd
 
-- [ ] Event BackEnd 작성
+- [x] Event BackEnd 작성
 
 --FrontEnd
 
 - [x] 관리자 페이지 - 관리자 계정만 진입 가능하게 설정..?
 - [x] OnMounted 활용한 NavGuard 걸어놓기.
+- [x] Event Page 제작 완료
+- [x] 기타 CSS 수정
 
 ---
 
@@ -55,9 +76,9 @@
 
 - [x] 메세지의 수정 기능, 글씨체 설정 추가.
 - [x] 미리보기 기능 추가
-- [ ] 네비게이션 가드.
+- [x] 네비게이션 가드.
 - [x] 전체적인 디자인 구조 수정, 색깔
-- [ ] MyPage
+- [x] MyPage
 - [x] 롤페 만들기 맨 가운데로
 - [x] 마이 롤페 뷰 img null일 때 img 태그 안나오게 하기 v-if
 - [x] 상세 메세지 img null일 때 img 태그 안나오게 하기
@@ -111,7 +132,7 @@
 
 ---
 
-Day 2
+## Day 2
 
 --BackEnd
 
@@ -144,7 +165,7 @@ Day 2
 
 ---
 
-Day 1
+## Day 1
 
 --BackEnd
 
@@ -188,5 +209,6 @@ Day 1
 1. DTO와 DB의 상관관계
 2. CORS 에러 해결 - webconfig 설정 + CrossOrigin("\*")
 3. 파일 입출력
+4. App.vue와 index.html
 
 </details>

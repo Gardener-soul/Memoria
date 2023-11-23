@@ -30,6 +30,12 @@
         <button @click="handleSubmit">제출</button>
       </div>
     </div>
+    <div v-if="showModal" class="modal">
+      <div class="modal-content">
+        <p>모든 이벤트를 완료하지 못했습니다.</p>
+        <button class="modalButton" @click="closeModal">닫기</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -44,7 +50,11 @@ const useStore = useUserStore();
 const store = useYouTubeStore();
 const route = useRoute();
 const items = ref([]);
+const showModal = ref(false);
 
+const closeModal = () => {
+  showModal.value = false;
+};
 // 각 날짜에 해당하는 YouTube 영상 ID를 매핑합니다.
 const dailyVideos = {
   1: "QhRcs9d2Y9E",
@@ -81,7 +91,7 @@ const handleSubmit = () => {
         console.error("Error checking event:", error);
       });
   } else {
-    alert("모든 이벤트를 완료하지 못했습니다.");
+    showModal.value = true; // 모달을 표시합니다.
   }
 };
 // 페이지가 마운트될 때와 라우트가 변경될 때 영상을 업데이트합니다.
