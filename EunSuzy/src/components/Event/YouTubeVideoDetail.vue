@@ -113,6 +113,29 @@ const fetchEvent = () => {
 onMounted(fetchEvent);
 </script>
 <style scoped>
+/* 버튼 스타일링 */
+button {
+  width: 100px;
+  padding: 12px 15px;
+  background-color: #d8b6e2;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+/* 버튼 호버 효과 */
+button:hover {
+  background-color: #bf94e4;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.button-wrapper {
+  margin-top: 18px;
+}
+
 .video-container {
   display: flex;
   justify-content: center;
@@ -132,11 +155,6 @@ onMounted(fetchEvent);
   margin-right: 100px;
 }
 
-.button-wrapper {
-  width: 100px; /* 버튼의 너비를 조정 */
-  margin-top: 200px; /* 버튼 위의 간격 */
-}
-
 /* 체크박스 스타일링 */
 .form-check-input {
   width: 20px; /* 체크박스 크기 */
@@ -151,23 +169,5 @@ onMounted(fetchEvent);
 .form-check-label {
   cursor: pointer;
   vertical-align: middle; /* 레이블의 수직 정렬 */
-}
-
-/* 버튼 스타일링 */
-button {
-  width: 100%;
-  padding: 12px 15px; /* 버튼의 패딩 증가 */
-  background-color: #d8b6e2;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s;
-}
-
-/* 버튼 호버 효과 */
-button:hover {
-  background-color: #bf94e4;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 </style>

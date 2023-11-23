@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="sketchbook-container">
-      <h2 class="sketchbook-title">🔮 로그인 🔮</h2>
+      <h2 id="sketchbook-title">🔮 로그인 🔮</h2>
       <form class="sketchbook-form" @submit.prevent="login">
         <div class="sketchbook-group">
           <label for="username"></label>
@@ -22,9 +22,9 @@
           />
         </div>
         <button type="submit" class="button">로그인</button>
+        <br />
+        <button type="button" @click="goToSignUp" class="button">회원가입</button>
       </form>
-      <br />
-      <button type="button" @click="goToSignUp" class="button">회원가입</button>
     </div>
     <div v-if="showModal" class="modal-overlay" @click="closeModal">
       <div class="modal-content" @click.stop>
@@ -86,36 +86,37 @@ const login = async () => {
 </script>
 
 <style scoped>
-.container {
-  height: 70vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 body {
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  background-color: #f0e6d6;
   margin: 0;
   padding: 0;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  background-color: #f0e6d6;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.container {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sketchbook-container {
-  background-color: #fffaf0;
   padding: 40px;
+  background-color: #fffaf0;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   width: 20%;
 }
 
-.sketchbook-title {
+#sketchbook-title {
   font-size: 28px;
   color: #333;
   text-align: center;
+  margin-top: 0px;
   margin-bottom: 30px;
 }
 
@@ -124,7 +125,7 @@ body {
 }
 
 .sketchbook-group {
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .sketchbook-group label {
@@ -145,19 +146,23 @@ body {
 }
 
 button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  background-color: #bf94e4;
-  color: white;
+  margin-top: 20px;
   font-size: 18px;
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #d8b6e2;
+  color: white;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
 }
 
 button:hover {
-  background-color: #ffb8c6;; /* 호버 시 배경색 변경 */
+  background-color: #bf94e4;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1); /* 호버 시 크기 증가 */
 }
 
 .modal-overlay {

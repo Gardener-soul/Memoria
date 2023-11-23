@@ -9,7 +9,7 @@
         </div>
         <div class="user-links">
           <span v-if="userStore.isLoggedIn"
-            >{{ userStore.userName }}님 환영합니다.</span
+            >{{ userStore.userName }}님 환영합니다. </span
           >
           <RouterLink to="/mypage" v-if="userStore.isLoggedIn"
             >My Page</RouterLink
@@ -27,7 +27,7 @@
     <footer class="footer">
       <div class="footer-content">
         <span>MEMORIA © 2023. All rights reserved.</span> |
-        <span>연락처: info@rollingpaper.com</span>
+        <span>연락처: ssafy8@rollingpaper.com</span>
         <div class="social-links">
           <a href="#" target="_blank">Facebook</a> |
           <a href="#" target="_blank">Twitter</a> |
