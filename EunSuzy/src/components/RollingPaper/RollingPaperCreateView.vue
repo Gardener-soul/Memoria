@@ -1,13 +1,14 @@
 <template>
   <div class="container">
-    <p class="title">{{ userStore.userName }}의 편지</p>
+    <p class="title">{{ userStore.userName }}의 편지함</p>
     <input
       class="input-field"
       v-model="title"
       placeholder="당신의 한 줄을 남겨주세요."
     />
     <p>
-      1학기 동안 당신과 함께해서 즐거웠어요. 당신의 앞길을 응원하고 축복해요
+      1학기 동안 당신과 함께해서 즐거웠어요.
+      <br>당신의 앞길을 응원하고 축복해요
       -은수지-
     </p>
     <br />
@@ -81,8 +82,8 @@ body {
   background-color: #fffaf0;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 700px;
+  width: 50%;
+  max-width: 500px;
   margin: auto; /* 자동 마진으로 중앙 정렬 */
   margin-top: 200px;
 }

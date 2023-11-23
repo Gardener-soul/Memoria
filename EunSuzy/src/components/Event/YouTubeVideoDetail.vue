@@ -1,7 +1,7 @@
 <template>
   <div v-if="store.selectedVideo" class="video-container">
     <div class="video-wrapper">
-      <h4>추천 이벤트 영상</h4>
+      <h3>추천 이벤트 영상</h3>
       <iframe
         width="560"
         height="315"
@@ -13,7 +13,7 @@
       ></iframe>
     </div>
     <div class="checkbox-wrapper">
-      <div>오늘의 미션</div>
+      <h3>> 오늘의 미션</h3>
       <div class="form-check" v-for="item in filteredItems" :key="item.eventNo">
         <input
           class="form-check-input"
@@ -129,22 +129,21 @@ onMounted(fetchEvent);
   flex: 1; /* 체크박스 부분 */
   display: flex;
   flex-direction: column;
-  align-items: center; /* 체크박스와 버튼을 중앙에 정렬 */
-  margin-top: 100px;
   margin-right: 100px;
 }
 
 .button-wrapper {
   width: 100px; /* 버튼의 너비를 조정 */
-  margin-top: 20px; /* 버튼 위의 간격 */
+  margin-top: 200px; /* 버튼 위의 간격 */
 }
+
 /* 체크박스 스타일링 */
 .form-check-input {
   width: 20px; /* 체크박스 크기 */
   height: 20px;
   margin-right: 10px; /* 체크박스와 레이블 간의 간격 */
   cursor: pointer;
-  accent-color: blue;
+  accent-color: #d8b6e2;
   vertical-align: middle; /* 체크박스와 레이블의 수직 정렬 */
 }
 
@@ -155,14 +154,10 @@ onMounted(fetchEvent);
 }
 
 /* 버튼 스타일링 */
-.button-wrapper {
-  width: 150px; /* 버튼 크기 조정 */
-}
-
 button {
   width: 100%;
   padding: 12px 15px; /* 버튼의 패딩 증가 */
-  background-color: blue;
+  background-color: #d8b6e2;
   color: white;
   border: none;
   border-radius: 5px;
@@ -172,7 +167,7 @@ button {
 
 /* 버튼 호버 효과 */
 button:hover {
-  background-color: darkblue;
+  background-color: #bf94e4;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 </style>

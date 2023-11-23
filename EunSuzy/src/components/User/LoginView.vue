@@ -1,30 +1,30 @@
 <template>
   <div class="container">
     <div class="sketchbook-container">
-      <h2 class="sketchbook-title">Login</h2>
+      <h2 class="sketchbook-title">🔮 로그인 🔮</h2>
       <form class="sketchbook-form" @submit.prevent="login">
         <div class="sketchbook-group">
-          <label for="username">ID</label>
+          <label for="username"></label>
           <input
             type="text"
             id="username"
             v-model="loginForm.userId"
-            placeholder="ID를 입력하세요"
+            placeholder="아이디를 입력하세요"
           />
         </div>
         <div class="sketchbook-group">
-          <label for="password">Password</label>
+          <label for="password"></label>
           <input
             type="password"
             id="password"
             v-model="loginForm.userPwd"
-            placeholder="Password를 입력하세요"
+            placeholder="비밀번호를 입력하세요"
           />
         </div>
-        <button type="submit">Log In</button>
+        <button type="submit" class="button">로그인</button>
       </form>
       <br />
-      <button type="button" @click="goToSignUp">Sign up</button>
+      <button type="button" @click="goToSignUp" class="button">회원가입</button>
     </div>
     <div v-if="showModal" class="modal-overlay" @click="closeModal">
       <div class="modal-content" @click.stop>
@@ -109,7 +109,7 @@ body {
   padding: 40px;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  width: 40%;
+  width: 20%;
 }
 
 .sketchbook-title {
@@ -157,7 +157,7 @@ button {
 }
 
 button:hover {
-  background-color: #bf94e4;
+  background-color: #ffb8c6;; /* 호버 시 배경색 변경 */
 }
 
 .modal-overlay {

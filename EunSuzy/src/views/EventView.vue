@@ -15,7 +15,7 @@
     <div v-if="showModal" class="modal">
       <div class="modal-content">
         <p>이미 클리어한 이벤트입니다.</p>
-        <button @click="closeModal">닫기</button>
+        <button class="modalButton" @click="closeModal">닫기</button>
       </div>
     </div>
     <RouterView />
@@ -64,7 +64,7 @@ const getImage = (day) => {
 }
 
 .day-buttons button {
-  background-color: #bf94e4; /* 버튼 배경색 */
+  background-color: #ffc0cb; /* 버튼 배경색 */
   color: white; /* 버튼 텍스트 색상 */
   border: none; /* 테두리 제거 */
   padding: 10px 15px; /* 내부 여백 */
@@ -76,7 +76,7 @@ const getImage = (day) => {
 }
 
 .day-buttons button:hover {
-  background-color: #45a049; /* 호버 시 배경색 변경 */
+  background-color: #ffb8c6; /* 호버 시 배경색 변경 */
   transform: scale(1.1); /* 호버 시 크기 증가 */
 }
 
@@ -99,7 +99,24 @@ const getImage = (day) => {
 .modal-content {
   background-color: white;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 15px;
   text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.modalButton {
+  background-color: #ffb8c6;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 10px; /* 오른쪽 마진 추가 */
+}
+
+.modalButton:hover {
+  background-color: #bf94e4;
 }
 </style>

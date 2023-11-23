@@ -12,7 +12,7 @@
       <div class="modal-content">
         <span class="close" @click="showModal = false">&times;</span>
         <p class="modal-message">로그인이 필요한 기능입니다.</p>
-        <button @click="goToLogin" class="modal-button">로그인</button>
+        <button @click="goToLogin" class="modalButton">로그인</button>
       </div>
     </div>
   </div>
@@ -162,7 +162,8 @@ onMounted(fetchData);
 }
 .modal-message {
   text-align: center;
-  margin-bottom: 20px; /* 버튼과의 간격 */
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 .close {
@@ -191,19 +192,39 @@ onMounted(fetchData);
   cursor: pointer;
 }
 
-.modal-button:hover {
-  background-color: #c79ac6;
-}
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 모달을 화면 중앙에 위치시킵니다. */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* 모달의 너비 */
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
+}
+
+.modalButton {
+  background-color: #ffb8c6;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 10px; /* 오른쪽 마진 추가 */
+}
+
+.modalButton:hover {
+  background-color: #bf94e4;
 }
 </style>

@@ -9,4 +9,8 @@
 import HeaderVue from "@/components/common/HeaderView.vue";
 </script>
 
-<style></style>
+<style>
+    body {
+      margin: 0;
+    }
+</style>
