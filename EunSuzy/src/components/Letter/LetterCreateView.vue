@@ -4,16 +4,15 @@
       <p>🎄편지를 남겨주세요🎄</p>
       <textarea
         v-model="content"
-        :style="{
-          fontFamily: selectedFont,
-          color: selectedFontColor,
-          backgroundColor: selectedBgColor,
-        }"
+        :style="textareaStyle"
         placeholder="마음을 적어주세요"
         rows="10"
       ></textarea>
     </div>
-
+    <div>
+      <label for="image">이미지</label>
+      <input type="file" id="image" @change="appendImage" />
+    </div>
     <div class="color-selection-container">
       <button @click="toggleFontMenu">글씨체 선택</button>
       <button @click="toggleFontColorPicker">글씨 색상 선택</button>
@@ -77,7 +76,7 @@ import { useUserStore } from "@/stores/user.js";
 
 const route = useRoute();
 const router = useRouter();
-const userStore = useUserStore();
+const useStore = useUserStore();
 
 const formData = new FormData();
 

@@ -1,18 +1,18 @@
 <template>
   <div>
-    <p>내가 쓴 메세지들</p>
+    <h1>내가 쓴 메세지들</h1>
   </div>
   <div class="cards-container">
     <div
       class="card"
       v-for="item in items"
       :key="item.letterNo"
-      :style="{ backgroundColor: item.backColor }"
+      :style="{ backgroundColor: `#${item.backColor}` }"
     >
       <div class="card-body">
         <p
           class="text"
-          :style="{ color: item.fontColor, fontFamily: item.font }"
+          :style="{ color: `#${item.fontColor}`, fontFamily: item.font }"
         >
           {{ item.content }}
         </p>
@@ -75,13 +75,16 @@ onMounted(() => {
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* 내용과 버튼을 양 끝에 배치 */
-  position: relative;
-  width: calc(25% - 10px);
+  flex: 1 1 200px; /* 유연한 크기 조정과 최소 너비 설정 */
   border: 1px solid black;
-  padding: 10px; /* 카드 내부 여백 */
+  padding: 10px;
+  margin: 10px; /* 카드 간의 여백 추가 */
+  max-width: calc(25% - 20px); /* 최대 너비 설정 */
+}
+
+img {
+  max-width: 100%; /* 이미지가 카드 너비를 초과하지 않도록 설정 */
+  height: auto; /* 이미지 비율 유지 */
 }
 
 .writer,

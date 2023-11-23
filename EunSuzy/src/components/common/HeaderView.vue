@@ -24,17 +24,6 @@
         </div>
       </nav>
     </header>
-    <footer class="footer">
-      <div class="footer-content">
-        <span>MEMORIA © 2023. All rights reserved.</span> |
-        <span>연락처: info@rollingpaper.com</span>
-        <div class="social-links">
-          <a href="#" target="_blank">Facebook</a> |
-          <a href="#" target="_blank">Twitter</a> |
-          <a href="#" target="_blank">Instagram</a>
-        </div>
-      </div>
-    </footer>
   </div>
 </template>
 
@@ -74,6 +63,7 @@ header {
 .navigation {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 }
 
@@ -99,28 +89,5 @@ header {
 
 .user-links {
   margin-left: auto;
-}
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #d8b6e2;
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-}
-
-.footer-content p {
-  margin: 5px 0;
-}
-
-.social-links a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-}
-
-.social-links a:hover {
-  text-decoration: underline;
 }
 </style>
