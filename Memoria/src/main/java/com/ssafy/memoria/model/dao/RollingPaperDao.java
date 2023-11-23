@@ -17,8 +17,5 @@ public interface RollingPaperDao {
 	public void deleteRollingPaper(int rollingPaperNo);
 
 	public void updateRollingPaper(RollingPaper rollingPaper);
-
-//	public void updateViewCnt(int rollingPaperNo);
-
-//	public List<RollingPaper> search(SearchCondition condition);
+	
 }

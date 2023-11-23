@@ -21,7 +21,6 @@ public class RollingPaperServiceImpl implements RollingPaperService {
 
 	@Override
 	public List<RollingPaper> getList() {
-		System.out.println("모든 롤링페이퍼를 가지고 왔습니다.");
 		List<RollingPaper> list = rollingPaperDao.selectAll();
 		
 	    for (RollingPaper paper : list) {
@@ -34,20 +33,17 @@ public class RollingPaperServiceImpl implements RollingPaperService {
 
 	@Override
 	public RollingPaper getRollingPaper(int rollingPaperNo) {
-		System.out.println(rollingPaperNo + "번 글을 읽었습니다.");
-//		rollingPaperDao.updateViewCnt(rollingPaperNo);
 		return rollingPaperDao.selectOne(rollingPaperNo);
 	}
 
 	@Transactional
 	@Override
 	public RollingPaper writeRollingPaper(RollingPaper rollingPaper) {
-		System.out.println("롤링페이퍼를 작성합니다.");
 		int RPno = rollingPaperDao.insertRollingPaper(rollingPaper);
+		
 		if(RPno > 0) {
 			return rollingPaper;
 		}else {
-			System.out.println("여기서 에러");
 			return null;
 		}
 	}
@@ -55,7 +51,6 @@ public class RollingPaperServiceImpl implements RollingPaperService {
 	@Transactional
 	@Override
 	public void removeRollingPaper(int rollingPaperNo) {
-		System.out.println(rollingPaperNo + "번 글을 삭제 했습니다.");
 		rollingPaperDao.deleteRollingPaper(rollingPaperNo);
 	}
 
@@ -64,9 +59,4 @@ public class RollingPaperServiceImpl implements RollingPaperService {
 	public void modifyRollingPaper(RollingPaper rollingPaper) {
 		rollingPaperDao.updateRollingPaper(rollingPaper);
 	}
-
-//	@Override
-//	public List<RollingPaper> search(SearchCondition condition) {
-//		return rollingPaperDao.search(condition);
-//	}
 }

@@ -46,16 +46,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User login(User user) {
 		User tmp = userDao.selectOne(user.getUserId());
+		
 		if(tmp != null && tmp.getUserPwd().equals(user.getUserPwd()))
 			return tmp;
+		
 		return null;
 	}
 	
 	@Transactional
 	@Override
 	public User modifyUser(User user, MultipartFile image) throws IOException {
-		System.out.println("내 정보를 수정합니다.");
-		
 		if (image != null) {
 			if (!uploadFolder.exists()) {
 				Files.createDirectory(uploadFolderPath);
@@ -82,12 +82,14 @@ public class UserServiceImpl implements UserService {
 	public Resource loadImage(String imageName) {
 		Path characterIamge = uploadFolderPath.resolve(imageName);
 		Resource resource;
+		
 		try {
 			resource = new UrlResource(characterIamge.toUri());
 			return resource;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
+		
 		return null;
 	}
 }

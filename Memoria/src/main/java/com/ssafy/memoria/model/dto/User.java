@@ -15,19 +15,21 @@ public class User {
     private LocalDateTime achieveDate;
     private LocalDateTime regDate;
     private int reportCount;
-    
+
 	public User() {
 		super();
 	}
-	
+
 	public User(int userNo, String userName, String img, int eventDay) {
+		super();
 		this.userNo = userNo;
 		this.userName = userName;
 		this.img = img;
 		this.eventDay = eventDay;
 	}
-	
-	public User(String userId, String userPwd, String userName, String email, String nickname) {
+
+	public User(String userId, String userPwd, String userName, String email) {
+		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
 		this.userName = userName;

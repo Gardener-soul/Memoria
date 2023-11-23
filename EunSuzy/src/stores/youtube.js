@@ -7,7 +7,6 @@ export const useYouTubeStore = defineStore("YouTube", () => {
   const selectedVideo = ref(null);
 
   const youtubeSearch = function (keyword) {
-    console.log(keyword);
     const URL = "https://www.googleapis.com/youtube/v3/search";
     const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
 
@@ -23,13 +22,11 @@ export const useYouTubeStore = defineStore("YouTube", () => {
       },
     })
       .then((response) => {
-        // console.log(response);
         videos.value = response.data.items;
       })
       .catch(() => {});
   };
   const clickVideo = function (video) {
-    console.log(video);
     selectedVideo.value = video;
   };
 

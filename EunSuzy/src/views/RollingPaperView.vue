@@ -108,7 +108,6 @@ export default {
 
     // 롤링페이퍼 수정
     const updateRP = () => {
-      console.log(editingItem.value);
       axios
         .put(`http://localhost:8080/rollingPaper/update`, editingItem.value)
         .then(() => {

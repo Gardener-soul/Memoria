@@ -36,11 +36,8 @@ public class LetterController {
 
 	// 1. 목록
 	@GetMapping("list")
-	@ApiOperation(value = "편지 조회", notes = "검색조건도 넣으면 같이 가져온다.")
 	public ResponseEntity<?> list(Letter letter) {
-		List<Letter> list = letterService.getList(letter); // 전체 조회
-		// List<Letter> list = letterService.search(condition); // 검색 조건이 있다면 그것으로 조회
-		System.out.println(list); // 전체 리스트 잘 받아와지는지 확인
+		List<Letter> list = letterService.getList(letter);
 
 		if (list == null || list.size() == 0)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
@@ -48,12 +45,10 @@ public class LetterController {
 		return new ResponseEntity<List<Letter>>(list, HttpStatus.OK);
 	}
 
-	// 1.5 Admin 편지 목록
+	// 1-1. Admin 편지 목록
 	@GetMapping("admin/list")
-	@ApiOperation(value = "편지 조회", notes = "검색조건도 넣으면 같이 가져온다.")
 	public ResponseEntity<?> Adminlist(Letter letter) {
-		List<Letter> list = letterService.getAdminList(letter);		
-		System.out.println(list); // 전체 리스트 잘 받아와지는지 확인
+		List<Letter> list = letterService.getAdminList(letter);
 		
 		if (list == null || list.size() == 0)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
@@ -73,9 +68,9 @@ public class LetterController {
 	public ResponseEntity<?> write(Letter letter, @RequestParam(required = false) MultipartFile image) throws IOException {
 		int result = letterService.writeLetter(letter, image);
 
-		if (result == 1) {
+		if (result == 1)
 			return new ResponseEntity<Letter>(letter, HttpStatus.CREATED);
-		}
+
 		return new ResponseEntity<String>("유저 추가 실패", HttpStatus.NOT_ACCEPTABLE);
 	}
 	
@@ -101,13 +96,4 @@ public class LetterController {
 		letterService.modifyLetter(letter, image);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
-
-//	@PutMapping("/letter/{letterNo}") //JSON 형태의 데이터로 넘어왔을 떄 처리하고 싶은데?
-//	public ResponseEntity<Void> update(@RequestBody Letter letter, @PathVariable int letterNo){
-//		letter.setLetterNo(letterNo);
-//		letterService.modifyLetter(letter);
-//		//위와같은 상황 대비
-//		
-//		return new ResponseEntity<Void>(HttpStatus.OK);
-//	}
 }

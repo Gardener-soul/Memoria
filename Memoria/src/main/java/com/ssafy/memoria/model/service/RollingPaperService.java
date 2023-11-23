@@ -20,6 +20,4 @@ public interface RollingPaperService {
 	// 롤링페이퍼 수정
 	void modifyRollingPaper(RollingPaper rollingPaper);
 
-	// 검색 버튼을 눌렀을 때 처리할 메서드
-//	List<RollingPaper> search(SearchCondition condition);
 }
