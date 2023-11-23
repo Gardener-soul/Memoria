@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public class Letter {
     private int letterNo;
     private int rollingPaperNo;
+    private int ownerNo;
     private int writerNo;
     private String userName;
     private String title;
@@ -20,12 +21,16 @@ public class Letter {
 		super();
 	}
 
-	public Letter(int letterNo, int rollingPaperNo, int writerNo, String content, String img,
-			String orgImg, String font, String fontColor, String backColor, LocalDateTime regDate) {
+	public Letter(int letterNo, int rollingPaperNo, int ownerNo, int writerNo, String userName, String title,
+			String content, String img, String orgImg, String font, String fontColor, String backColor,
+			LocalDateTime regDate) {
 		super();
 		this.letterNo = letterNo;
 		this.rollingPaperNo = rollingPaperNo;
+		this.ownerNo = ownerNo;
 		this.writerNo = writerNo;
+		this.userName = userName;
+		this.title = title;
 		this.content = content;
 		this.img = img;
 		this.orgImg = orgImg;
@@ -49,6 +54,14 @@ public class Letter {
 
 	public void setRollingPaperNo(int rollingPaperNo) {
 		this.rollingPaperNo = rollingPaperNo;
+	}
+
+	public int getOwnerNo() {
+		return ownerNo;
+	}
+
+	public void setOwnerNo(int ownerNo) {
+		this.ownerNo = ownerNo;
 	}
 
 	public int getWriterNo() {
@@ -133,10 +146,10 @@ public class Letter {
 
 	@Override
 	public String toString() {
-		return "Letter [letterNo=" + letterNo + ", rollingPaperNo=" + rollingPaperNo + ", writerNo=" + writerNo
-				+ ", userName=" + userName + ", title=" + title + ", content=" + content + ", img=" + img + ", orgImg="
-				+ orgImg + ", font=" + font + ", fontColor=" + fontColor + ", backColor=" + backColor + ", regDate="
-				+ regDate + "]";
+		return "Letter [letterNo=" + letterNo + ", rollingPaperNo=" + rollingPaperNo + ", ownerNo=" + ownerNo
+				+ ", writerNo=" + writerNo + ", userName=" + userName + ", title=" + title + ", content=" + content
+				+ ", img=" + img + ", orgImg=" + orgImg + ", font=" + font + ", fontColor=" + fontColor + ", backColor="
+				+ backColor + ", regDate=" + regDate + "]";
 	}
 
 }
