@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="container">
     <HeaderVue />
-    <RouterView />
+    <RouterView class="content" />
   </div>
 </template>
 
@@ -9,8 +9,4 @@
 import HeaderVue from "@/components/common/HeaderView.vue";
 </script>
 
-<style>
-    body {
-      margin: 0;
-    }
-</style>
+<style></style>
