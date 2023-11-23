@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h4>운동 영상 검색</h4>
-    <input type="text" v-model="keyword" placeholder="원하는 운동 영상 검색" />
+    <h4>운동 영상 검색 💻</h4>
+    <input type="text" v-model="keyword" placeholder="당신이 원하는 운동 영상은 ?" />
     <button @click="search">검색</button>
   </div>
 </template>
@@ -48,13 +48,13 @@ button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: blue;
+  background-color: #d8b6e2;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: darkblue;
+  background-color: #bf94e4;
 }
 </style>

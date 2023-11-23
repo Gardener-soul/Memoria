@@ -63,7 +63,7 @@ function goToSignUp() {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: 40vh;
+  height: 80vh;
 }
 
 body {
@@ -75,7 +75,6 @@ body {
 .memoria-title,
 .start-rolling-paper-button {
   display: block;
-  margin-bottom: 20px;
 }
 .modal-overlay {
   position: fixed;
@@ -93,8 +92,8 @@ body {
   background-color: white;
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
@@ -107,7 +106,7 @@ body {
 }
 
 .confirm-button {
-  background-color: #bf94e4;
+  background-color: #ffb8c6;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -117,13 +116,10 @@ body {
   margin-right: 10px; /* 오른쪽 마진 추가 */
 }
 
-.confirm-button:last-child {
-  margin-right: 0; /* 마지막 버튼의 오른쪽 마진 제거 */
+.confirm-button:hover {
+  background-color: #bf94e4;
 }
 
-.confirm-button:hover {
-  background-color: #ff4500;
-}
 .start-rolling-paper-button {
   background-color: #bf94e4; /* 버튼의 기본 배경색 */
   color: white; /* 텍스트 색상 */
@@ -137,6 +133,6 @@ body {
 }
 
 .start-rolling-paper-button:hover {
-  background-color: #bf94e4; /* 호버 시 배경색 변경 */
+  background-color: #ffb8c6;
 }
 </style>

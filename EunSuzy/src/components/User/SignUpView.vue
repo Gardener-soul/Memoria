@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="sketchbook-container">
-      <h2 class="sketchbook-title">Sign Up</h2>
+      <h2 class="sketchbook-title">🗝 회원 가입 🗝</h2>
       <form class="sketchbook-form" @submit.prevent="signUp">
         <!-- 각 입력 필드에 v-model 추가 -->
         <div class="sketchbook-group">
@@ -10,7 +10,7 @@
             type="text"
             id="userid"
             v-model="signupForm.userId"
-            placeholder="ID를 입력하세요"
+            placeholder="아이디를 입력하세요"
             required
           />
         </div>
@@ -20,13 +20,12 @@
             type="password"
             id="password"
             v-model="signupForm.userPwd"
-            placeholder="Password를 입력하세요"
+            placeholder="비밀번호를 입력하세요"
             required
           />
           <p v-if="passwordIsValid">비밀번호가 유효합니다.</p>
-          <p v-else>
-            영문자, 숫자와 특수문자를 조합해서 8자리 이상의 비밀번호를
-            완성하세요.
+          <p v-else id="desc">
+            영문자, 숫자와 특수문자를 조합해서 8자리 이상의 비밀번호를 완성하세요.
           </p>
         </div>
         <div class="sketchbook-group">
@@ -35,7 +34,7 @@
             type="password"
             id="passwordConfirm"
             v-model="signupForm.userPwdConfirm"
-            placeholder="Password를 확인하세요"
+            placeholder="비밀번호를 확인하세요"
             required
           />
           <p v-if="passwordsMatch && passwordIsValid">비밀번호가 일치합니다.</p>
@@ -149,12 +148,17 @@ body {
   height: 100vh;
 }
 
+label {
+  text-align: left;
+  margin-left: 5px;
+}
+
 .sketchbook-container {
   background-color: #fffaf0;
   padding: 40px;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  width: 40%;
+  width: 30%;
 }
 
 .sketchbook-title {
@@ -168,13 +172,13 @@ body {
   text-align: center;
 }
 
-.sketchbook-group {
-  margin-bottom: 20px;
+#desc {
+  color: #bf94e4;
 }
 
 .sketchbook-group label {
   display: block;
-  margin-bottom: 5px;
+  margin: 10px;
   font-size: 18px;
   color: #555;
 }
@@ -193,6 +197,7 @@ body {
 button {
   width: 100%;
   padding: 10px;
+  margin-top: 20px;
   border: none;
   border-radius: 8px;
   background-color: #bf94e4;
@@ -203,6 +208,6 @@ button {
 }
 
 button:hover {
-  background-color: #ff4500;
+  background-color: #ffb8c6;
 }
 </style>
