@@ -1,8 +1,8 @@
 <template>
+  <div id="title">
+    <p>{{ rpMaster }}님 에게 {{ writerCount }}명의 편지가 도착했어요 !!💌</p>
+  </div>
   <div class="cards-container">
-    <div id="title">
-      <p>{{  }}님 에게 {{ writerCount }}명의 편지가 도착했어요 !!💌</p>
-    </div>
     <div
       class="card"
       v-for="item in items"
@@ -46,6 +46,7 @@ const router = useRouter();
 const route = useRoute();
 const items = ref([]);
 
+const rpMaster = ref("");
 const writerCount = ref("");
 const rollingPaperId = route.params.id;
 const userNum = ref("");
@@ -58,14 +59,25 @@ function date(regDate) {
   return regDate[0] + " / " + regDate[1] + " / " + regDate[2];
 }
 
+function master(title) {
+  return title.substr(0, 3);
+}
+
 onMounted(() => {
+  // 롤링페이퍼 주인 정보 받아오기
+  axios
+    .get(`http://localhost:8080/rollingPaper/${rollingPaperId}`)
+    .then((response) => {
+      console.log("롤페정보", response.data);
+      rpMaster.value = response.data.userName;
+    });
+
   axios
     .get(`http://localhost:8080/letter/list?rollingPaperNo=${rollingPaperId}`)
     .then((response) => {
       items.value = response.data;
       writerCount.value = items.value.length;
       userNum.value = items.value.ownerNo;
-      console.log("편지 받아오기 성공", response);
     })
     .catch((error) => {
       console.error(error);
@@ -74,32 +86,40 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@media (max-width: 1024px) {
+  .cards-container {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-container {
+    column-count: 2;
+  }
+}
 .cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 10px;
+  column-count: 4; /* 4개의 열로 나눕니다 */
+  column-gap: 10px; /* 열 사이의 간격 */
   padding: 10px;
+}
+
+.card {
+  break-inside: avoid; /* 카드가 열 사이에서 나누어지지 않도록 함 */
+  margin-bottom: 10px; /* 카드 사이의 간격 */
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 20px;
+  background: white; /* 배경색 */
 }
 
 #title {
   display: flex;
-  justify-content: center; /* 수평 정렬 */
-  align-items: center; /* 수직 정렬 */
+  justify-content: center;
+  align-items: center;
   width: 100%;
   font-weight: bold;
   font-size: x-large;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* 내용과 버튼을 양 끝에 배치 */
-  position: relative;
-  width: calc(25% - 10px);
-  border: 1px solid black;
-  padding: 10px; /* 카드 내부 여백 */
-  border-radius: 20px;
+  margin-top: 20px; /* 상단 여백 추가 */
 }
 
 .writer {
@@ -140,19 +160,13 @@ onMounted(() => {
   padding: 20px;
   border-radius: 10px;
   max-width: 600px;
-  min-height: 200px; /* 최소 높이 설정 */
   margin: 0px;
   text-align: left;
 }
 
-.with-img {
-  /* 이미지가 있는 경우 적용할 스타일 */
-  min-height: 300px; /* 이미지의 최대 높이와 일치하도록 설정 */
-}
-
+/* 이미지가 있는 경우와 없는 경우에 대한 별도의 스타일 제거 */
+.with-img,
 .without-img {
-  /* 이미지가 없는 경우 적용할 스타일 */
-  min-height: 200px; /* 기본 최소 높이 */
   padding: 20px; /* 내부 여백 */
   border-radius: 10px; /* 둥근 테두리 */
 }
