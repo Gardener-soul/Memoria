@@ -1,5 +1,6 @@
 <template>
   <div>
+  <div>
     <h1>내가 남긴 편지들 💌</h1>
   </div>
   <div class="cards-container">
@@ -29,6 +30,7 @@
         </button>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -67,19 +69,18 @@ onMounted(() => {
 
 <style scoped>
 .cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개의 카드를 균등하게 배치 */
   gap: 10px;
   padding: 10px;
 }
 
 .card {
-  flex: 1 1 200px; /* 유연한 크기 조정과 최소 너비 설정 */
+  /* 카드 관련 스타일 */
   border: 1px solid black;
   padding: 10px;
-  margin: 10px; /* 카드 간의 여백 추가 */
-  max-width: calc(25% - 20px);
+  margin: 10px; 
+  min-height: 300px; /* 최소 높이 설정 */
 }
 
 img {

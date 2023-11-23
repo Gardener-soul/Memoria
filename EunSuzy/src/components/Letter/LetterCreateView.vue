@@ -1,7 +1,7 @@
 <template>
   <div>
+    <p class="title">🎄편지를 남겨주세요🎄</p>
     <div id="write">
-      <p>🎄편지를 남겨주세요🎄</p>
       <textarea
         v-model="content"
         :style="textareaStyle"
@@ -9,8 +9,8 @@
         rows="10"
       ></textarea>
     </div>
-    <div>
-      <label for="image">이미지</label>
+    <div class="imageDiv">
+      <label for="image">이미지 </label>
       <input type="file" id="image" @change="appendImage" />
     </div>
     <div class="color-selection-container">
@@ -259,6 +259,14 @@ button {
   display: block;
 }
 
+.title{
+  justify-content: center;
+  text-align: center;
+}
+
+.imageDiv{
+  margin-left: 60%;
+}
 .btn-group,
 .btn-bg-group {
   display: flex;
