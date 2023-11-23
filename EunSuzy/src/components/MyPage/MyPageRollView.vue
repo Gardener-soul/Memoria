@@ -1,7 +1,9 @@
 <template>
-  <div class="card-title">
-    <h1>{{ title }}</h1>
-  </div>
+  <div>
+    <div class="card-title">
+      <h1 v-if="title">{{ title }}</h1>
+      <h1 v-else>도착한 편지가 한 장도 없어요 ㅠ</h1>
+    </div>
   <div class="cards-container">
     <div
       class="card"
@@ -29,6 +31,7 @@
         </button>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -69,19 +72,18 @@ onMounted(() => {
 
 <style scoped>
 .cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개의 카드를 균등하게 배치 */
   gap: 10px;
   padding: 10px;
 }
 
 .card {
-  flex: 1 1 200px; /* 유연한 크기 조정과 최소 너비 설정 */
+  /* 카드 관련 스타일 */
   border: 1px solid black;
   padding: 10px;
-  margin: 10px; /* 카드 간의 여백 추가 */
-  max-width: calc(25% - 20px); /* 최대 너비 설정 */
+  margin: 10px; 
+  min-height: 300px; /* 최소 높이 설정 */
 }
 
 img {

@@ -24,13 +24,13 @@
 
 --BackEnd
 
-- [ ] 서버 배포 알아보기
+- [ ] 서버 배포 알아보기 -> 실패
 
 --FrontEnd
 
 - [x] Admin 페이지 완성
 - [x] CSS 수정
-- [ ] 페이지 수정 후 이슈 수정
+- [x] 페이지 수정 후 이슈 수정
 
 ---
 
@@ -210,5 +210,6 @@
 2. CORS 에러 해결 - webconfig 설정 + CrossOrigin("\*")
 3. 파일 입출력
 4. App.vue와 index.html
+5. git 사용법과, axios를 통한 Front와 Back의 연결
 
 </details>

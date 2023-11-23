@@ -1,13 +1,15 @@
 <template>
   <div>
-    <p>편지 수정</p>
-    <textarea
-      v-model="content"
-      :style="textareaStyle"
-      placeholder="마음을 고쳐주세요"
-      rows="10"
-    ></textarea>
-    <div>
+    <p class="title">🎄편지를 고쳐주세요🎄</p>
+    <div id="write">
+      <textarea
+        v-model="content"
+        :style="textareaStyle"
+        placeholder="마음을 고쳐주세요"
+        rows="10"
+      ></textarea>
+    </div>
+    <div class="imageDiv">
       <label for="image">이미지</label>
       <input type="file" id="image" @change="appendImage" />
     </div>
@@ -89,7 +91,13 @@ const content = ref("");
 
 const selectedFontColor = ref("#000000");
 const selectedBgColor = ref("#FFFFFF");
-const fonts = ["Roboto", "Open Sans"];
+const fonts = [
+  "Roboto",
+  "Single Day",
+  "Nanum Gothic",
+  "Do Hyeon",
+  "Nanum Pen Script",
+];
 const selectedFont = ref(fonts[0]);
 
 const colors = [
@@ -215,28 +223,16 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-.color-selection-container {
+<style scoped>.color-selection-container {
   display: flex;
   justify-content: space-around; /* 버튼을 양쪽으로 정렬 */
   margin-bottom: 10px;
 }
 
-.send-button-container {
+#write {
   display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #f0f0f0;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 50px auto;
+  justify-content: center; /* 수평 정렬 */
+  align-items: center; /* 수직 정렬 */
 }
 
 p {
@@ -244,14 +240,15 @@ p {
   color: #333;
   margin-bottom: 20px;
 }
+
 textarea {
-  width: 100%;
+  width: 50%;
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  box-sizing: border-box;
+  border-radius: 20px;
   font-size: 16px;
+  box-sizing: border-box;
   resize: vertical;
 }
 
@@ -266,6 +263,14 @@ button {
   display: block;
 }
 
+.title{
+  justify-content: center;
+  text-align: center;
+}
+
+.imageDiv{
+  margin-left: 60%;
+}
 .btn-group,
 .btn-bg-group {
   display: flex;
@@ -306,12 +311,14 @@ button {
 }
 
 .btn {
-  /* 공통 버튼 스타일 */
   margin: 5px;
   padding: 10px 20px;
-  border: none;
+  /* border: 2px solid black; */
+  font-style: inherit;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   font-size: 16px;
+  color: black;
 }
 
 .btn-selected {
@@ -352,28 +359,61 @@ button {
   cursor: pointer;
 }
 
-.btn-white {
-  background-color: white;
-  color: black;
+.btn-FFFFFF {
+  background-color: #ffffff;
+  color: #000000;
 }
-.btn-black {
-  background-color: black;
-  color: white;
+.btn-000000 {
+  background-color: #000000;
+  color: #ffffff;
 }
-.btn-blue {
-  background-color: blue;
-  color: white;
+.btn-ff0000 {
+  background-color: #ff0000;
 }
-.btn-purple {
-  background-color: purple;
-  color: white;
+.btn-ffdddd {
+  background-color: #ffdddd;
 }
-.btn-green {
-  background-color: green;
-  color: white;
+.btn-ff7f50 {
+  background-color: #ff7f50;
 }
-.btn-navy {
-  background-color: navy;
-  color: white;
+.btn-ffff00 {
+  background-color: #ffff00;
+}
+.btn-3cb371 {
+  background-color: #3cb371;
+}
+.btn-00bfff {
+  background-color: #00bfff;
+}
+.btn-4169e1 {
+  background-color: #4169e1;
+}
+.btn-9400d3 {
+  background-color: #9400d3;
+}
+.btn-ff1493 {
+  background-color: #ff1493;
+}
+.btn-ffeedd {
+  background-color: #ffeedd;
+}
+
+.btn-ffffdd {
+  background-color: #ffffdd;
+}
+.btn-ddf6dd {
+  background-color: #ddf6dd;
+}
+.btn-ddffff {
+  background-color: #ddffff;
+}
+.btn-ddeeff {
+  background-color: #ddeeff;
+}
+.btn-ddddff {
+  background-color: #ddddff;
+}
+.btn-ffddf6 {
+  background-color: #ffddf6;
 }
 </style>
