@@ -58,6 +58,12 @@ function goToSignUp() {
 </script>
 
 <style scoped>
+body {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  background-color: #f0e6d6;
+  margin: 0;
+  padding: 0;
+}
 .container {
   display: flex;
   justify-content: center;
@@ -66,12 +72,15 @@ function goToSignUp() {
   height: 80vh;
 }
 
-body {
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  background-color: #f0e6d6;
-  margin: 0;
-  padding: 0;
+.memoria-title {
+  font-family: 'Gaegu', sans-serif;
+  font-size: 30px;
 }
+
+h1 {
+  margin: 0px;
+}
+
 .memoria-title,
 .start-rolling-paper-button {
   display: block;
@@ -121,18 +130,22 @@ body {
 }
 
 .start-rolling-paper-button {
-  background-color: #bf94e4; /* 버튼의 기본 배경색 */
-  color: white; /* 텍스트 색상 */
-  padding: 15px 30px; /* 버튼 내부의 여백 */
-  font-size: 18px; /* 글꼴 크기 */
-  border: none; /* 테두리 제거 */
-  border-radius: 5px; /* 테두리 반경 */
-  cursor: pointer; /* 마우스 오버 시 커서 변경 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
-  transition: background-color 0.3s; /* 호버 효과를 위한 전환 */
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+  padding: 15px 30px;
+  background-color: #bf94e4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
 }
 
 .start-rolling-paper-button:hover {
   background-color: #ffb8c6;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1);
 }
 </style>

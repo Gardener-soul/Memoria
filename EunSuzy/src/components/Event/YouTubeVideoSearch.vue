@@ -1,8 +1,10 @@
 <template>
   <div>
-    <h4>운동 영상 검색 💻</h4>
-    <input type="text" v-model="keyword" placeholder="당신이 원하는 운동 영상은 ?" />
-    <button @click="search">검색</button>
+    <h2>운동 영상 검색 💻</h2>
+    <div id="container">
+      <input type="text" v-model="keyword" placeholder="당신이 원하는 운동 영상은 ?" />
+      <button @click="search">검색</button>
+    </div>
   </div>
 </template>
 
@@ -27,10 +29,9 @@ div {
 }
 
 /* 제목 스타일링 */
-h4 {
-  margin-bottom: 20px;
+h2 {
+  margin: 0;
   color: #333;
-  font-size: 24px;
 }
 
 /* 검색창 스타일링 */
@@ -45,16 +46,19 @@ input[type="text"] {
 
 /* 버튼 스타일링 */
 button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
+  width: 100px;
+  padding: 12px 15px; /* 버튼의 패딩 증가 */
   background-color: #d8b6e2;
   color: white;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
 }
 
 button:hover {
   background-color: #bf94e4;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 </style>

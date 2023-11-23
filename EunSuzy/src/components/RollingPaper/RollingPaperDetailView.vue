@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <img src="@/assets/편지 봉투.png" />
-    <h4>To. {{ userName }}</h4>
+    <h4>To. {{ userName }}님</h4>
     <button @click="goToRoll" class="view-rollingpaper-btn">
-      롤페 보러 가기
+      편지함 가기
     </button>
     <button class="writebutton" @click="checkLoginAndGoToMessageCreate">
       편지 쓰기
@@ -121,18 +121,19 @@ onMounted(fetchData);
   top: 47%;
   left: 50%;
   transform: translateX(-50%);
-  color: white;
-  background-color: #ffb2c1;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 50%; /* 버튼을 원형으로 만듭니다 */
-  width: 110px; /* 버튼의 너비를 설정 */
-  height: 100px; /* 버튼의 높이를 설정 */
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 15px; /* 필요한 경우 글꼴 크기 조정 */
+  width: 110px;
+  height: 100px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #ffb8c6;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .view-rollingpaper-btn {
@@ -140,12 +141,19 @@ onMounted(fetchData);
   top: 10%;
   left: calc(50% + 100px); /* h4 태그 옆에 위치 */
   transform: translateY(-50%);
-  background-color: #d8b6e2; /* 버튼 배경색 */
-  color: white; /* 버튼 텍스트 색상 */
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 12px 15px;
+  background-color: #d8b6e2;
+  color: white;
   border: none;
+  border-radius: 10px;
   cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.view-rollingpaper-btn:hover {
+  background-color: #bf94e4;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .modal {
