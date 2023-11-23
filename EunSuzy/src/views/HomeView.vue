@@ -21,26 +21,34 @@
         <button class="confirm-button" @click="goToSignUp">회원가입</button>
       </div>
     </div>
+    <footer class="footer" v-if="showFooter">
+      <div class="footer-content">
+        <span>MEMORIA © 2023. All rights reserved.</span> |
+        <span>연락처: info@rollingpaper.com</span>
+        <div class="social-links">
+          <a href="#" target="_blank">Facebook</a> |
+          <a href="#" target="_blank">Twitter</a> |
+          <a href="#" target="_blank">Instagram</a>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/user.js";
 
 const userStore = useUserStore();
-
-const showLoginModal = ref(false);
-
 const router = useRouter();
+const showLoginModal = ref(false);
+const showFooter = ref(false); // 초기 값은 false로 설정합니다.
 
 function handleRollingPaperStart() {
   if (userStore.isLoggedIn) {
-    // 로그인 상태일 때 롤링 페이퍼 생성 페이지로 이동
     router.push("/create");
   } else {
-    // 로그인 상태가 아닐 때 모달 창 표시
     showLoginModal.value = true;
   }
 }
@@ -55,6 +63,23 @@ function goToLogin() {
 function goToSignUp() {
   router.push("/signup");
 }
+
+const checkContentHeight = () => {
+  showFooter.value =
+    document.documentElement.scrollHeight >
+    document.documentElement.clientHeight;
+};
+
+onMounted(() => {
+  checkContentHeight();
+  window.addEventListener("resize", checkContentHeight);
+  window.addEventListener("scroll", checkContentHeight);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", checkContentHeight);
+  window.removeEventListener("scroll", checkContentHeight);
+});
 </script>
 
 <style scoped>
@@ -66,7 +91,6 @@ body {
 }
 .container {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
   height: 80vh;
@@ -94,39 +118,27 @@ h1 {
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
-  align-items: center;
+  flex: 1;
 }
 
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 15px;
+.memoria-title,
+.start-rolling-paper-button,
+.footer {
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  position: relative;
 }
 
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 25px;
-  cursor: pointer;
-}
-
-.confirm-button {
-  background-color: #ffb8c6;
+.footer {
+  width: 100%;
+  background-color: #d8b6e2;
   color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-  margin-right: 10px; /* 오른쪽 마진 추가 */
+  padding: 10px 0;
 }
 
-.confirm-button:hover {
-  background-color: #bf94e4;
+.footer-content span,
+.social-links a {
+  margin: 5px 0;
+  color: white;
+  text-decoration: none;
 }
 
 .start-rolling-paper-button {
