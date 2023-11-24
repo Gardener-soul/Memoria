@@ -25,7 +25,8 @@
           />
           <p v-if="passwordIsValid">비밀번호가 유효합니다.</p>
           <p v-else id="desc">
-            영문자, 숫자와 특수문자를 조합해서 8자리 이상의 비밀번호를 완성하세요.
+            영문자, 숫자와 특수문자를 조합해서 8자리 이상의 비밀번호를
+            완성하세요.
           </p>
         </div>
         <div class="sketchbook-group">
@@ -59,16 +60,6 @@
             id="email"
             v-model="signupForm.email"
             placeholder="Email을 입력하세요"
-            required
-          />
-        </div>
-        <div class="sketchbook-group">
-          <label for="nickname">Nickname</label>
-          <input
-            type="text"
-            id="nickname"
-            v-model="signupForm.nickname"
-            placeholder="별명을 입력하세요"
             required
           />
         </div>
@@ -150,9 +141,12 @@ label {
 }
 
 .sketchbook-title {
-  font-size: 28px;
+  font-family: "Gaegu", sans-serif;
+  font-size: 50px;
   color: #333;
   text-align: center;
+  margin-top: 0px;
+  margin-bottom: 30px;
 }
 
 .sketchbook-form {

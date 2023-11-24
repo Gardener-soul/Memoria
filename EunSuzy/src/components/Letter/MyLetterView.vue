@@ -11,15 +11,23 @@
         v-if="item.img"
         :src="`http://localhost:8080/letter/image/${item.img}`"
       />
-      <h5 class="writer">FROM. {{ item.userName }}</h5>
-      <p class="date">{{ date(item.regDate) }}</p>
+      <div class="writer-date-container">
+        <h5 class="writer">FROM. {{ item.userName }}</h5>
+        <p class="date">{{ date(item.regDate) }}</p>
+      </div>
       <div class="card-buttons">
         <button class="card-button" @click="goBack">롤페 보기</button>
-  <button v-if="isAuthor" class="card-button" @click="goModify(item.letterNo)">
-    수정
-  </button>
-  <button v-if="isAuthor" class="card-button" @click="deleteLetter">삭제</button>
-</div>
+        <button
+          v-if="isAuthor"
+          class="card-button"
+          @click="goModify(item.letterNo)"
+        >
+          수정
+        </button>
+        <button v-if="isAuthor" class="card-button" @click="deleteLetter">
+          삭제
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -90,20 +98,26 @@ function goModify(letterNo) {
   margin: 20px auto;
   text-align: left;
   overflow: hidden; /* 내부 요소가 넘칠 경우 숨김 처리 */
+  font-size: 20px;
 }
 
 .text {
   margin-bottom: 10px; /* 단락 사이 간격 */
 }
 
+.writer-date-container {
+  display: flex;
+  justify-content: space-between; /* 필요에 따라 조정 */
+  margin: 0 20px;
+}
+
 .writer,
 .date {
-  align-self: flex-end; /* 오른쪽 정렬을 위해 flex-end 사용 */
-  margin: 0 20px 10px 20px; /* 상단, 오른쪽, 하단, 왼쪽 마진 */
+  margin: 10px 0; /* 상하 마진만 조정 */
 }
 
 .date {
-  align-self: flex-start; /* 왼쪽 정렬을 위해 flex-start 사용 */
+  margin-left: 300px;
 }
 
 .card-buttons {
@@ -114,21 +128,21 @@ function goModify(letterNo) {
 }
 
 .card-button {
-  background-color: #bf94e4;
+  width: 100px;
+  padding: 12px 15px;
+  background-color: #d8b6e2;
   color: white;
   border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
   margin-right: 10px; /* 버튼 오른쪽 간격 */
 }
 
-.card-button:last-child {
-  margin-right: 0; /* 마지막 버튼 오른쪽 간격 제거 */
-}
-
 .card-button:hover {
-  background-color: #a476c1;
+  background-color: #bf94e4;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 img {

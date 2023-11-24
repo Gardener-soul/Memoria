@@ -1,50 +1,43 @@
 <template>
   <div>
-    <!-- <div class="headerLower-container">
-      <canvas></canvas>
-    </div> -->
     <div class="container">
       <div class="memoria-title">
         <h1>Memoria</h1>
       </div>
       <div>
         <button
-        @click="handleRollingPaperStart"
-        class="start-rolling-paper-button"
-      >
-      롤링페이퍼 시작하기
-    </button>
-    </div>
-    <!-- 로그인 요구 모달 -->
-    <div v-if="showLoginModal" class="modal-overlay" @click="closeLoginModal">
-      <div class="modal-content" @click.stop>
-        <span class="close-button" @click="closeLoginModal">&times;</span>
-        <p>롤링 페이퍼를 작성하려면 로그인이 필요합니다.</p>
-        <p>계정이 없다면 회원가입을 진행해주세요</p>
-        <button class="confirm-button" @click="goToLogin">로그인</button>
-        <button class="confirm-button" @click="goToSignUp">회원가입</button>
+          @click="handleRollingPaperStart"
+          class="start-rolling-paper-button"
+        >
+          롤링페이퍼 시작하기
+        </button>
       </div>
-    </div>
-    <footer class="footer">
-      <div class="footer-content">
-        <span>MEMORIA © 2023. All rights reserved.</span> |
-        <span>연락처: info@rollingpaper.com</span>
-        <div class="social-links">
-          <a href="#" target="_blank">Facebook</a> |
-          <a href="#" target="_blank">Twitter</a> |
-          <a href="#" target="_blank">Instagram</a>
+      <div v-if="showLoginModal" class="modal-overlay" @click="closeLoginModal">
+        <div class="modal-content" @click.stop>
+          <span class="close-button" @click="closeLoginModal">&times;</span>
+          <p>롤링 페이퍼를 작성하려면 로그인이 필요합니다.</p>
+          <p>계정이 없다면 회원가입을 진행해주세요</p>
+          <button class="confirm-button" @click="goToLogin">로그인</button>
+          <button class="confirm-button" @click="goToSignUp">회원가입</button>
         </div>
       </div>
-    </footer>
-  </div>
-  <button @click="toggleSnowEffect" class="snow-toggle-button">
-    {{ snowEffect ? '눈 효과 끄기' : '눈 효과 켜기' }}
-  </button>
+      <footer class="footer">
+        <div class="footer-content">
+          <span>MEMORIA © 2023. All rights reserved.</span> |
+          <span>연락처: info@rollingpaper.com</span>
+          <div class="social-links">
+            <a href="#" target="_blank">이수지</a> |
+            <a href="#" target="_blank">박은수</a> |
+            <a href="#" target="_blank">SSAFY 8반</a>
+          </div>
+        </div>
+      </footer>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted,onUnmounted, watch } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/user.js";
 
@@ -76,94 +69,6 @@ function goToLogin() {
 function goToSignUp() {
   router.push("/signup");
 }
-
-// onMounted(()=>{    
-//   var c = document.getElementsByTagName("canvas")[0];
-//   var b = document.body;
-//   var a = c.getContext("2d");
-//   let D = b.style;
-//   let f = window;
-//   D.margin = 0;
-//   D.overflow = "hidden";
-//   let i = f.innerWidth;
-//   let j = f.innerHeight;
-//   c.width = i;
-//   c.height = j;
-
-//   let k = Math;
-//   let l = k.random;
-//   let n = k.sin;
-//   let p = k.floor;
-//   let q = 20;
-//   let r = [];
-//   let s = k.PI;
-
-//   function t(d) {
-//     d.b = d.x = (l() * i - i * 0.5) * q;
-//     d.c = d.y = (l() * j - j * 0.2) * q;
-//     d.a = q;
-//     d.d = l();
-//   }
-//   for (var v = 0, w; v < 300; v++) {
-//     w = {};
-//     t(w);
-//     r.push(w);
-//   }
-//   setInterval(function () {
-//     a.fillStyle = "rgba(64,64,64,.8)";
-//     a.fillRect(0, 0, i, j);
-//     for (var d = 0; d < 300; d++) {
-//       var b = r[d],
-//         o = n(s) * 32 - 16,
-//         u = b.x / b.a,
-//         e = u + i / 2 - o,
-//         g = (o = b.y / b.a),
-//         m = l() * 360,
-//         x = b.a > q - 5 ? (q - b.a) / 5 : 1,
-//         h = q - b.a - 4;
-//       a.fillStyle = "hsla(" + p(m) + ",50%,95%," + x + ")";
-//       a.beginPath();
-//       if (b.a < q - 6) {
-//         a.save();
-//         a.translate(e, g);
-//         a.rotate(b.d * (d % 2 ? 1 : -1) * ((d % 3) / 2 + 0.1));
-//         g = 0;
-//         e = h / ((d % 4) + 2);
-//         for (m = h / ((d % 3) + 1); g < 6; g++) {
-//           a.lineTo(-e, m);
-//           a.lineTo(0, h);
-//           a.lineTo(e, m);
-//           a.lineTo(0, 0);
-//           a.rotate(k.PI / 3);
-//         }
-//         a.fill();
-//         if (d % 2 == 0) {
-//           g = 0;
-//           for (e = h / ((d % 5) + 1); g < 6; g++) {
-//             a.beginPath();
-//             a.moveTo(0, h);
-//             a.lineTo(-e, h - e);
-//             a.lineTo(0, h - e);
-//             a.lineTo(e, h - e);
-//             a.fill();
-//             a.rotate(k.PI / 3);
-//           }
-//         }
-//         a.restore();
-//       } else {
-//         a.arc(e, g, (1 / b.a) * 5 + 1, 0, k.PI * 2, true);
-//         a.fill();
-//       }
-//       b.b = u;
-//       b.c = o;
-//       b.a -= 0.15;
-//       b.d += l() / 5;
-//       if (b.a < 0.15 || b.b < -i / 2 || b.b > i / 2 || b.c > j) t(b);
-//       s += k.PI / 2;
-//     }
-//   }, 25);
-// });
-
 </script>
 
 <style scoped>
@@ -297,5 +202,4 @@ h1 {
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
   transform: scale(1.1);
 }
-
 </style>

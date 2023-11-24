@@ -49,13 +49,13 @@ public class LetterController {
 	@GetMapping("admin/list")
 	public ResponseEntity<?> Adminlist(Letter letter) {
 		List<Letter> list = letterService.getAdminList(letter);
-		
+
 		if (list == null || list.size() == 0)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 
 		return new ResponseEntity<List<Letter>>(list, HttpStatus.OK);
 	}
-	
+
 	// 2. 상세
 	@GetMapping("/{letterNo}")
 	public ResponseEntity<Letter> detail(@PathVariable int letterNo) {
@@ -65,7 +65,8 @@ public class LetterController {
 
 	// 3. 등록
 	@PostMapping("write")
-	public ResponseEntity<?> write(Letter letter, @RequestParam(required = false) MultipartFile image) throws IOException {
+	public ResponseEntity<?> write(Letter letter, @RequestParam(required = false) MultipartFile image)
+			throws IOException {
 		int result = letterService.writeLetter(letter, image);
 
 		if (result == 1)
@@ -73,7 +74,7 @@ public class LetterController {
 
 		return new ResponseEntity<String>("유저 추가 실패", HttpStatus.NOT_ACCEPTABLE);
 	}
-	
+
 	@GetMapping("/image/{imgFileName}")
 	public ResponseEntity<?> getImage(@PathVariable String imgFileName) {
 		Resource image = letterService.loadImage(imgFileName);
@@ -92,7 +93,8 @@ public class LetterController {
 	// 5. 수정
 	@CrossOrigin("*")
 	@PutMapping("update")
-	public ResponseEntity<Void> update(Letter letter, @RequestParam(required = false) MultipartFile image) throws IOException {
+	public ResponseEntity<Void> update(Letter letter, @RequestParam(required = false) MultipartFile image)
+			throws IOException {
 		letterService.modifyLetter(letter, image);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}

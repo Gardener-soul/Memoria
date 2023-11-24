@@ -22,18 +22,22 @@
         <td>{{ item.writerCount }}</td>
         <td>{{ date(item.regDate) }}</td>
         <td>
-          <div v-if="item.userName === useStore.userName">
+          <div
+            v-if="item.userName === useStore.userName || useStore.userNo === 0"
+          >
             <button @click="showEditModal(item)">수정</button>
             <button @click="deleteRP(item.rollingPaperNo)">삭제</button>
           </div>
-          <div v-else id="notMine">내 계정 아니면 안 보이지롱</div>
+          <div v-else id="notMine">내 것만 볼 수 있어</div>
         </td>
       </tr>
     </table>
     <div class="pagination">
       <button @click="prevPage" :disabled="currentPage === 1">이전</button>
       <span id="page">페이지 {{ currentPage }} / {{ totalPages }}</span>
-      <button @click="nextPage" :disabled="currentPage === totalPages">다음</button>
+      <button @click="nextPage" :disabled="currentPage === totalPages">
+        다음
+      </button>
     </div>
     <div v-if="showModal" class="modal">
       <div class="modal-content">
@@ -180,7 +184,7 @@ export default {
 }
 
 h2 {
-  font-family: 'Gaegu', sans-serif;
+  font-family: "Gaegu", sans-serif;
   font-size: 30px;
   color: #bf94e4;
   margin: 20px 10px;
