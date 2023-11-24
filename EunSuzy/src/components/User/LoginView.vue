@@ -23,7 +23,9 @@
         </div>
         <button type="submit" class="button">로그인</button>
         <br />
-        <button type="button" @click="goToSignUp" class="button">회원가입</button>
+        <button type="button" @click="goToSignUp" class="button">
+          회원가입
+        </button>
       </form>
     </div>
     <div v-if="showModal" class="modal-overlay" @click="closeModal">
@@ -113,7 +115,8 @@ body {
 }
 
 #sketchbook-title {
-  font-size: 28px;
+  font-family: "Gaegu", sans-serif;
+  font-size: 50px;
   color: #333;
   text-align: center;
   margin-top: 0px;

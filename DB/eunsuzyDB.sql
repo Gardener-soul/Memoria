@@ -70,22 +70,11 @@ FROM Events;
 
 INSERT INTO `Users` (userId, userPwd, userName, email)
 VALUES
-('eunsoo', '97', '박은수', 'ssafy1@ssafy.com'),
-('suuzy', '98', '이수지', 'ssafy@ssafy.com'),
-('HanTech', '9898', '한재훈', 'ssafy2@ssafy.com');
+('admin', 'admin', '관리자', 'admin@ssafy.com')
 
-INSERT INTO `RollingPapers` (ownerNo, title)
-VALUES
-(1, '박은수의 롤링페이퍼'),
-(2, '이수지의 롤링페이퍼'),
-(3, '한재훈의 롤링페이퍼');
-
-INSERT INTO `Letters` (letterNo, rollingPaperNo, writerNo, content)
-VALUES
-(1, 2, 1, '수지랑 짝이라서 재밌었어'),
-(2, 2, 3, '수지 덕분에 즐거웠어'),
-(3, 1, 3, '은수햄 덕분에 행복했어'),
-(4, 3, 2, '엘지뽀이 한재훈');
+UPDATE Users
+SET usreNo = 0
+FROM userNo = 1;
 
 INSERT INTO `Events` (eventTitle, description, eventDay)
 VALUES
@@ -110,4 +99,3 @@ VALUES
 ('운동 성과 공유하기', '주일간의 운동 성과 SNS에 공유하기.', 7),
 ('스트레스 해소 운동 찾기', '스트레스 해소에 좋은 운동 영상 찾아보기.', 7),
 ('휴식과 명상', '휴식과 명상을 위한 가이드 영상 시청하기.', 7);
-

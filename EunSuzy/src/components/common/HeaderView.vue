@@ -8,6 +8,11 @@
           <RouterLink to="/event">Event</RouterLink> |
         </div>
         <div class="user-links">
+          <img
+            class="badge"
+            v-if="userStore.eventDay === 7 && userStore.isLoggedIn"
+            src="@/assets/이벤트 뱃지.png"
+          />
           <span v-if="userStore.isLoggedIn"
             >{{ userStore.userName }}님 환영합니다.
           </span>
@@ -60,6 +65,16 @@ header {
   box-sizing: border-box;
 }
 
+span {
+  font-family: "Gaegu", sans-serif;
+  font-size: 20px;
+}
+
+.badge {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
 .navigation {
   display: flex;
   justify-content: space-between;

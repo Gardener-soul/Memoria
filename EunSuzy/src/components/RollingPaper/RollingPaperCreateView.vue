@@ -8,8 +8,7 @@
     />
     <p>
       1학기 동안 당신과 함께해서 즐거웠어요.
-      <br>당신의 앞길을 응원하고 축복해요
-      -은수지-
+      <br />당신의 앞길을 응원하고 축복해요 -은수지-
     </p>
     <button class="create-button" @click="loginTF">롤링 페이퍼 만들기</button>
   </div>
@@ -100,6 +99,12 @@ body {
   padding: 10px; /* 내부 여백 증가 */
   width: 100%; /* 너비 유지 */
   box-sizing: border-box; /* 박스 모델 유지 */
+}
+
+p {
+  text-align: center;
+  font-family: "Gamja Flower", sans-serif;
+  font-size: 20px;
 }
 
 .create-button {

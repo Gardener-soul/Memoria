@@ -1,35 +1,39 @@
 <template>
-  <div id="title">
-    <p>{{ rpMaster }}님 에게 {{ writerCount }}명의 편지가 도착했어요 !!💌</p>
-  </div>
-  <div class="cards-container">
-    <div
-      class="card"
-      v-for="item in items"
-      :key="item.letterNo"
-      :style="{ backgroundColor: `#${item.backColor}` }"
-    >
+  <div>
+    <div id="title">
+      <h1>
+        {{ rpMaster }}님 에게 {{ writerCount }}명의 편지가 도착했어요 !!💌
+      </h1>
+    </div>
+    <div class="cards-container">
       <div
-        class="card-body"
-        :class="{ 'with-img': item.img, 'without-img': !item.img }"
+        class="card"
+        v-for="item in items"
+        :key="item.letterNo"
+        :style="{ backgroundColor: `#${item.backColor}` }"
       >
-        <p
-          class="text"
-          :style="{ color: `#${item.fontColor}`, fontFamily: item.font }"
+        <div
+          class="card-body"
+          :class="{ 'with-img': item.img, 'without-img': !item.img }"
         >
-          {{ item.content }}
-        </p>
-        <img
-          v-if="item.img"
-          :src="`http://localhost:8080/letter/image/${item.img}`"
-        />
-        <h5 class="writer">FROM. {{ item.userName }}</h5>
-        <p class="date">{{ date(item.regDate) }}</p>
-      </div>
-      <div class="card-buttons">
-        <button class="card-button" @click="goToThisLetter(item.letterNo)">
-          보기
-        </button>
+          <p
+            class="text"
+            :style="{ color: `#${item.fontColor}`, fontFamily: item.font }"
+          >
+            {{ item.content }}
+          </p>
+          <img
+            v-if="item.img"
+            :src="`http://localhost:8080/letter/image/${item.img}`"
+          />
+          <h5 class="writer">FROM. {{ item.userName }}</h5>
+          <p class="date">{{ date(item.regDate) }}</p>
+        </div>
+        <div class="card-buttons">
+          <button class="card-button" @click="goToThisLetter(item.letterNo)">
+            보기
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -97,6 +101,7 @@ onMounted(() => {
     column-count: 2;
   }
 }
+
 .cards-container {
   column-count: 4; /* 4개의 열로 나눕니다 */
   column-gap: 10px; /* 열 사이의 간격 */
@@ -119,7 +124,6 @@ onMounted(() => {
   width: 100%;
   font-weight: bold;
   font-size: x-large;
-  margin-top: 20px; /* 상단 여백 추가 */
 }
 
 .writer {
@@ -142,17 +146,20 @@ onMounted(() => {
 }
 
 .card-button {
-  background-color: #bf94e4;
+  padding: 5px 10px;
+  margin-left: 5px;
+  background-color: #d8b6e2;
   color: white;
   border: none;
-  padding: 5px 10px;
-  margin-left: 5px; /* 버튼 간의 간격 */
+  border-radius: 10px;
   cursor: pointer;
-  border-radius: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
 }
 
 .card-button:hover {
-  background-color: #a885c2;
+  background-color: #bf94e4;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .card-body {

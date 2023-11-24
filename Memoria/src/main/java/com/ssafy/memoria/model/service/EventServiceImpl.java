@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.memoria.model.dao.EventDao;
 import com.ssafy.memoria.model.dto.Event;
-import com.ssafy.memoria.model.dto.SearchCondition;
 import com.ssafy.memoria.model.dto.User;
 
 @Service
@@ -25,7 +24,7 @@ public class EventServiceImpl implements EventService {
 	public List<Event> getList() {
 		System.out.println("모든 이벤트를 가지고 왔습니다.");
 
-	    return eventDao.selectAll();
+		return eventDao.selectAll();
 	}
 
 	@Transactional
@@ -34,8 +33,4 @@ public class EventServiceImpl implements EventService {
 		eventDao.completeEvent(user);
 	}
 
-	@Override
-	public List<Event> search(SearchCondition condition) {
-		return eventDao.search(condition);
-	}
 }

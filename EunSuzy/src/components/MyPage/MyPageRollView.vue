@@ -4,34 +4,34 @@
       <h1 v-if="title">{{ title }}</h1>
       <h1 v-else>도착한 편지가 한 장도 없어요 ㅠ</h1>
     </div>
-  <div class="cards-container">
-    <div
-      class="card"
-      v-for="item in items"
-      :key="item.letterNo"
-      :style="{ backgroundColor: `#${item.backColor}` }"
-    >
-      <div class="card-body">
-        <p
-          class="text"
-          :style="{ color: `#${item.fontColor}`, fontFamily: item.font }"
-        >
-          {{ item.content }}
-        </p>
-        <img
-          v-if="item.img"
-          :src="`http://localhost:8080/letter/image/${item.img}`"
-        />
-        <h5 class="writer">FROM. {{ item.userName }}</h5>
-        <p class="date">{{ date(item.regDate) }}</p>
-      </div>
-      <div class="card-buttons">
-        <button class="card-button" @click="goToThisLetter(item.letterNo)">
-          보기
-        </button>
+    <div class="cards-container">
+      <div
+        class="card"
+        v-for="item in items"
+        :key="item.letterNo"
+        :style="{ backgroundColor: `#${item.backColor}` }"
+      >
+        <div class="card-body">
+          <p
+            class="text"
+            :style="{ color: `#${item.fontColor}`, fontFamily: item.font }"
+          >
+            {{ item.content }}
+          </p>
+          <img
+            v-if="item.img"
+            :src="`http://localhost:8080/letter/image/${item.img}`"
+          />
+          <h5 class="writer">FROM. {{ item.userName }}</h5>
+          <p class="date">{{ date(item.regDate) }}</p>
+        </div>
+        <div class="card-buttons">
+          <button class="card-button" @click="goToThisLetter(item.letterNo)">
+            보기
+          </button>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -71,29 +71,61 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@media (max-width: 1024px) {
+  .cards-container {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-container {
+    column-count: 2;
+  }
+}
+
+h1 {
+  margin-top: 0;
+  font-family: "Gaegu", sans-serif;
+  font-size: 300%;
+}
+
 .cards-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개의 카드를 균등하게 배치 */
-  gap: 10px;
+  column-count: 4; /* 4개의 열로 나눕니다 */
+  column-gap: 10px; /* 열 사이의 간격 */
   padding: 10px;
 }
 
 .card {
-  /* 카드 관련 스타일 */
+  break-inside: avoid; /* 카드가 열 사이에서 나누어지지 않도록 함 */
+  margin-bottom: 10px; /* 카드 사이의 간격 */
   border: 1px solid black;
   padding: 10px;
-  margin: 10px; 
-  min-height: 300px; /* 최소 높이 설정 */
+  border-radius: 20px;
+  background: white; /* 배경색 */
 }
 
-img {
-  max-width: 100%; /* 이미지가 카드 너비를 초과하지 않도록 설정 */
-  height: auto; /* 이미지 비율 유지 */
+#card-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  font-size: x-large;
+  margin-top: 20px; /* 상단 여백 추가 */
 }
 
-.writer,
+.writer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 10px;
+}
+
 .date {
-  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
 }
 
 .card-buttons {
@@ -102,15 +134,43 @@ img {
 }
 
 .card-button {
-  background-color: #bf94e4;
+  padding: 5px 10px;
+  margin-left: 5px;
+  background-color: #d8b6e2;
   color: white;
   border: none;
-  padding: 5px 10px;
-  margin-left: 5px; /* 버튼 간의 간격 */
+  border-radius: 10px;
   cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
 }
 
 .card-button:hover {
-  background-color: #a885c2;
+  background-color: #bf94e4;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-body {
+  position: relative;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 0px;
+  text-align: left;
+}
+
+/* 이미지가 있는 경우와 없는 경우에 대한 별도의 스타일 제거 */
+.with-img,
+.without-img {
+  padding: 20px; /* 내부 여백 */
+  border-radius: 10px; /* 둥근 테두리 */
+}
+
+img {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 </style>
