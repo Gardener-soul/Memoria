@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="card-title">
-      <h1 v-if="title">{{ title }}</h1>
+      <h1 v-if="title">나의 편지함</h1>
       <h1 v-else>도착한 편지가 한 장도 없어요 ㅠ</h1>
     </div>
     <div class="cards-container">
@@ -58,7 +58,7 @@ function date(regDate) {
 
 onMounted(() => {
   axios
-    .get(`http://localhost:8080/user/mine?rollingPaperNo=${rollingPaperNo}`)
+    .get(`http://localhost:8080/user/mine?rollingPaperNo=${rollingPaperNo-1}`)
     .then((response) => {
       items.value = response.data;
       title.value = items.value[0].title;

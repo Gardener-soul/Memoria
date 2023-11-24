@@ -2,7 +2,7 @@
   <div>
     <div id="title">
       <h1>
-        {{ rpMaster }}님 에게 {{ writerCount }}명의 편지가 도착했어요 !!💌
+        {{ rpMaster }}님 에게 {{ writerCount }}개의 편지가 도착했어요 !!💌
       </h1>
     </div>
     <div class="cards-container">

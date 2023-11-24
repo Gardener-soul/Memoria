@@ -70,11 +70,32 @@ FROM Events;
 
 INSERT INTO `Users` (userId, userPwd, userName, email)
 VALUES
-('admin', 'admin', '관리자', 'admin@ssafy.com')
+('admin', 'admin', '관리자', 'admin@ssafy.com'),
+('eunsoo', '1234', '박은수', '81@ssafy.com'),
+('suuzy', '1234', '이수지', '82@ssafy.com'),
+('giljae', '1234', '윤길재', '83@ssafy.com'),
+('changjin', '1234', '우창진', '84@ssafy.com'),
+('young', '1234', '이영현', '85@ssafy.com'),
+('mindol', '1234', '전민정', '86@ssafy.com'),
+('joon', '1234', '최승준', '87@ssafy.com'),
+('dambi', '1234', '이담비', '88@ssafy.com'),
+('hoontech', '1234', '한재훈', '89@ssafy.com');
 
 UPDATE Users
-SET usreNo = 0
-FROM userNo = 1;
+SET userNo = 0
+WHERE userNo = 1;
+
+INSERT INTO `RollingPapers` (ownerNo, title)
+VALUES
+(2, '안녕 8반 나는 은수야'),
+(3, '뚜지의 편지함'),
+(4, '빵상길재의 편지통'),
+(5, '알고리즘 나보다 높은 사람만 써라'),
+(6, 'forever Young'),
+(7, '민돌멩이'),
+(8, '승준이 편지함'),
+(9, '앵무새 보고 싶은 사람 들어와'),
+(10, '엘지뽀이 재훈재훈');
 
 INSERT INTO `Events` (eventTitle, description, eventDay)
 VALUES
